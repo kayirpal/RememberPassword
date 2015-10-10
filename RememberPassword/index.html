@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MyApp</title>
+
+    <!-- MySecondApp references -->
+    <link href="css/lib/bootstrap.css" rel="stylesheet" />
+    <link href="css/lib/animate.css" rel="stylesheet" />
+    <link href="css/lib/font-awesome.css" rel="stylesheet" />
+    <link href="css/lib/hover.css" rel="stylesheet" />
+    <link href="css/custom/index.css" rel="stylesheet" />
+</head>
+<body ng-app="MyApp" ng-controller="mainEngine">
+
+    <header id="appHeader" class="hide">
+        <aside class="userInfoWrapper">
+            <span class="userNameDisplay fa fa-user" hm-tap="showHideUserActions()">
+                <img ng-src="{{loggedInUser.avatar}}" ng-if="!!kloggedInUser.avatar">
+            </span>
+            <div ng-class="userActionClasses">
+                <span class="fa fa-sign-out" title="Logout"></span>
+                <span class="fa fa-share-alt" title="Share"></span>
+                <span class="fa fa-cogs" title="settings"></span>
+            </div>
+        </aside>
+
+        <nav class="siteNavMenus">
+            <a class="btn btn-primary" href="#/{{menu.name}}" ng-repeat="menu in subSites">
+                <span ng-class="::menu.iconClasses"></span>
+                {{menu.name}}
+            </a>
+            <span class="menuSlider fa fa-caret-right "></span>
+        </nav>
+    </header>
+
+    <!-- App entry point-->
+    <div class="appWrapper" ng-view></div>
+    
+
+    <!-- Cordova reference, this is added to your app when it's built. -->
+
+    <!-- Libraries-->
+    <!-- Angular lib files-->
+    <script src="scripts/jquery-2.1.4.min.js"></script>
+    <script src="scripts/angular/angular.js"></script>
+    <script src="scripts/angular/angular-route.js"></script>
+    <script src="scripts/oAuth.js"></script>
+    <script src="scripts/md5.js"></script>
+
+    <!-- Touch library-->
+    <script src="scripts/hammer.js"></script>
+    <script src="scripts/angular/angular-hammer.js"></script>
+
+    <!--Common site data-->
+    <script src="app/modules/common/constants.js"></script>
+
+    <!--Services-->
+    <script src="app/modules/services/authService.js"></script>
+    <script src="app/modules/common/password.js"></script>
+
+    <!--Directives-->
+    <script src="app/modules/common/directive.js"></script>
+
+    <!--Controllers-->
+    <script src="app/modules/enroll/enroll.js"></script>
+    <script src="app/modules/home/home.js"></script>
+    <script src="app/modules/dashboard/dashboard.js"></script>
+    <script src="app/modules/avatar/avatar.js"></script>
+
+    <!--Root module-->
+    <script src="app/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿<section id="enrollForm">
+    <div class="enrollFormWrapper">
+        <header class="enrollFormHeader">
+            <span class="meditationImage">
+                <span class="innerLight"></span>
+                <img src="images/meditate.png" />
+            </span>
+        </header>
+        <form class="formFieldWrapper text-center">            
+            <div ng-class="formClasses" animation-end="dummyFunc">
+                <div class="input-group">
+                    <span class="input-group-addon emailFieldIndicator">@</span>
+                    <input type="text" class="form-control" ng-model="uName" placeholder="Your email (a.k.a User Name)">
+                </div>
+            </div>
+            <div ng-class="formClasses" >
+                <input class="form-control" type="password" ng-model="uPassword" placeholder="Password !!!" />
+            </div>
+            <div ng-class="formClasses" >
+                <input class="btn btn-success formSubmit" type="submit" value="Start" ng-click="enroll()" />
+            </div>
+        </form>
+
+        <div class="connectUsing container-fluid">
+            <span>~~~~~ <small>OR</small> ~~~~~</span>
+        </div>
+
+        <div id="connectOptionsWrapper" class="connectOptionsWrapper">
+            <table ng-class="oAuthClasses">
+                <tbody>
+                    <tr>
+                        <td>
+                            <article class="connectOption  animated ">
+                                <img class="fa fa-5x fa-spin facebook-icon" src="images/facebook.png" />
+                                <span class="fa fa-1pt5x  fa-facebook" hm-tap="oAuthService('facebook')"></span>
+                            </article>
+                        </td>
+                        <td>
+                            <article class="connectOption centralConnectOption">
+                                <img class="fa  fa-5x  fa-counter-spin google-icon" src="images/google.png" />
+                                <span class="fa fa-1pt5x fa-google-plus" hm-tap="oAuthService('google')"></span>
+                            </article>
+                        </td>
+                        <td>
+                            <article class="connectOption  animated ">
+                                <img class="fa  fa-5x  fa-spin twitter-icon " src="images/twitter.png" />
+                                <span class="fa fa-1pt5x fa-twitter" hm-tap="oAuthService('twitter')"></span>
+                            </article>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
