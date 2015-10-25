@@ -1,0 +1,776 @@
+﻿
+/* Home Screen*/
+#homeScreen {
+    width: 100%;
+    height: 100%;
+}
+
+#homeScreen .homeWrapper {
+    height: 100%;
+}
+
+#homeScreenCanvas {
+    height: 95%;
+}
+
+.form-group > span {
+    margin: 0 5px;
+    font-size: 2.5em;
+}
+
+.ageSlider, .weightSlider {
+    width: 150px;
+    position: relative;
+    display: inline-block;
+    text-align: left;
+}
+
+.weightSlider {
+    width: 200px;
+}
+
+.ageSlider span {
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.weightSlider img {
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    -moz-transform-origin: 0;
+    -ms-transform-origin: 0;
+    -o-transform-origin: 0;
+    -webkit-transform-origin: 0;
+    transform-origin: 0;
+}
+
+#homeScreenCanvas .form-group {
+    margin-bottom: 2em;
+}
+
+.form-group .lable-formClasses {
+    display: block;
+    font-size: small;
+}
+
+.female-selected .fa-male {
+    opacity: 0.5;
+}
+
+.male-selected .fa-female {
+    opacity: 0.5;
+}
+
+.updateUserInfo {
+    margin-top: 2em;
+}
+/*
+    height selector
+    */
+    .heightSelector .heightSlider {
+        height: 150px;
+        position: relative;
+        display: block;
+    }
+
+    .heightSelector .heightSlider span {
+        /* position: absolute; */
+        bottom: 0;
+        margin-top: 120px;
+        -moz-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+        -o-transform-origin: 50% 100%;
+        -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+    }
+
+    .sliderSectionWrapper {
+        width: 100%;
+        height: 200px;
+    }
+
+    .sliderSectionWrapper .sliderSections span {
+        font-size: 2.5em;
+    }
+
+    .sliderSectionWrapper > .sliderSections {
+        display: block;
+        height: 2em;
+    }
+
+    .sliderSectionWrapper .middleSliderSections {
+        height: 12em;
+    }
+
+    .sliderSections .innerSliderSection {
+        /* height: 150px; */
+        display: inline-block;
+    }
+
+    .middleSliderSections .innerSliderSection {
+        line-height: 14em;
+        width: 2em;
+    }
+
+    .middleSliderSections .mainFigure {
+        width: 11em;
+    }
+
+    .mainFigure span {
+        -moz-transform-origin: 50%;
+        -ms-transform-origin: 50%;
+        -o-transform-origin: 50%;
+        -webkit-transform-origin: 50%;
+        transform-origin: 50%;
+    }
+
+
+/*
+    form validation classes
+    */
+
+    .inValidEmail .emailFieldIndicator {
+        background-color: #ae1111;
+    }
+    .validEmail .emailFieldIndicator {
+        background-color: #5cb85c;
+    }
+    .inValidPassword .passwordFieldIndicator{
+        background-color: #ae1111;
+    }
+
+
+
+    /* view css*/
+    .iconsWrapper{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        height: 90%;
+        margin: auto;
+        -moz-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }  
+    .iconsWrapper .iconWrapper{
+        margin: 0.75em;
+        display: inline-block;
+    }
+
+    .iconWrapper .icon{
+        width: 2em;
+        border-radius: 0.25em;
+        background-color: rgba(0,0,0,0.75);
+        background-size: contain;
+        height: 2em;       
+        float: left;
+        box-shadow: 1px 1px 10px 1px #000;
+        text-align: center;
+        font-size: 3em;
+        line-height: 2em;
+        cursor: pointer;        
+        display: inline-block;
+    }
+
+    .createTextIcon .iconWrapper .icon{
+        float: none;
+    }
+    .icon .disabled{
+        display: inline;
+    }
+    .iconWrapper .icon:hover{
+        background-color: rgba(0,0,0,0.75);
+    }
+    .userActionWrapper {
+        position: fixed;
+        top: 0; 
+        right: 0;
+        transition: all 0.5s ease-in-out;
+        background-color: rgba(0,0,0,0.65);
+        width: 100%;
+        height: 100%;
+    }
+    .userActionWrapper.closed{
+        right: -100%;
+    }
+    .containerDoor {
+        float: left;
+        height: 100%;
+        width: 5%;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(51, 221, 85, 0.5);
+    }
+    .door{
+        transition: all 0.5s ease;        
+    }
+
+    .closed .door{
+        transform: translate(-50%,-50%) rotate(180deg);
+    }
+
+
+    .door {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%,-50%);
+
+        transform-origin: 50% 50%;
+    }
+
+    .actionsSection {
+     position: absolute;
+     width: 100%;
+     bottom:0;
+ }
+
+ .actualContainer  > .iconCreatorSection {
+    width: 100%;
+    height: 58%;
+    
+}
+.createTextIcon{
+    padding: 10px;
+    margin: auto;
+    max-height: 100%;
+    overflow: auto;
+}
+.browseImageIcon,.snapImageIcon{
+    min-height: 15em;
+    line-height: 12em;
+    padding: 15px 0;
+    position: relative;
+    background: radial-gradient(rgba(34, 68, 102, 1),rgba(17, 34, 51, 0.86));
+    text-align: center;
+}
+.browseImageIcon label{
+    /* margin: 0 1em; */
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color: #acb;
+}
+.browseImageIcon span{
+    cursor: pointer;
+}
+.browseImageIcon .changeFile {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.sctionWrapper.iconSource {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 1% 0;
+}
+.iconPreview{
+    margin: 1em 0;
+    height: 5em;
+}
+
+.textIconCreator,.browseIcon {
+    background-color: #fff;
+    color: #000;
+    border: 0;
+    font-size: 1.75em;
+    margin: auto;
+    text-align: center;
+}
+
+.formActionsWrapper > .btn:hover{
+    color: #fff;
+}
+.formActionsWrapper > .btn{
+    margin: 5px;
+    width: 30%;
+    min-width: 100px;
+    border-radius: 0.25em;
+    border: 0;        
+    color: #abc;
+}
+.formActionsWrapper > .createIcon{
+    background-color: #041;
+}
+.formActionsWrapper > .abortIcon{
+    background-color: #800;
+}
+.formActionsWrapper .previewIcon{
+    background-color: #123;
+}
+
+.drawingBoard canvas{
+    background-color: #333;
+    margin: 0.75em;
+    border:double 2px #ED3;
+    /* cursor: pointer; */
+}
+.boardActions .action{
+    /* display: block; */
+    cursor: pointer;    
+    font-size: 3em;
+    /* margin: 0.5em 0; */
+}
+
+.boardActions .action:hover,.brushWidthWrapper .action:hover{
+    color: #032;
+}
+
+
+.drawIconWrapper{
+    margin:0 auto;
+}
+
+.boardActions{
+    height: 50px;
+}
+
+.drawIconWrapper .colorPicker{
+    float: right;
+}
+
+.brushWidthWrapper .actionWrapper{
+    margin: 0.25em;
+    cursor: pointer;
+}
+.brushWidthWrapper .action{
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+.brushWidthWrapper .veryThin{
+    transform: scale(0.5);
+}
+.brushWidthWrapper .thin{
+    transform: scale(0.75);
+}
+.brushWidthWrapper .thick{
+    transform: scale(1.25);
+}
+.brushWidthWrapper .veryThick{
+    transform: scale(1.5);
+}
+
+.colorPickerWrapper,.strokeWidthWrapper{
+    position: relative;
+    height: 50px;
+    display: inline-block;
+    margin: 11px;
+}
+.brushWrapper {
+    display: inline-block;
+}
+
+.actionWrapper {
+    display: inline-block;
+    margin: 5px 10px;
+}
+.accessoryWrapper {
+    float: right;
+    margin: 5px 10px;
+    cursor: pointer;
+    /*color: #DD4E4E;*/
+}
+.boardAccessories {
+    display: inline-block;
+    float: right;
+}
+.brushWidth {
+    /* margin: 0 0.25em; */
+    cursor: pointer;
+    margin: 0 2px;
+    /* transform-origin: 0 95%; */
+}
+.downloadImageIcon{
+    color: rgba(136, 152, 222, 0.9);    
+}
+.uploadImageIcon{
+    color: rgba(66, 177, 115, 0.9);    
+}
+.configureBoardIcon{
+    float: right;
+    color: rgba(221, 78, 78, 0.9);    
+}
+.configureBoardIcon span{
+    font-size: 2.5em;
+}
+.configureBoard .slider{
+    width: 400px;
+    height: 22px;
+    margin: 0 10px;
+    display: inline-block;
+    /* background: linear-gradient(to right,red, green, blue); */
+}
+.redComponent .slider{
+    background: linear-gradient(to right,#fff, red);
+}
+.greenComponent .slider{
+    background: linear-gradient(to right, #fff, #0f0);
+    
+}
+.blueComponent .slider{
+    background: linear-gradient(to right,#fff, #00f);
+    
+}
+.strokeWidthWrapper .strokeWidth{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 00px 22px 402px;
+    border-color: transparent transparent #000000 transparent; 
+}
+.configureBoard .nobe{
+    position: absolute;
+    top: 2px;
+    transition: all 0.35s ease;
+    -webkit-transition: all 0.35s ease;
+    -o-transition: all 0.35s ease;
+    -moz-transition: all 0.35s ease;
+    left: 220px;    
+    transform: translateX(-50%);
+}
+.redComponent .nobe{
+    color: #f88;
+}
+.greenComponent .nobe{
+    color: #8f8;
+}
+.blueComponent .nobe{
+    color: #88f;
+}
+.strokeWidthWrapper .nobe{
+transform-origin: 50% 40%; 
+color: #888;   
+}
+
+.actionWrapper.selected{
+    color: rgb(100,100,100);
+}
+.selectIcon{
+    width: 100%;
+    margin: auto;
+    position: relative;
+    overflow: auto;
+    max-height: 100%;
+}
+.iconSource:after,.iconSource:before{
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  -webkit-background-image: linear-gradient(to bottom, rgba(119, 119, 119, 0), rgba(119, 119, 119, 1) 90%);
+  background-image: linear-gradient(to bottom, rgba(119, 119, 119, 0), rgba(119, 119, 119, 1) 90%);
+  width: 100%;
+  height: 11%;
+}
+.iconSource:before{
+    top: 0;
+    bottom: 100%;
+    -webkit-background-image: linear-gradient(to bottom, rgba(119, 119, 119, 1), rgba(119, 119, 119, 0) 90%);
+    background-image: linear-gradient(to bottom, rgba(119, 119, 119, 1), rgba(119, 119, 119, 0) 90%);
+}
+
+.selectIcon .showPreviousWrapper, 
+.selectIcon .showNextWrapper{
+    position: absolute;
+    top: 50%;
+    width: 10%;
+    transform: translateY(-50%);
+}
+
+.selectIcon .showNextWrapper{
+    right: 0;
+}
+.selectIcon .iconListWrapper{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+
+}
+
+.iconListWrapper .iconWrapper {
+    display: inline-block;
+    margin: 10px;
+}
+
+.iconListWrapper .selected .icon{
+    border: 1px solid #fff;
+    background-color: #077;
+    transform: scale(1.2);
+}
+
+.showPrevious , .showNext{
+    opacity: 0.25;
+    color: #000;
+    cursor: pointer;
+
+}
+
+.showPrevious:hover , .showNext:hover{
+    opacity: 0.75;
+}
+.headerWrapper {
+    
+    text-align: center;
+}
+
+
+.uppercase {
+    text-transform: capitalize;
+}
+
+
+.switch {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    color: #041;
+}
+
+
+.caseToggleWrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0 10px;
+}
+.alphabetsWrapper .selected{
+    transform: scale(1.2);
+    background-color: #077;
+    border: 1px solid #EFB;
+}
+.passwordPanelWrapper,.settingsWrapper {
+    display: inline-block;
+    position: relative;
+    width: 95%;
+    background: linear-gradient(to bottom, rgba(17, 34, 51, 0.9), rgba(34, 68, 102, 1),rgba(17, 34, 51, 0.9) 100%);
+    height: 100%;
+}
+.currentStepWrapper  {
+    position: relative;
+}
+
+
+
+.passwordPanel{
+    display: inline-block;
+    width: 75%;
+}
+.currentStepContainer input, .createTextIcon input{
+    display: block;
+    font-size: 2em;
+    margin: 1em auto;
+    padding: 0 0.5em;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+}
+.currentStepContainer input:focus , .createTextIcon input:focus{ 
+    outline: none;
+    border-color: #17C;
+    box-shadow: 0 0 15px #17C;
+}
+ 
+
+.v-week .password{color: #f00;}
+.week .password{color: #700;}
+.normal .password{color: #770;}
+.strong .password{color: #070;}
+.v-strong .password{color: #0f0;}
+
+.currentStepContainer >input.samePassword{
+    color: #0f0;
+}
+
+.currentStepContainer >input.diffPasswords{
+    border-color: #a00;
+    color: #a00;    
+    box-shadow: 0 0 15px #F11;
+    background-color: rgba(238, 51, 17, 0);
+    animation: errorField 2s ease-in-out;
+}
+.stepDescription .headerIcon{
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 2s;
+ animation-iteration-count: infinite;
+  animation-duration: 2s;
+}
+.createPassHint .headerIcon{
+    animation: glow 1s linear infinite;
+    margin: 0 0.1em;
+    color: #F52;
+}
+.createPassHint .fa-lightbulb-o{
+    color: #fff;
+}
+.stepDescription .fa-key{
+  transform: rotate(135deg);    
+}
+.currentStepActions {
+    position: absolute;
+    bottom: 1em;
+    right: 5%;
+}
+
+.nextStepIcon:hover{
+    color:#2D8;
+    animation-delay: 0.2s;
+    animation: nextStep 1s ease-in-out;
+}
+
+.selectQuestion  ,.createIcon {
+    color: #0CB;
+    transition: all 0.5s ease-in;
+    -webkit-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+}
+
+.selectQuestion:hover{
+    transform: scale(1.25);
+}
+
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.createHintWrapper,.methodToCreateIcon .buttonWrapper {
+    display: inline-block;
+    width: 35%;
+    margin: 2em;
+    /* padding: 1em; */
+    text-align: center;
+}
+.createHintContainer .hintIcon, .buttonWrapper .button{
+    transition: transform 0.25s linear;
+    box-shadow:10px 10px 10px 10px #123;
+    background-color: #F52;
+    cursor: pointer;
+    border-radius: 25%;
+    color: #322;
+    width: 2em;
+    line-height: 2em;
+}
+.createHintContainer .hintIcon:hover,  .buttonWrapper .button:hover{
+    transform: scale(1.25);
+}
+.createHintContainer .hintIcon:active,  .buttonWrapper .button:active{
+    transform: scale(1.1);
+
+}
+.createHintForm {
+    overflow: auto;
+    width: 100%;
+}
+.createHintFormContainer {    
+    width: 100%;
+    display: table;
+    /* max-height: 22em; */
+    table-layout: fixed;
+}
+/*Create hint*/
+.createHintForm select,
+.createHintForm input{
+    width: 80%;
+    display: inline-block;
+    background-color: #ddd;
+    color: #333;
+    font-size: 1.25em;    
+    margin: 1em 0;
+    height: 2.5em;
+}
+.moreQuestions{
+    transition: transform 0.3s ease-in-out;
+    color: rgba(51, 221, 85, 0.5);
+    cursor: pointer;
+}
+
+.questionareWrapper {
+    display: table-cell;
+    width: 475px;
+    position: relative;
+    text-align: center;
+}
+
+
+.removeQuestion {
+    color: #FC6969;
+    transition: transform 0.3s ease-in-out;
+}
+
+.moreQuestions:hover,.removeQuestion:hover{
+    transform: scale(1.25);
+    }
+
+.moreQuestions:active,.removeQuestion:active{   
+    transform: scale(1.15);    
+ }
+ 
+ .customStepActions,.nextStepButton,.homeButton{
+     display: inline-block;
+     margin: 0 5px;
+ }
+ .customStepActions {
+    margin: 0 1em;
+}
+.prevQuestion, .nextQuestion{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.prevQuestion{
+    left: 0;
+}
+.nextQuestion{
+right: 0;
+}
+.colorPalletWrapper {
+    display: inline-block;
+    text-align: center;
+    padding: 0 0.5em;
+    width: 100%;
+}
+
+.colorPalletContainer {
+    display: inline-block;
+    /* line-height: 55px; */
+    padding-top: 0.5em;
+}
+
+.colorPalletContainer .colorPallet {
+    display: inline-block;
+    width: 4em;
+    height: 2em;
+    cursor: pointer;
+    margin: 0 0.5em;
+    border-radius: 1em;
+}
+
+.homeIcon {
+    color: rgba(51, 221, 85, 0.5);
+}
+
+
+.uploadedIconWrapper img{
+    max-height: 15em;
+}
+.showUploadedIcon {
+    vertical-align: middle;
+    border-radius: 1em;
+    box-shadow: 2px 2px 15px 1px #000;
+}

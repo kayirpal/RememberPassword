@@ -3,89 +3,195 @@
     "use strict";
 
     // Define enroll controller
-    var enrollController = function ($scope, $location, $authService, constants) {
+    var enrollController = function ($scope, location, $authService, constants) {
+
+        // current scope
+        var enroll = this,
 
         // parent scope
-        var parent = $scope.$parent;
+        parent = $scope.$parent;
+
+        //#region  Email Address part of the form
+        //#endregion 
+
+
+
 
         // Form classes
-        $scope.formClasses = constants.enrollFormClasses;
+        enroll.formClasses = constants.enrollFormClasses;
 
         // validity indicator classes
-        $scope.emailGroup = ["input-group", "emptyEmail"];
-        $scope.passwordGroup = ["input-group", "emptyPassword"];
+        enroll.emailGroup = [];
+        enroll.passwordGroup = ["input-group", "emptyPassword"];
 
+        enroll.emailProviders = [{
+            style: {
+                'background-color': "rgba(199, 189, 66, 0.73)",
+                transform: 'rotate(-90deg) skew(50deg)'
+            },
+            offset: 160,
+            title: "linkedin.com"
+        }, {
+            style: {
+                'background-color': 'rgba(133, 56, 163, 0.42)',
+                transform: 'rotate(-50deg) skew(50deg)'
+            },
+            offset: 120,
+            title: "yahoo.com"
+        }, {
+            style: {
+                'background-color': 'rgba(0, 0, 0, 0.5)',
+                transform: 'rotate(-10deg) skew(50deg)'
+            },
+            offset: 80,
+            title: "icloud.com"
+        }, {
+            style: {
+                'background-color': 'rgba(217, 220, 38, 0.42)',
+                transform: 'rotate(30deg) skew(50deg)'
+            },
+            offset: 40,
+            title: "hotmail.com"
+        }, {
+            style: {
+                'background-color': 'rgba(234, 67, 53, 0.7)',
+                transform: 'rotate(70deg) skew(50deg)'
+            },
+            offset: 0,
+            title: "gmail.com"
+        }, {
+            style: {
+                'background-color': 'rgba(0, 114, 198, 0.45)',
+                transform: 'rotate(110deg) skew(50deg)'
+            },
+            offset: -40,
+            title: "outlook.com"
+        }, {
+            style: {
+                'background-color': 'rgba(49, 143, 52, 0.48)',
+                transform: 'rotate(150deg) skew(50deg)'
+            },
+            offset: -80,
+            title: "mail.com"
+        }, {
+            style: {
+                'background-color': 'rgba(243, 159, 218, 0.49)',
+                transform: 'rotate(190deg) skew(50deg)'
+            },
+            offset: -120,
+            title: "rediffmail.com"
+        }];
+        enroll.domainOffset = 0;
         // User
-        $scope.userAuthData = {
-            uName: "",
-            invalidEmail: true,
-            uPassword: ""
-        };
+        enroll.userAuthData = {};
 
         // OAuth classes
-        $scope.oAuthClasses = constants.oAuthClasses;
+        enroll.oAuthClasses = constants.oAuthClasses;
 
-        $scope.gotoHome = function () {
+        enroll.gotoHome = function () {
             if (!!constants.isUserFound) {
-                $location.path("/Home");
+                //  location.path("/Home");
                 $scope.$apply();
             }
         };
+        //Check email
+        enroll.checkProvidedEmail = function (userAuthData) {
 
+            var validEmailAlias;
 
+            // invalidate email address
+            userAuthData.invalidEmail = true;
+
+            if (userAuthData.uName && userAuthData.uName.trim()) {
+
+                // remove any @ sign if applied 
+                validEmailAlias = userAuthData.uName.split('@')[0];
+
+                if (validEmailAlias) {
+
+                    // set valid flag on
+                    userAuthData.invalidEmail = false;
+
+                    // todo: check for user present in our system or not
+
+                    // assume  present for now
+                    enroll.showPasswordScreen = true;
+
+                }
+            }
+        };
+        enroll.checkPressedKey = function (userAuthData, event, isPassword) {
+
+            if (event.which === 13) {
+
+                if (isPassword) {
+                    enroll.checkPassword(userAuthData);
+
+                } else {
+                    enroll.checkProvidedEmail(userAuthData);
+                }
+            }
+
+        };
+        enroll.checkPassword = function (userAuthData) {
+
+            enroll.showPasswordScreen = false;
+
+            location.path("/dashboard");
+        };
         // Enroll user
-        $scope.login = function (oAuthMode) {
+        enroll.login = function (oAuthMode) {
 
             var validForm = true;
 
             // Check valid email
-            if ($scope.userAuthData.invalidEmail){
+            if (enroll.userAuthData.invalidEmail) {
 
-                $scope.emailGroup.pop();
+                enroll.emailGroup.pop();
                 // Add invalid class
-                $scope.emailGroup.push("inValidEmail");
+                enroll.emailGroup.push("inValidEmail");
 
                 validForm = false;
-                
+
             }
 
-            $scope.passwordGroup.pop();
+            enroll.passwordGroup.pop();
 
             // Check for valid password 
-            if (!$scope.userAuthData.uPassword) {
+            if (!enroll.userAuthData.uPassword) {
 
 
                 // Add invalid class
-                $scope.passwordGroup.push("inValidPassword");
+                enroll.passwordGroup.push("inValidPassword");
 
                 validForm = false;
 
-                
+
             } else {
 
                 // Add invalid class
-                $scope.passwordGroup.push("emptyPassword");
+                enroll.passwordGroup.push("emptyPassword");
             }
 
             if (validForm) {
 
                 // Call login
-                $authService.login($scope.userAuthData);
+                $authService.login(enroll.userAuthData);
 
                 // enroll 
-                $scope.enroll();
+                enroll.enroll();
             }
         };
 
-        $scope.enroll = function () {
+        enroll.enroll = function () {
             // Update classes for the form elements
-            $scope.formClasses.pop();
-            $scope.oAuthClasses.pop();
-            $scope.formClasses.push("fadeOutDown");
-            $scope.oAuthClasses.push("zoomOutDown");
+            enroll.formClasses.pop();
+            enroll.oAuthClasses.pop();
+            enroll.formClasses.push("fadeOutDown");
+            enroll.oAuthClasses.push("zoomOutDown");
         };
 
-        $scope.oAuthService = function (serviceProvider) {
+        enroll.oAuthService = function (serviceProvider) {
 
             $authService.oAuth(serviceProvider).then(
                 function (response) {
@@ -94,7 +200,7 @@
                         // Set user avatar
                         parent.loggedInUser = constants.user;
 
-                        $scope.enroll();
+                        enroll.enroll();
                     }
                 },
                 function (error) {
@@ -103,34 +209,34 @@
         };
 
         // Add @ sign 
-        $scope.appendEmailSign = function () {
+        enroll.appendEmailSign = function () {
 
-            var email = $scope.userAuthData.uName;
+            var email = enroll.userAuthData.uName;
 
             if (!!email && email.indexOf("@") === -1) {
-                $scope.userAuthData.uName = email.concat("@");
+                enroll.userAuthData.uName = email.concat("@");
             }
         };
 
-        $scope.resetPasswordClasses = function () {
+        enroll.resetPasswordClasses = function () {
 
-            $scope.passwordGroup.pop();
+            enroll.passwordGroup.pop();
 
             // Add valid class
-            $scope.passwordGroup.push("emptyPassword");
+            enroll.passwordGroup.push("emptyPassword");
         };
 
-            // validate email
-            $scope.validateEmail = function () {
+        // validate email
+        enroll.validateEmail = function () {
 
             // Set validate class
-            $scope.emailGroup.pop();
+            enroll.emailGroup.pop();
 
             // Set invalidate class
-            $scope.userAuthData.invalidEmail = true;
+            enroll.userAuthData.invalidEmail = true;
 
             // email entered
-            var email = $scope.userAuthData.uName;
+            var email = enroll.userAuthData.uName;
 
             // If its not empty
             if (!!email) {
@@ -139,24 +245,24 @@
                 if (constants.validEmail.test(email)) {
 
                     // Add valid class
-                    $scope.emailGroup.push("validEmail");
+                    enroll.emailGroup.push("validEmail");
 
                     // Reset invalidate flag
-                    $scope.userAuthData.invalidEmail = false;
+                    enroll.userAuthData.invalidEmail = false;
                 } else {
 
                     // Add invalid class
-                    $scope.emailGroup.push("inValidEmail");
+                    enroll.emailGroup.push("inValidEmail");
                 }
 
             } else {
 
                 // Add empty class
-                $scope.emailGroup.push("emptyEmail");
+                enroll.emailGroup.push("emptyEmail");
             }
 
         };
-
+        return enroll;
     };
 
     // Define enroll module

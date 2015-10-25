@@ -45,6 +45,7 @@
             templateUrl: "app/modules/avatar/home.html"
         }).when("/enroll", {
             controller: "enrollController",
+            controllerAs: "enroll",
             templateUrl: "app/modules/enroll/enroll.html"
         }).when("/home", {
             controller: "homeController",
@@ -56,8 +57,9 @@
             controller: "dashboardController",
             templateUrl: "app/modules/dashboard/dashboard.html"
         }).when("/", {
-            controller: "dashboardController",
-            templateUrl: "app/modules/dashboard/dashboard.html"
+            controller: "enrollController",
+            controllerAs: "enroll",
+            templateUrl: "app/modules/enroll/enroll.html"
         });
     };
 
