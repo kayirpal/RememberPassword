@@ -6,16 +6,17 @@
                     <header class="navButtonWrapper fieldComponent rotate-90" ng-click="enroll.checkProvidedEmail(enroll.userAuthData)">
                         <span class="formSubmit rotate-90">Next</span>
                     </header>
-                    <div class="circularListContainer" ng-style="{transform: 'rotate('+enroll.domainOffset+'deg)'}">
+                    <div class="circularListContainer" ng-style="enroll.rotateWheelValue">
                         <ul class="domainNamesWrapper fieldComponent">
-                            <li class="domainNameWrapper" ng-repeat="emailProvider in enroll.emailProviders" ng-style="emailProvider.style" ng-click="enroll.domainOffset = emailProvider.offset ">
+                            <li class="domainNameWrapper" ng-repeat="emailProvider in enroll.emailProviders" ng-style="emailProvider.style" 
+                                ng-click="enroll.rotateWheel($index,emailProvider.style)">
                                 <a class="domainNameContainer">
                                     <span class="domainName rotate-90" ng-bind="emailProvider.title"></span>
                                 </a>
                             </li>
-                            <li class="domainNameWrapper customDomainName" ng-click="enroll.domainOffset = -159">
+                            <li class="domainNameWrapper customDomainName" ng-click="enroll.rotateWheel(8)">
                                 <a class="domainNameContainer">
-                                    <input class="domainName rotate-90" type="text" ng-model="enroll.userAuthData.domainName" />
+                                    <input class="domainName rotate-90" placeholder="something" type="text" ng-model="enroll.userAuthData.domainName" />
                                 </a>
                             </li>
                         </ul>
@@ -23,14 +24,14 @@
                 </section>
                 <section class="emailAliasSection v-middle">
                     <header class="emailField fieldComponent" ng-class="{invalidEmail: enroll.userAuthData.invalidEmail}">
-                        <input type="text" class="inputField  text-right" ng-model="enroll.userAuthData.uName"
+                        <input   ng-style="{'background-color':  enroll.currentThemeColor}" type="text" class="inputField  text-right" ng-model="enroll.userAuthData.uName"
                                ng-keypress="enroll.checkPressedKey(enroll.userAuthData, $event)"
                                ng-focus="enroll.userAuthData.invalidEmail = false"
                                placeholder="email">
                     </header>
                     <div class="emailSeperator fieldComponent">
-                        <span class="emailFieldIndicator fa fa-map-marker rotate-m-90"></span>
-                        <span class="atSign">@</span>
+                        <span class="emailFieldIndicator fa fa-map-marker rotate-m-90" ng-style="{color:  enroll.currentThemeColor}"></span>
+                        <span class="atSign" ng-style="{'background-color':  enroll.currentThemeColor}">@</span>
                     </div>
                 </section>
 

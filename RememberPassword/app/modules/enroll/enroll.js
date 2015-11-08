@@ -3,7 +3,7 @@
     "use strict";
 
     // Define enroll controller
-    var enrollController = function ($scope, location, $authService, constants) {
+    var enrollController = function ($scope, location, auth, constants) {
 
         // current scope
         var enroll = this,
@@ -15,8 +15,6 @@
         //#endregion 
 
 
-
-
         // Form classes
         enroll.formClasses = constants.enrollFormClasses;
 
@@ -26,64 +24,101 @@
 
         enroll.emailProviders = [{
             style: {
-                'background-color': "rgba(199, 189, 66, 0.73)",
+                'background-color': "rgb(168, 165, 80)",
                 transform: 'rotate(-90deg) skew(50deg)'
             },
-            offset: 160,
             title: "linkedin.com"
         }, {
             style: {
                 'background-color': 'rgba(133, 56, 163, 0.42)',
                 transform: 'rotate(-50deg) skew(50deg)'
             },
-            offset: 120,
             title: "yahoo.com"
         }, {
             style: {
-                'background-color': 'rgba(0, 0, 0, 0.5)',
+                'background-color': 'rgb(43, 51, 60)',
                 transform: 'rotate(-10deg) skew(50deg)'
             },
-            offset: 80,
             title: "icloud.com"
         }, {
             style: {
                 'background-color': 'rgba(217, 220, 38, 0.42)',
                 transform: 'rotate(30deg) skew(50deg)'
             },
-            offset: 40,
             title: "hotmail.com"
         }, {
             style: {
                 'background-color': 'rgba(234, 67, 53, 0.7)',
                 transform: 'rotate(70deg) skew(50deg)'
             },
-            offset: 0,
             title: "gmail.com"
         }, {
             style: {
                 'background-color': 'rgba(0, 114, 198, 0.45)',
                 transform: 'rotate(110deg) skew(50deg)'
             },
-            offset: -40,
             title: "outlook.com"
         }, {
             style: {
                 'background-color': 'rgba(49, 143, 52, 0.48)',
                 transform: 'rotate(150deg) skew(50deg)'
             },
-            offset: -80,
             title: "mail.com"
         }, {
             style: {
-                'background-color': 'rgba(243, 159, 218, 0.49)',
+                'background-color': 'rgb(162, 130, 168)',
                 transform: 'rotate(190deg) skew(50deg)'
             },
-            offset: -120,
             title: "rediffmail.com"
         }];
-        enroll.domainOffset = 0;
+
+        enroll.rotateWheelValue = {
+            transform: "rotate(0deg)"
+        };
         // User
         enroll.userAuthData = {};
+        enroll.currentThemeColor = "rgba(234, 67, 53, 0.7)";
+
+        var prevRotateIndex = 4,
+            prevRotateDeg = 0;
+        // rotate wheel
+        enroll.rotateWheel = function (sectionIndex, theme) {
+
+            // deg
+            var deg = 0,
+                diff;
+
+            if (sectionIndex === prevRotateIndex) {
+                return;
+            }
+
+            diff = prevRotateIndex - sectionIndex;
+
+            deg = diff * 40;
+
+            if (deg > 240) {
+
+                prevRotateDeg += (deg -360);
+            } else if (deg < -240) {
+
+                prevRotateDeg += (360+ deg);
+
+            } else{
+
+                prevRotateDeg += deg;
+            }
+
+            prevRotateIndex = sectionIndex;
+
+            enroll.rotateWheelValue = {
+                transform: "rotate(".concat(prevRotateDeg, "deg)")
+            };
+
+            enroll.currentThemeColor = "";
+            if (theme) {
+                enroll.currentThemeColor  = theme['background-color'];
+            }
+        };
 
         // OAuth classes
         enroll.oAuthClasses = constants.oAuthClasses;
@@ -94,6 +129,7 @@
                 $scope.$apply();
             }
         };
+
         //Check email
         enroll.checkProvidedEmail = function (userAuthData) {
 
@@ -120,6 +156,7 @@
                 }
             }
         };
+
         enroll.checkPressedKey = function (userAuthData, event, isPassword) {
 
             if (event.which === 13) {
@@ -133,12 +170,14 @@
             }
 
         };
+
         enroll.checkPassword = function (userAuthData) {
 
             enroll.showPasswordScreen = false;
 
             location.path("/dashboard");
         };
+
         // Enroll user
         enroll.login = function (oAuthMode) {
 
@@ -176,7 +215,7 @@
             if (validForm) {
 
                 // Call login
-                $authService.login(enroll.userAuthData);
+                auth.login(enroll.userAuthData);
 
                 // enroll 
                 enroll.enroll();
@@ -193,7 +232,7 @@
 
         enroll.oAuthService = function (serviceProvider) {
 
-            $authService.oAuth(serviceProvider).then(
+            auth.oAuth(serviceProvider).then(
                 function (response) {
                     if (response) {
 
@@ -262,6 +301,7 @@
             }
 
         };
+
         return enroll;
     };
 

@@ -177,8 +177,7 @@
             }
 
         };
-
-
+        
         // create hint
 
         scope.createPasswordHint = function (currentStep, createHint) {
@@ -234,8 +233,7 @@
             currentStep.primaryHeader = createHint.header;
             currentStep.headerClass = createHint.iconClass;
         };
-
-
+        
         function selectQuestion(currentStep) {
 
             currentStep.data = {};
@@ -415,11 +413,8 @@
         // show hint 
 
         // guess hint
-
-
-
-
-
+        scope.addNewIcon();
+        proceedToNextStep(scope.currentStep);
     };
 
     // Define enroll module
