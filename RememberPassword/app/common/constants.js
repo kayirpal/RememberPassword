@@ -80,39 +80,13 @@
         id: 1,
         nextStepIndex: 1,
         stepClass: "savePassword",
-        primaryHeader: "Set icon",
-        iconCreatorTypes: [{
-            id: 1,
-            title: "Type it",
-            typeClass: "fa-keyboard-o"
-        }, {
-            id: 2,
-            title: "Browse it",
-            typeClass: "fa-file-image-o"
-        }, {
-            id: 3,
-            title: "Select it",
-            typeClass: "fa-th-large"
-        }, {
-            title: "Capture it",
-            id: 4,
-            typeClass: "fa-camera"
-        }],
-        sampleIcons: ["fa-facebook", "fa-credit-card", "fa-gamepad", "fa-key", "fa-money", "fa-mobile", "fa-phone", "fa-file-word-o", "fa-simplybuilt", "fa-skyatlas", "fa-adjust", "fa-user-secret", "fa-whatsapp", "fa-connectdevelop", "fa-sellsy", "fa-facebook-official", "fa-heartbeat"],
-        headerClass: "fa-eye",
+        primaryHeader: "Hushhhhhh !!",
+        headerClass: "fa-key",
         passStrengthClass: "",
         secondaryHeader: ""
     }, {
         id: 2,
         nextStepIndex: 2,
-        stepClass: "savePassword",
-        primaryHeader: "Password !!!",
-        headerClass: "fa-key",
-        passStrengthClass: "",
-        secondaryHeader: "Trust me, i'll keep it safe"
-    }, {
-        id: 3,
-        nextStepIndex: 0,
         stepClass: "createPassHint",
         primaryHeader: "Set hints",
         headerClass: "fa-lightbulb-o",
@@ -145,11 +119,37 @@
             id: 4
         }],
         secondaryHeader: ""
+    }, {
+        id: 3,
+        nextStepIndex: 0,
+        stepClass: "savePassword",
+        primaryHeader: "Set icon",
+        iconCreatorTypes: [{
+            id: 1,
+            title: "Type it",
+            typeClass: "fa-keyboard-o"
+        }, {
+            id: 2,
+            title: "Browse it",
+            typeClass: "fa-file-image-o"
+        }, {
+            id: 3,
+            title: "Select it",
+            typeClass: "fa-th-large"
+        }, {
+            title: "Capture it",
+            id: 4,
+            typeClass: "fa-camera"
+        }],
+        sampleIcons: ["fa-facebook", "fa-credit-card", "fa-gamepad", "fa-key", "fa-money", "fa-mobile", "fa-phone", "fa-file-word-o", "fa-simplybuilt", "fa-skyatlas", "fa-adjust", "fa-user-secret", "fa-whatsapp", "fa-connectdevelop", "fa-sellsy", "fa-facebook-official", "fa-heartbeat"],
+        headerClass: "fa-eye",
+        passStrengthClass: "",
+        secondaryHeader: ""
     }];
 
     // Create directive module under app 
-    angular.module('Constants', [])
+    angular.module('common')
 
     // add the constants 
     .constant("constants", constants);
-} ());
+}());

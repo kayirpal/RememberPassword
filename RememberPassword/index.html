@@ -44,9 +44,9 @@
 
     <!-- Libraries-->
     <!-- Angular lib files-->
-    <script src="scripts/jquery-2.1.4.min.js"></script>
     <script src="scripts/angular/angular.js"></script>
     <script src="scripts/angular/angular-route.js"></script>
+    <script src="scripts/jquery-2.1.4.min.js"></script>
     <script src="scripts/oAuth.js"></script>
     <script src="scripts/md5.js"></script>
 
@@ -55,20 +55,26 @@
     <script src="scripts/angular/angular-hammer.js"></script>
 
     <!--Common site data-->
-    <script src="app/modules/common/constants.js"></script>
+    <script src="app/common/common.module.js"></script>
+    <script src="app/common/constants.js"></script>
 
     <!--Services-->
-    <script src="app/modules/services/authService.js"></script>
-    <script src="app/modules/common/password.js"></script>
+    <script src="app/services/service.module.js"></script>
+    <script src="app/services/authService.js"></script>
+    <script src="app/services/password.js"></script>
 
     <!--Directives-->
-    <script src="app/modules/common/directive.js"></script>
+    <script src="app/directives/directive.module.js"></script>
+    <script src="app/directives/animationEnd.js"></script>
+    <script src="app/directives/drawBoard.js"></script>
+    <script src="app/directives/extractIcon.js"></script>
+    <script src="app/directives/fileUpload.js"></script>
+    <script src="app/directives/initUpload.js"></script>
+    <script src="app/directives/ngCanvas.js"></script>
 
     <!--Controllers-->
     <script src="app/modules/enroll/enroll.js"></script>
-    <script src="app/modules/home/home.js"></script>
     <script src="app/modules/dashboard/dashboard.js"></script>
-    <script src="app/modules/avatar/avatar.js"></script>
 
     <!--Root module-->
     <script src="app/app.js"></script>

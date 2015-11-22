@@ -176,6 +176,10 @@
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     border-radius: 50%;
+    -moz-animation: rotateIn 2s ease;
+    -o-animation: rotateIn 2s ease;
+    -webkit-animation: rotateIn 2s ease;
+    animation: rotateIn 2s ease;
 }
 
 .domainNamesWrapper {

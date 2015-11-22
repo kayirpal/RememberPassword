@@ -774,3 +774,9 @@ right: 0;
     border-radius: 1em;
     box-shadow: 2px 2px 15px 1px #000;
 }
+
+
+.passwordTextbox {
+    background-color: #154;
+    color: #fff;
+}

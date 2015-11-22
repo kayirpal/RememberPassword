@@ -40,31 +40,25 @@
         // Set site configuration
 
         // Splash screen
-        $routeProvider.when("/dfdfadasd", {
-            controller: "homeController",
-            templateUrl: "app/modules/avatar/home.html"
-        }).when("/enroll", {
-            controller: "enrollController",
-            controllerAs: "enroll",
-            templateUrl: "app/modules/enroll/enroll.html"
-        }).when("/home", {
-            controller: "homeController",
-            templateUrl: "app/modules/home/home.html"
-        }).when("/avatar", {
-            controller: "avatarController",
-            templateUrl: "app/modules/avatar/avatar.html"
+        $routeProvider.when("/", {
+            controller: "dashboardController",
+            templateUrl: "app/modules/dashboard/dashboard.html"
         }).when("/dashboard", {
             controller: "dashboardController",
             templateUrl: "app/modules/dashboard/dashboard.html"
-        }).when("/", {
+        }).when("/enroll", {
             controller: "enrollController",
+            controllerAs: "enroll",
+            templateUrl: "app/modules/dashboard/dashboard.html"
+        }).when("/checkPassword", {
+            controller: "dashboardController",
             controllerAs: "enroll",
             templateUrl: "app/modules/enroll/enroll.html"
         });
     };
 
     // Define main module
-    angular.module("MyApp", ["ngRoute", 'hmTouchEvents', 'Constants', "AuthServiceModule", "Directive", "enrollModule", "homeModule","dashboardModule","avatarModule","PasswordServiceModule"])
+    angular.module("MyApp", ["ngRoute", 'hmTouchEvents', 'common', "services", "directives", "enrollModule", "dashboardModule"])
 
     // Add main config
     .config(["$routeProvider", mainConfiguration])

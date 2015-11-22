@@ -52,18 +52,11 @@
 
                 case 2:
                     {
-                        if (currentStep.password && currentStep.password === currentStep.passwordCopy) {
+                        // Save the password
+                        pService.savePassowrd(currentStep);
 
-                            // remove copy
-                            currentStep.passwordCopy = undefined;
-
-                            // Save the password
-                            pService.savePassowrd(currentStep);
-
-                            // remove the actual password
-                            currentStep.password = undefined;
-
-                        }
+                        // remove the actual password
+                        currentStep.password = undefined;
                     }
 
             }
@@ -171,13 +164,12 @@
 
         scope.confirmPassword = function (currentStep) {
 
-            if (!!currentStep.passwordCopy) {
-                var diffPasswords = currentStep.password !== currentStep.passwordCopy;
-                currentStep.passCopyClass = diffPasswords ? "diffPasswords" : "samePassword";
+            if (!!currentStep.password) {
+                proceedToNextStep(currentStep);
             }
 
         };
-        
+
         // create hint
 
         scope.createPasswordHint = function (currentStep, createHint) {
@@ -233,7 +225,7 @@
             currentStep.primaryHeader = createHint.header;
             currentStep.headerClass = createHint.iconClass;
         };
-        
+
         function selectQuestion(currentStep) {
 
             currentStep.data = {};
@@ -410,17 +402,14 @@
             }
 
         }
-        // show hint 
 
-        // guess hint
-        scope.addNewIcon();
-        proceedToNextStep(scope.currentStep);
+
     };
 
     // Define enroll module
     angular.module("dashboardModule", [])
 
     // Enroll controller
-    .controller("dashboardController", ['$scope', '$location', "constants", "PasswordService", dashboardController]);
+    .controller("dashboardController", ['$scope', '$location', "constants", "passwordservice", dashboardController]);
 
 }());

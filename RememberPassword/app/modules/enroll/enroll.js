@@ -309,5 +309,5 @@
     angular.module("enrollModule", [])
 
     // Enroll controller
-    .controller("enrollController", ['$scope', '$location', 'authService', 'constants', enrollController]);
+    .controller("enrollController", ['$scope', '$location', 'authservice', 'constants', enrollController]);
 }())
