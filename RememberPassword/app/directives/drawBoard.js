@@ -12,13 +12,13 @@
             drawBoard: "="
         };
 
-        canvas.link = function ($scope, $element, $attribute) {
+        canvas.link = function ($scope, $element) {
 
 
             // $scope.drawBoard.api = $element.sketch({defaultColor: "rgb(100,100,100)"});
 
-            var canvas = $element[0];
-            var context = canvas.getContext('2d');
+            var canvasElement = $element[0];
+            var context = canvasElement.getContext('2d');
 
 
             // doodle
@@ -32,13 +32,13 @@
 
 
 
-            function startDraw() {
+            function startDraw(event) {
 
                 var coordinate = {};
 
                 isActive = true;
-                coordinate.x = event.offsetX || event.layerX - canvas.offsetLeft;
-                coordinate.y = event.offsetY || event.layerY - canvas.offsetTop;
+                coordinate.x = event.offsetX || event.layerX - canvasElement.offsetLeft;
+                coordinate.y = event.offsetY || event.layerY - canvasElement.offsetTop;
 
                 prevCords = coordinate;
                 context.moveTo(prevCords.x, prevCords.y);
@@ -50,8 +50,8 @@
                 if (isActive) {
                     var coordinate = {};
 
-                    coordinate.x = event.offsetX || event.layerX - canvas.offsetLeft;
-                    coordinate.y = event.offsetY || event.layerY - canvas.offsetTop;
+                    coordinate.x = event.offsetX || event.layerX - canvasElement.offsetLeft;
+                    coordinate.y = event.offsetY || event.layerY - canvasElement.offsetTop;
 
                     context.lineTo(coordinate.x, coordinate.y);
                     context.stroke();
@@ -64,21 +64,21 @@
                 }
             }
 
-            function endDraw(event) {
+            function endDraw() {
                 isActive = false;
                 context.closePath();
             }
 
             // canvas.addEventListener("click",createRegion,false);
-            canvas.addEventListener('mousedown', startDraw, false);
-            canvas.addEventListener('mousemove', draw, false);
-            canvas.addEventListener('mouseup', endDraw, false);
+            canvasElement.addEventListener('mousedown', startDraw, false);
+            canvasElement.addEventListener('mousemove', draw, false);
+            canvasElement.addEventListener('mouseup', endDraw, false);
 
             $scope.drawBoard.saveDrawnImage = function () {
 
-                if (canvas) {
+                if (canvasElement) {
 
-                    var image = canvas.toDataURL('image/png');
+                    var image = canvasElement.toDataURL('image/png');
 
                     window.open(image, "_blank");
                 }

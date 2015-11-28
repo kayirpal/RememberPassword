@@ -1,9 +1,10 @@
-﻿(function () {
+﻿
+(function () {
 
     "use strict";
 
     // Define enroll controller
-    var enrollController = function ($scope, location, auth, constants) {
+    var EnrollController = function ($scope, location, auth, constants) {
 
         // current scope
         var enroll = this,
@@ -98,12 +99,12 @@
 
             if (deg > 240) {
 
-                prevRotateDeg += (deg -360);
+                prevRotateDeg += (deg - 360);
             } else if (deg < -240) {
 
-                prevRotateDeg += (360+ deg);
+                prevRotateDeg += (360 + deg);
 
-            } else{
+            } else {
 
                 prevRotateDeg += deg;
             }
@@ -111,12 +112,12 @@
             prevRotateIndex = sectionIndex;
 
             enroll.rotateWheelValue = {
-                transform: "rotate(".concat(prevRotateDeg, "deg)")
+                transform:  "rotate("+prevRotateDeg+ "deg)"
             };
 
             enroll.currentThemeColor = "";
             if (theme) {
-                enroll.currentThemeColor  = theme['background-color'];
+                enroll.currentThemeColor = theme['background-color'];
             }
         };
 
@@ -147,9 +148,7 @@
 
                     // set valid flag on
                     userAuthData.invalidEmail = false;
-
-                    // todo: check for user present in our system or not
-
+                    
                     // assume  present for now
                     enroll.showPasswordScreen = true;
 
@@ -171,7 +170,7 @@
 
         };
 
-        enroll.checkPassword = function (userAuthData) {
+        enroll.checkPassword = function () {
 
             enroll.showPasswordScreen = false;
 
@@ -179,7 +178,7 @@
         };
 
         // Enroll user
-        enroll.login = function (oAuthMode) {
+        enroll.login = function () {
 
             var validForm = true;
 
@@ -243,7 +242,9 @@
                     }
                 },
                 function (error) {
+
                     console.log("Failed to authenticate using oAuth");
+                    console.log(error);
                 });
         };
 
@@ -306,8 +307,8 @@
     };
 
     // Define enroll module
-    angular.module("enrollModule", [])
+    angular.module("enrollModule")
 
     // Enroll controller
-    .controller("enrollController", ['$scope', '$location', 'authservice', 'constants', enrollController]);
-}())
+    .controller("enrollController", ['$scope', '$location', 'authservice', 'constants', EnrollController]);
+}());

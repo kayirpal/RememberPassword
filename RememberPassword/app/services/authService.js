@@ -6,7 +6,7 @@
       1. location object {$location} to provide redirections
       2. defer object {$q} for returning promises for api calls 
      */
-    var authService = function ($location, $q, constants) {
+    var authService = function ( $q, constants) {
 
         // Get service pointer
         var service = this;
@@ -19,7 +19,7 @@
          * 1. User details {name: ABC, password: ***}
          * 2. Other details [enableCache...]
          */
-        service.login = function (userAuthData, other) {
+        service.login = function (userAuthData) {
 
             // Get previous user data from local storage
             if (localStorage) {
@@ -32,9 +32,10 @@
 
                     return false;
                     // Save password
-                } else {
-                    localStorage.setItem(userAuthData.uName, userAuthData.uPassword);
                 }
+
+                localStorage.setItem(userAuthData.uName, userAuthData.uPassword);
+
 
                 // Add dummy user data
                 constants.user = {
@@ -110,13 +111,11 @@
 
                 }).fail(function (error) {
                     // Error at the oAuth api level
-                    // TODO: Implement error handling
                     oAuthResponse.reject(error);
                 });
 
             }).fail(function (error) {
                 // Error at auth provider level
-                // TODO: Implement error handling
                 oAuthResponse.reject(error);
             });
 
@@ -128,7 +127,7 @@
 
         // Logout method
         service.logout = function () {
-
+            return;
         };
         // Return service pointer
         return service;
@@ -138,7 +137,7 @@
     angular.module("services")
 
 // Adding the service
-.service("authservice", ["$location", "$q", "constants", authService]);
+.service("authservice", ["$q", "constants", authService]);
 
 }());
 

@@ -2,12 +2,11 @@
 
     "use strict";
 
-    var passwordService = function ($location, $q, constants) {
+    var passwordService = function () {
 
         // Get service pointer
-        var service = this,
-        store = localStorage;
-
+        var service = {};
+        
 
         // save password 
         service.encrypt = function (message) {
@@ -26,9 +25,7 @@
                 key = "Pass_icon_" + iconId + "_step_" + currentStep.id;
 
             // save the encrypted password
-            store.setItem(key, encryptedMessage);
-
-
+            localStorage.setItem(key, encryptedMessage);
         };
 
         service.getPasswordStrength = function (password) {
@@ -37,29 +34,29 @@
 
             // Test for small alphabet
             if (password.search(/[a-z]/) >= 0) {
-                sIndex++;
+                sIndex += 1;
             }
 
             // test for Capital alphabet
             if (password.search(/[A-Z]/) >= 0) {
-                sIndex++;
+                sIndex += 1;
             }
 
 
             // Test for integer
             if (password.search(/[0-9]/) >= 0) {
-                sIndex++;
+                sIndex += 1;
             }
 
 
             // Test for special chars
             if (password.search(/[\!\@\#\$\%\^\&\*\(\)\_\+\=\-\?\>\<]/) >= 0) {
-                sIndex++;
+                sIndex += 1;
             }
 
             // Test for length
             if (password.length > 5) {
-                sIndex++;
+                sIndex += 1;
             }
 
             return sIndex;
@@ -75,6 +72,6 @@
 
 // Adding the service
 
-.service("passwordservice", ["$location", "$q", "constants", passwordService]);
+.service("passwordservice", [passwordService]);
 
 }());

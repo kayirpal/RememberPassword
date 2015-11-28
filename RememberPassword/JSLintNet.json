@@ -1,0 +1,30 @@
+﻿{
+  "version": "2.0.3",
+  "ignore": [
+    "\\scripts\\"
+  ],
+  "options": {
+    "maxerr": 1000,
+    "maxlen": 1000,
+    "this": true,
+    "white": true,
+    "todo": true 
+
+  },
+  "globalVariables": [
+    "window",
+    "angular",
+    "$",
+    "document",
+    "console",
+    "CryptoJS",
+    "event",
+    "FileReader",
+    "Image",
+    "localStorage",
+    "OAuth"
+  ],
+  "runOnSave": true,
+  "runOnBuild": true,
+  "errorLimit": 1000
+}

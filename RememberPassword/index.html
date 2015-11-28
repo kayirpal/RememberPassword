@@ -13,31 +13,23 @@
     <link href="css/custom/enroll.css" rel="stylesheet" />
     <link href="css/custom/dashboard.css" rel="stylesheet" />
 </head>
-<body ng-app="MyApp" ng-controller="mainEngine">
+<body ng-app="MyApp" ng-controller="mainEngine as app">
 
-    <header id="appHeader" class="hide">
+    <header id="appHeader" class="">
         <aside class="userInfoWrapper">
-            <span class="userNameDisplay fa fa-user" hm-tap="showHideUserActions()">
-                <img ng-src="{{loggedInUser.avatar}}" ng-if="!!kloggedInUser.avatar">
+            <span class="userNameDisplay fa fa-user" hm-tap="app.showHideUserActions()">
+                <img ng-src="{{app.loggedInUser.avatar}}" ng-if="!!app.loggedInUser.avatar">
             </span>
-            <div ng-class="userActionClasses">
+            <div ng-class="app.userActionClasses">
                 <span class="fa fa-sign-out" title="Logout"></span>
                 <span class="fa fa-share-alt" title="Share"></span>
                 <span class="fa fa-cogs" title="settings"></span>
             </div>
         </aside>
-
-        <nav class="siteNavMenus">
-            <a class="btn btn-primary" href="#/{{menu.name}}" ng-repeat="menu in subSites">
-                <span ng-class="::menu.iconClasses"></span>
-                {{menu.name}}
-            </a>
-            <span class="menuSlider fa fa-caret-right "></span>
-        </nav>
     </header>
 
     <!-- App entry point-->
-    <div class="appWrapper" ng-view></div>
+    <div class="appWrapper" ui-view></div>
     
 
     <!-- Cordova reference, this is added to your app when it's built. -->
@@ -45,8 +37,8 @@
     <!-- Libraries-->
     <!-- Angular lib files-->
     <script src="scripts/angular/angular.js"></script>
-    <script src="scripts/angular/angular-route.js"></script>
     <script src="scripts/jquery-2.1.4.min.js"></script>
+    <script src="scripts/AngularUI/ui-router.js"></script>
     <script src="scripts/oAuth.js"></script>
     <script src="scripts/md5.js"></script>
 
@@ -70,13 +62,21 @@
     <script src="app/directives/extractIcon.js"></script>
     <script src="app/directives/fileUpload.js"></script>
     <script src="app/directives/initUpload.js"></script>
-    <script src="app/directives/ngCanvas.js"></script>
 
-    <!--Controllers-->
-    <script src="app/modules/enroll/enroll.js"></script>
-    <script src="app/modules/dashboard/dashboard.js"></script>
+    <!--App Modules-->
+
+    <!--Dashboard module-->
+    <script src="app/partials/dashboard/dashboard.module.js"></script>
+    <script src="app/partials/dashboard/dashboard.config.js"></script>
+    <script src="app/partials/dashboard/dashboard.js"></script>
+
+    <!--Enroll module-->
+    <script src="app/partials/enroll/enroll.module.js"></script>
+    <script src="app/partials/enroll/enroll.js"></script>
 
     <!--Root module-->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
     <script src="app/app.js"></script>
 
 </body>

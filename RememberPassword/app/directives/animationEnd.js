@@ -25,7 +25,7 @@
 
             el.addEventListener(
                 'webkitAnimationEnd',
-                function (e) {
+                function () {
                     if (scope[attribute.animationEnd]) {
                         scope[attribute.animationEnd](element);
                     }
@@ -42,6 +42,6 @@
     angular.module("directives")
 
     // Add the directive to the module
-    .directive("animationEnd", animationEnd)
+    .directive("animationEnd", animationEnd);
 
 }());

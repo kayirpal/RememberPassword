@@ -18,8 +18,8 @@ body {
 }
 
 #appHeader {
-    height: 10%;
     width: 100%;
+    position: relative;
 }
 
 .siteNavMenus {
@@ -59,52 +59,42 @@ body {
     }
 
 .userInfoWrapper {
-    position: relative;
-    -moz-transform-origin: 100% 0;
-    -ms-transform-origin: 100% 0;
-    -o-transform-origin: 100% 0;
-    -webkit-transform-origin: 100% 0;
-    transform-origin: 100% 0;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
     .userInfoWrapper .userNameDisplay {
-        font-size: 2em;
-        position: absolute;
-        right: 0;
-        top: 0;
+        font-size: 2.5em;
+        position: relative;
+        text-align: center;
+        line-height: 2em;
+        cursor: pointer;
         z-index: 3;
-        padding: 0.25em 0 0 0.75em;
-        display: inline-block;
-        width: 2em;
-        height: 2em;
+        width: 2.5em;
+        height: 2.5em;
         color: #fff;
-        -webkit-border-radius: 0 0 0 8em;
-        -moz-border-radius: 0 0 0 8em;
-        border-radius: 0 0 0 8em;
-        background-color: #555;
+        -webkit-border-radius: 0 0 0 3em;
+        border-radius: 0 0 0 3em;
+        background-color: rgba(85, 85, 85, 0.72);
     }
 
     .userInfoWrapper .userActions {
         position: absolute;
         right: -8em;
         top: -8em;
-        width: 8em;
-        height: 8em;
+        width: 10em;
+        height: 10em;
         z-index: 2;
         -moz-transition: all 0.5s ease;
         -o-transition: all 0.5s ease;
         -webkit-transition: all 0.5s ease;
         transition: all 0.5s ease;
-        display: inline-block;
         background-color: #aaa;
         text-align: center;
         -webkit-border-radius: 0 0 0 8em;
         -moz-border-radius: 0 0 0 8em;
-        border-radius: 0 0 0 8em;
+        border-radius: 0 0 0 10em;
     }
 
     .userInfoWrapper .slideInRightDown {
@@ -115,32 +105,25 @@ body {
 .userActions > span {
     display: block;
     font-size: 2.5em;
-    margin-right: 1em;
+    margin-right: 2em;
+    cursor: pointer;
     color: #333;
 }
 
-    .userActions > span:nth-child(1) {
-        -moz-transform: translateX(-0.15em);
-        -ms-transform: translateX(-0.15em);
-        -o-transform: translateX(-0.15em);
-        -webkit-transform: translateX(-0.15em);
-        transform: translateX(-0.15em);
-    }
-
     .userActions > span:nth-child(2) {
-        -moz-transform: translateX(0.35em) translateY(0.1em);
-        -ms-transform: translateX(0.35em) translateY(0.1em);
-        -o-transform: translateX(0.35em) translateY(0.1em);
-        -webkit-transform: translateX(0.35em) translateY(0.1em);
-        transform: translateX(0.35em) translateY(0.1em);
+        -moz-transform: translate(0.5em, 0.5em);
+        -ms-transform: translate(0.5em, 0.5em);
+        -o-transform: translate(0.5em, 0.5em);
+        -webkit-transform: translate(0.5em, 0.5em);
+        transform: translate(0.5em, 0.5em);
     }
 
     .userActions > span:nth-child(3) {
-        -moz-transform: translateX(1.5em);
-        -ms-transform: translateX(1.5em);
-        -o-transform: translateX(1.5em);
-        -webkit-transform: translateX(1.5em);
-        transform: translateX(1.5em);
+        -moz-transform: translate(2em, 0.5em);
+        -ms-transform: translate(2em, 0.5em);
+        -o-transform: translate(2em, 0.5em);
+        -webkit-transform: translate(2em, 0.5em);
+        transform: translate(2em, 0.5em);
     }
 
 .userNameDisplay img {

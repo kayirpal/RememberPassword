@@ -44,14 +44,12 @@
                         </div>
                         <section ng-if="currentStep.createHintId" class="createHintForm" ng-switch on="currentStep.createHintId">
                             <div class="browseImageIcon" ng-switch-when="1">
-                                <label file-upload="currentStep.data" init-upload>
+                                <label file-upload="currentStep">
                                     <span class="hvr-pulse-grow fa fa-5x fa-upload" ng-hide="currentStep.uploadedIconUrl"></span>
-                                    <span class="changeFile fa fa-2x fa-exchange" ng-show="currentStep.uploadedIconUrl">
-
-                                    </span>
+                                    <span class="changeFile fa fa-2x fa-exchange" ng-show="currentStep.uploadedIconUrl"></span>
                                 </label>
                                 <p ng-show="currentStep.uploadedIconUrl" class="uploadedIconWrapper margin-0">
-                                    <canvas class="showUploadedIcon" extract-icon="currentStep.uploadedIcon" width="250" height="150"></canvas>
+                                    <canvas class="showUploadedIcon" extract-icon="currentStep.uploadedIcon" width="250" height="200"></canvas>
                                 </p>
                             </div>
                             <div class="createHintFormContainer" ng-switch-when="2">
@@ -115,7 +113,7 @@
 
                         <section class="iconCreatorSection" ng-show="currentStep.iconCreatorTypeId">
                             <div class="sctionWrapper" ng-switch="currentStep.iconCreatorTypeId">
-                                <!-- if typing is prefered-->
+                                <!-- if typing is preferred-->
                                 <div class="createTextIcon" ng-switch-when="1">
                                     <div class="headerWrapper">
                                         <div class="iconWrapper">
@@ -129,11 +127,9 @@
                                     </div>
                                 </div>
                                 <div class="browseImageIcon" ng-switch-when="2">
-                                    <label file-upload="currentStep" init-upload>
+                                    <label file-upload="currentStep" >
                                         <span class="hvr-pulse-grow fa fa-5x fa-upload" ng-hide="currentStep.uploadedIconUrl"></span>
-                                        <span class="changeFile fa fa-2x fa-exchange" ng-show="currentStep.uploadedIconUrl">
-
-                                        </span>
+                                        <span class="changeFile fa fa-2x fa-exchange" ng-show="currentStep.uploadedIconUrl"></span>
                                     </label>
                                     <p ng-show="currentStep.uploadedIconUrl" class="uploadedIconWrapper margin-0">
                                         <canvas class="showUploadedIcon" extract-icon="currentStep.uploadedIcon" width="150" height="150"></canvas>

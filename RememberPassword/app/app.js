@@ -3,17 +3,19 @@
     "use strict";
 
     // Main controller
-    var mainEngine = function (scope, rootScope, constants) {
+    var mainEngine = function (constants) {
         
-        // Navigation 
-        scope.subSites = constants.subSites;
+        var app = this;
 
-        scope.loggedInUser = {
+        // Navigation 
+        app.subSites = constants.subSites;
+
+        app.loggedInUser = {
             isUserFound: false
         };
 
         // Can redirect
-        scope.canRedirect = function (reDirectTo) {
+        app.canRedirect = function (reDirectTo) {
                         
             if ((reDirectTo.isAuthRequired && constants.isUserFound) || (!reDirectTo.isAuthRequired && !constants.isUserFound)) {
                 return true;
@@ -23,48 +25,23 @@
         };
 
         // right side navigation 
-        scope.userActionClasses = constants.userActionClasses;
+        app.userActionClasses = constants.userActionClasses;
 
-        scope.showHideUserActions = function () {
-            var index = scope.userActionClasses.indexOf("slideInRightDown");
+        app.showHideUserActions = function () {
+            var index = app.userActionClasses.indexOf("slideInRightDown");
             if (index === -1) {
-                scope.userActionClasses.push("slideInRightDown");
+                app.userActionClasses.push("slideInRightDown");
             } else {
-                scope.userActionClasses.pop();
+                app.userActionClasses.pop();
             }
         };
     };
-
-    // Main configuration 
-    var mainConfiguration = function ($routeProvider) {
-        // Set site configuration
-
-        // Splash screen
-        $routeProvider.when("/", {
-            controller: "dashboardController",
-            templateUrl: "app/modules/dashboard/dashboard.html"
-        }).when("/dashboard", {
-            controller: "dashboardController",
-            templateUrl: "app/modules/dashboard/dashboard.html"
-        }).when("/enroll", {
-            controller: "enrollController",
-            controllerAs: "enroll",
-            templateUrl: "app/modules/dashboard/dashboard.html"
-        }).when("/checkPassword", {
-            controller: "dashboardController",
-            controllerAs: "enroll",
-            templateUrl: "app/modules/enroll/enroll.html"
-        });
-    };
-
+    
     // Define main module
-    angular.module("MyApp", ["ngRoute", 'hmTouchEvents', 'common', "services", "directives", "enrollModule", "dashboardModule"])
-
-    // Add main config
-    .config(["$routeProvider", mainConfiguration])
-
+    angular.module("MyApp")
+        
     // Add main controller
-    .controller("mainEngine", ["$scope", "$rootScope", "constants", mainEngine]);
+    .controller("mainEngine", ["constants", mainEngine]);
 
 }());
 

@@ -1,109 +1,19 @@
-﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
+﻿
+/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 (function () {
 
     "use strict";
 
     // Define enroll controller
-    var dashboardController = function (scope, $location, constants, pService) {
+    var dashboardController = function (scope, constants, pService) {
 
         var allSteps = constants.passSteps,
         currentIcon,
         iconCount = 0;
 
-        scope.icons = [];
+        scope.icons = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
 
         //Common methods
-
-        // Add icons
-        scope.addNewIcon = function () {
-
-            // set current step
-            scope.currentStep = angular.copy(allSteps[0]);
-
-            // reset creator type
-            scope.currentStep.iconCreatorTypeId = 0;
-
-            // set on Complete action
-            scope.currentStep.onComplete = createIcon;
-
-        };
-
-        // show home screen
-        scope.showDashboard = function (currentStep) {
-
-            // TODO: do some state saving stuff later
-
-            // hide action panel
-            scope.hideUserActions();
-
-        };
-
-
-        scope.hideUserActions = function () {
-            scope.currentStep = false;
-        };
-
-        // transitions
-
-        function proceedToNextStep(currentStep) {
-
-
-            switch (currentStep.id) {
-
-                case 2:
-                    {
-                        // Save the password
-                        pService.savePassowrd(currentStep);
-
-                        // remove the actual password
-                        currentStep.password = undefined;
-                    }
-
-            }
-
-            if (currentStep.nextStepIndex >= 0) {
-
-                scope.currentStep = allSteps[currentStep.nextStepIndex];
-
-
-                // set on Complete action
-                scope.currentStep.onComplete = proceedToNextStep;
-
-            }
-        };
-
-        //# region create icon 
-
-        //#endregion
-
-        //Icon creator
-        scope.changeIconCreatorType = function (currentStep, iconCreatorType) {
-
-            // set creator type
-            currentStep.iconCreatorTypeId = iconCreatorType.id;
-
-            // set header text
-            currentStep.primaryHeader = iconCreatorType.title;
-
-            if (iconCreatorType.id === 2) {
-                currentStep.onUpload = onUploadIcon;
-                // set uploaded icon
-                currentStep.uploadedIcon = {};
-            }
-
-            currentStep.customStepActions = [{
-                actionClass: "fa-times discardChanges",
-                performAction: function () {
-                    currentStep.iconCreatorTypeId = 0;
-                    currentStep.iconText = "";
-                    currentStep.primaryHeader = "Set icon";
-                    currentStep.iconClass = "";
-                    currentStep.customStepActions = [];
-                    currentStep.uploadedIcon = undefined;
-                }
-            }];
-
-        };
 
         function onUploadIcon(uploadedFile) {
 
@@ -123,11 +33,40 @@
             }
         }
 
+        function proceedToNextStep(currentStep) {
+
+
+            switch (currentStep.id) {
+
+                case 2:
+                    // Save the password
+                    pService.savePassowrd(currentStep);
+
+                    // remove the actual password
+                    currentStep.password = undefined;
+                    break;
+
+            }
+
+            if (currentStep.nextStepIndex >= 0) {
+
+                scope.currentStep = allSteps[currentStep.nextStepIndex];
+
+
+                // set on Complete action
+                scope.currentStep.onComplete = proceedToNextStep;
+
+                scope.currentStep.onUpload = onUploadIcon;
+
+            }
+        }
+
         function createIcon(currentStep) {
 
             // add new icon
+            iconCount += 1;
             currentIcon = {
-                iconId: ++iconCount,
+                iconId: iconCount,
                 iconType: currentStep.iconCreatorTypeId,
                 iconText: currentStep.iconText,
                 iconSrc: currentStep.uploadedIconUrl,
@@ -139,8 +78,106 @@
 
             // next step
             proceedToNextStep(currentStep);
+        }
+        
+        function addImageToBoard(image) {
+
+            var curStepData = scope.currentStep.data,
+            context = curStepData.context;
+
+            if (context) {
+                var imageObj = new Image(),
+                prevComposition = context.globalCompositeOperation,
+                prevGlobalAlpha = context.globalAlpha;
+                context.globalAlpha = 1;
+                imageObj.height = 225;
+                context.globalCompositeOperation = "source-over";
+                imageObj.width = 450;
+                imageObj.src = image;
+                context.drawImage(imageObj, 0, 0, 450, 225);
+                context.globalAlpha = prevGlobalAlpha;
+                context.globalCompositeOperation = prevComposition;
+            }
 
         }
+        
+
+        function selectQuestion(currentStep) {
+
+            currentStep.data = {};
+            currentStep.createHintId = 0;
+            currentStep.customStepActions = [];
+            currentStep.primaryHeader = "Set hints";
+            currentStep.headerClass = "fa-lightbulb-o";
+
+        }
+
+        // Add icons
+        scope.addNewIcon = function () {
+
+            // set current step
+            scope.currentStep = angular.copy(allSteps[0]);
+
+            // reset creator type
+            scope.currentStep.iconCreatorTypeId = 0;
+
+            // set on Complete action
+            scope.currentStep.onComplete = createIcon;
+
+        };
+
+        // show home screen
+        scope.showDashboard = function () {
+            
+            // hide action panel
+            scope.hideUserActions();
+
+        };
+
+
+        scope.hideUserActions = function () {
+            scope.currentStep = false;
+        };
+
+        // transitions
+
+
+        //# region create icon 
+
+        //#endregion
+
+        //Icon creator
+        scope.changeIconCreatorType = function (currentStep, iconCreatorType) {
+
+            // set creator type
+            currentStep.iconCreatorTypeId = iconCreatorType.id;
+
+            // set header text
+            currentStep.primaryHeader = iconCreatorType.title;
+
+            if (iconCreatorType.id === 2) {
+
+                currentStep.autoOpen = true;
+
+                currentStep.onUpload = onUploadIcon;
+                // set uploaded icon
+                currentStep.uploadedIcon = {};
+            }
+
+            currentStep.customStepActions = [{
+                actionClass: "fa-times discardChanges",
+                performAction: function () {
+                    currentStep.iconCreatorTypeId = 0;
+                    currentStep.iconText = "";
+                    currentStep.primaryHeader = "Set icon";
+                    currentStep.iconClass = "";
+                    currentStep.customStepActions = [];
+                    currentStep.uploadedIcon = undefined;
+                }
+            }];
+
+        };
+
 
         // set password
 
@@ -225,17 +262,7 @@
             currentStep.primaryHeader = createHint.header;
             currentStep.headerClass = createHint.iconClass;
         };
-
-        function selectQuestion(currentStep) {
-
-            currentStep.data = {};
-            currentStep.createHintId = 0;
-            currentStep.customStepActions = [];
-            currentStep.primaryHeader = "Set hints";
-            currentStep.headerClass = "fa-lightbulb-o";
-
-        }
-
+        
         scope.traverseQuestion = function (curStepData, isNext) {
 
             var curQuestionIndex = curStepData.curQuestionIndex,
@@ -256,17 +283,6 @@
             }
         };
 
-        // Add question
-        function addAnotherQuestion(curStep) {
-
-            var questions = curStep.data.questions,
-            length = questions.length,
-            lastQuestionId = questions[length - 1].id || 0;
-
-            questions.push({
-                id: lastQuestionId + 1
-            });
-        }
 
         // remove question
         scope.removeItem = function (index, array) {
@@ -297,31 +313,32 @@
 
             var offsetX = event.offsetX,
             colorOffset = Math.floor(offsetX / 2),
-            colorString = "rgb(",
+            base = "rgb(",
+            colorString = "",
                 colorOffsetString;
 
-            colorOffsetString = (220 - colorOffset).toString();
-
+            colorOffsetString = 220 - colorOffset;
+            colorOffsetString = colorOffsetString.toString();
             color.colorStyle = color.colorStyle || {};
 
             switch (color.color) {
                 case "red":
                     curStepData.composedColor.red = colorOffset;
-                    colorString = colorString.concat("255,", colorOffsetString, ",", colorOffsetString, ")");
+                    colorString = base.concat("255,", colorOffsetString, ",", colorOffsetString, ")");
                     break;
                 case "green":
                     curStepData.composedColor.green = colorOffset;
-                    colorString = colorString.concat(colorOffsetString, ",255,", colorOffsetString, ")");
+                    colorString = base.concat(colorOffsetString, ",255,", colorOffsetString, ")");
 
                     break;
                 case "blue":
                     curStepData.composedColor.blue = colorOffset;
-                    colorString = colorString.concat(colorOffsetString, ",", colorOffsetString, ",255)");
+                    colorString = base.concat(colorOffsetString, ",", colorOffsetString, ",255)");
                     break;
             }
             curStepData.composedStyle = {
-                color: "rgb(".concat(curStepData.composedColor.red, ",", curStepData.composedColor.green, ",", curStepData.composedColor.blue, ")")
-            }
+                color: base.concat(curStepData.composedColor.red, ",", curStepData.composedColor.green, ",", curStepData.composedColor.blue, ")")
+            };
             console.log(curStepData.composedColor);
             color.colorStyle.color = colorString;
             color.colorStyle.left = offsetX + "px";
@@ -382,26 +399,6 @@
             }
 
         };
-        function addImageToBoard(image) {
-
-            var curStepData = scope.currentStep.data,
-            context = curStepData.context;
-
-            if (context) {
-                var imageObj = new Image(),
-                prevComposition = context.globalCompositeOperation,
-                prevGlobalAlpha = context.globalAlpha;
-                context.globalAlpha = 1;
-                imageObj.height = 225;
-                context.globalCompositeOperation = "source-over";
-                imageObj.width = 450;
-                imageObj.src = image;
-                context.drawImage(imageObj, 0, 0, 450, 225);
-                context.globalAlpha = prevGlobalAlpha;
-                context.globalCompositeOperation = prevComposition;
-            }
-
-        }
 
 
     };
@@ -410,6 +407,6 @@
     angular.module("dashboardModule", [])
 
     // Enroll controller
-    .controller("dashboardController", ['$scope', '$location', "constants", "passwordservice", dashboardController]);
+    .controller("dashboardController", ['$scope', "constants", "passwordservice", dashboardController]);
 
 }());
