@@ -65,12 +65,13 @@ body {
 }
 
     .userInfoWrapper .userNameDisplay {
-        font-size: 2.5em;
+        font-size: 2.25em;
         position: relative;
         text-align: center;
         line-height: 2em;
         cursor: pointer;
         z-index: 3;
+        padding: 0 0 0.5em 0.5em;
         width: 2.5em;
         height: 2.5em;
         color: #fff;

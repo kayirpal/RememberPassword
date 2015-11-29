@@ -8,28 +8,24 @@
         // Enter secret
         stateProvider.state("dashboard.secret", {
             url: "/secret",
-            controller: "secretController",
-            controllerAs: "secret",
+            controller: "SecretController as secret",
             templateUrl: "app/partials/dashboard/dashboard.secret.html"            
             // Create hint
         }).state("dashboard.hint", {
             url: "/hint",
-            controller: "hintController",
-            controllerAs: "hint",
+            controller: "HintController as hint",
             templateUrl: "app/partials/dashboard/dashboard.hint.html"
 
             // Create Icon 
         }).state("dashboard.icon", {
             url: "/icon",
-            controller: "iconController",
-            controllerAs: "icon",
+            controller: "IconController as icon",
             templateUrl: "app/partials/dashboard/dashboard.icon.html"
 
             // guess secret
         }).state("dashboard.guess", {
             url: "/guess",
-            controller: "guessController",
-            controllerAs: "guess",
+            controller: "GuessController as guess",
             templateUrl: "app/partials/dashboard/dashboard.guess.html"
         });
     };

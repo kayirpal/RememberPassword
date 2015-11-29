@@ -2,14 +2,14 @@
 
     "use strict";
 
-    var passwordService = function () {
+    var secretService = function () {
 
         // Get service pointer
         var service = {};
         
 
-        // save password 
-        service.encrypt = function (message) {
+        // encrypt
+        function encrypt(message) {
 
             // return value
             var encryptedMessage = CryptoJS.MD5(message);
@@ -17,51 +17,42 @@
             return encryptedMessage.toString();
         };
 
-        service.savePassowrd = function (currentStep) {
+        // encrypted message
+        service.encryptPhrase = function (phrase) {
 
-            var password = currentStep.password,
-                encryptedMessage = service.encrypt(password),
-                iconId = currentStep.iconId,
-                key = "Pass_icon_" + iconId + "_step_" + currentStep.id;
+            // nothing to work with
+            if(!phrase || !phrase.toString().trim()){
+                return;
+            }
 
-            // save the encrypted password
-            localStorage.setItem(key, encryptedMessage);
+            // just need string value 
+            phrase = phrase.toString();
+
+            // pick words in the phrase
+            var phrases = phrase.replace(/[\t\n]/g, '').split(" ");
+
+            // clean up phrases 
+            phrases = phrases.filter(function (item) {
+                return !!item && !!item.trim();
+            });
+
+
+            // encrypted  message to return
+            var encryptedMessage = {};
+
+            // encrypted phrases
+            encryptedMessage.bundle = phrases.map(function (item) {
+
+                // return encrypted part
+                return encrypt(item);
+            });
+            
+            // whole message encrypted
+            encryptedMessage.encodedPhrase = encrypt(phrases.join(" "));
+
+            // return encrypted message
+            return encryptedMessage;
         };
-
-        service.getPasswordStrength = function (password) {
-
-            var sIndex = 0;
-
-            // Test for small alphabet
-            if (password.search(/[a-z]/) >= 0) {
-                sIndex += 1;
-            }
-
-            // test for Capital alphabet
-            if (password.search(/[A-Z]/) >= 0) {
-                sIndex += 1;
-            }
-
-
-            // Test for integer
-            if (password.search(/[0-9]/) >= 0) {
-                sIndex += 1;
-            }
-
-
-            // Test for special chars
-            if (password.search(/[\!\@\#\$\%\^\&\*\(\)\_\+\=\-\?\>\<]/) >= 0) {
-                sIndex += 1;
-            }
-
-            // Test for length
-            if (password.length > 5) {
-                sIndex += 1;
-            }
-
-            return sIndex;
-        };
-
 
         // Return service pointer
         return service;
@@ -72,6 +63,6 @@
 
 // Adding the service
 
-.service("passwordservice", [passwordService]);
+.service("secretservice", [secretService]);
 
 }());

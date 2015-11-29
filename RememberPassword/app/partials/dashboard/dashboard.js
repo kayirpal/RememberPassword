@@ -2,7 +2,7 @@
     "use strict";
 
     // Define dashboard controller
-    var dashboardController = function (constants, pService) {
+    var dashboardController = function (state, constants, pService) {
 
         var dashboard = this;
 
@@ -34,38 +34,12 @@
             }
         }
 
-        function proceedToNextStep(currentStep) {
 
-
-            switch (currentStep.id) {
-
-                case 2:
-                    // Save the password
-                    pService.savePassowrd(currentStep);
-
-                    // remove the actual password
-                    currentStep.password = undefined;
-                    break;
-
-            }
-
-            if (currentStep.nextStepIndex >= 0) {
-
-                dashboard.currentStep = allSteps[currentStep.nextStepIndex];
-
-
-                // set on Complete action
-                dashboard.currentStep.onComplete = proceedToNextStep;
-
-                dashboard.currentStep.onUpload = onUploadIcon;
-
-            }
-        }
-
+        // add new icon
         function createIcon(currentStep) {
 
-            // add new icon
             iconCount += 1;
+
             currentIcon = {
                 iconId: iconCount,
                 iconType: currentStep.iconCreatorTypeId,
@@ -77,9 +51,42 @@
             // add to list
             dashboard.icons.push(currentIcon);
 
-            // next step
-            proceedToNextStep(currentStep);
         }
+
+        function proceedToNextStep() {
+
+            var currentStep = dashboard.currentStep;
+
+            switch (currentStep.id) {
+
+                case 1:
+
+                    // create a new icon
+                    createIcon(currentStep);
+
+                    break;
+
+                case 2:
+                    break;
+
+            }
+
+            if (currentStep.nextStepIndex >= 0) {
+
+                dashboard.currentStep = allSteps[currentStep.nextStepIndex];
+
+                // set on Complete action
+                dashboard.currentStep.onComplete = proceedToNextStep;
+
+                dashboard.currentStep.onUpload = onUploadIcon;
+
+            }
+
+            if (dashboard.currentStep.state) {
+                state.go(dashboard.currentStep.state);
+            }
+        }
+
         
         function addImageToBoard(image) {
 
@@ -99,9 +106,7 @@
                 context.globalAlpha = prevGlobalAlpha;
                 context.globalCompositeOperation = prevComposition;
             }
-
         }
-        
 
         function selectQuestion(currentStep) {
 
@@ -116,15 +121,16 @@
         // Add icons
         dashboard.addNewIcon = function () {
 
-            // set current step
+            // reset current step
             dashboard.currentStep = angular.copy(allSteps[0]);
-
-            // reset creator type
-            dashboard.currentStep.iconCreatorTypeId = 0;
-
+            
             // set on Complete action
-            dashboard.currentStep.onComplete = createIcon;
+            dashboard.currentStep.onComplete = proceedToNextStep;
 
+            // show enter secret form
+            if (dashboard.currentStep.state) {
+                state.go(dashboard.currentStep.state);
+            }
         };
 
         // show home screen
@@ -403,6 +409,6 @@
     angular.module("dashboardModule")
 
     // Enroll controller
-    .controller("dashboardController", ["constants", "passwordservice", dashboardController]);
+    .controller("dashboardController", ["$state", "constants", "secretservice", dashboardController]);
 
 }());

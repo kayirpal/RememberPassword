@@ -78,6 +78,7 @@
 
     constants.passSteps = [{
         id: 1,
+        state: "dashboard.secret",
         nextStepIndex: 1,
         stepClass: "savePassword",
         primaryHeader: "Hushhhhhh !!",
@@ -87,6 +88,7 @@
     }, {
         id: 2,
         nextStepIndex: 2,
+        state: "dashboard.hint",
         stepClass: "createPassHint",
         primaryHeader: "Set hints",
         headerClass: "fa-lightbulb-o",
@@ -122,6 +124,7 @@
     }, {
         id: 3,
         nextStepIndex: 0,
+        state: "dashboard.icon",
         stepClass: "savePassword",
         primaryHeader: "Set icon",
         iconCreatorTypes: [{

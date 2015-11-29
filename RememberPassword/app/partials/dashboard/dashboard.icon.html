@@ -1,167 +1,44 @@
-<div id="dashboardWrapper" class="viewWrapper">
-    <section class="iconsWrapper">
-        <div class="iconWrapper" ng-repeat="(key,icon) in icons">
-            <article ng-class="'icon fa fa-3x '+icon.iconClass" ng-click="guessPassword(icon)"
-                     ng-style="{backgroundImage: icon.iconSrc}">
-                <span ng-bind="icon.iconText"></span>
-            </article>
-        </div>
-        <div class="iconWrapper">
-            <article class="icon fa fa-3x" ng-click="addNewIcon(icon)">
-                <span>+</span>
-            </article>
+
+<div class="iconCreatorContainer" ng-switch-when="3">
+    <section class="sctionWrapper methodToCreateIcon" ng-show="!dashboard.currentStep.iconCreatorTypeId">
+        <div ng-repeat="(key, iconCreatorType) in dashboard.currentStep.iconCreatorTypes" ng-click="dashboard.changeIconCreatorType(dashboard.currentStep, iconCreatorType)"
+             ng-class="iconCreatorType.id === dashboard.currentStep.iconCreatorTypeId?'buttonWrapper selected':'buttonWrapper'">
+            <span ng-class="'button fa fa-4x '+iconCreatorType.typeClass"></span>
         </div>
     </section>
-    <section ng-class="currentStep.id?'userActionWrapper':'userActionWrapper closed'">
-        <div class="containerDoor" ng-click="hideUserActions()">
-            <span class="door fa fa-3x fa-angle-right"></span>
-        </div>
-        <div ng-class="'passwordPanelWrapper '+currentStep.stepClass">
-            <section class="passwordPanel middle">
-                <header class="stepDescription">
-                    <i ng-class="'headerIcon animated flash fa fa-4x '+currentStep.headerClass"></i>
-                    <h2 class="primaryHeader display-ib" ng-bind="currentStep.primaryHeader"></h2>
-                    <h3 class="secondaryHeader" ng-bind="currentStep.secondaryHeader"></h3>
-                </header>
-                <div class="currentStepWrapper" ng-switch on="currentStep.id">
-
-                    <div ng-class="'currentStepContainer '+currentStep.passStrengthClass" ng-switch-when="1">
-                        <form ng-submit="confirmPassword(currentStep)">
-                            <input class="passwordTextbox password" autofocus type="password" placeholder="Your secret phrase!!!" ng-model="currentStep.password" >
-                        </form>
-
+    <section class="iconCreatorSection" ng-show="dashboard.currentStep.iconCreatorTypeId">
+        <div class="sctionWrapper" ng-switch="dashboard.currentStep.iconCreatorTypeId">
+            <!-- if typing is preferred-->
+            <div class="createTextIcon" ng-switch-when="1">
+                <div class="headerWrapper">
+                    <div class="iconWrapper">
+                        <article class="icon fa">
+                            <span class="display-ib" ng-bind="dashboard.currentStep.iconText"></span>
+                        </article>
                     </div>
-
-                    <div class="currentStepContainer" ng-switch-when="2">
-                        <div ng-if="!currentStep.createHintId">
-
-                            <section ng-repeat="createHint in currentStep.createHints" ng-class="'createHintWrapper '+createHint.wrapperClass">
-
-                                <div class="createHintContainer">
-                                    <span ng-class="'hintIcon fa fa-4x '+createHint.iconClass" ng-click="createPasswordHint(currentStep,createHint)"></span>
-                                </div>
-                            </section>
-                        </div>
-                        <section ng-if="currentStep.createHintId" class="createHintForm" ng-switch on="currentStep.createHintId">
-                            <div class="browseImageIcon" ng-switch-when="1">
-                                <label file-upload="currentStep">
-                                    <span class="hvr-pulse-grow fa fa-5x fa-upload" ng-hide="currentStep.uploadedIconUrl"></span>
-                                    <span class="changeFile fa fa-2x fa-exchange" ng-show="currentStep.uploadedIconUrl"></span>
-                                </label>
-                                <p ng-show="currentStep.uploadedIconUrl" class="uploadedIconWrapper margin-0">
-                                    <canvas class="showUploadedIcon" extract-icon="currentStep.uploadedIcon" width="250" height="200"></canvas>
-                                </p>
-                            </div>
-                            <div class="createHintFormContainer" ng-switch-when="2">
-                                <div class="drawIconWrapper">
-                                    <section class="boardActions">
-                                        <div class="boardAccessories">
-                                            <div class="accessoryWrapper uploadImageIcon">
-                                                <label class="accessory fa fa-3x fa-picture-o" file-upload="currentStep.data"></label>
-                                            </div>
-                                            <div class="accessoryWrapper downloadImageIcon">
-                                                <a class="accessory fa fa-3x fa-download" ng-click="currentStep.data.saveDrawnImage()"></a>
-                                            </div>
-                                        </div>
-                                        <div class="brushWrapper">
-
-                                            <div ng-repeat="type in currentStep.data.brushTypes" ng-class="currentStep.data.selectedBrushType===type?'actionWrapper selected':'actionWrapper'"
-                                                 ng-click="changeBrushType(type,currentStep.data)">
-
-                                                <span ng-class="'action fa fa-3x '+type" ng-style="currentStep.selectedBrushType===type?currentStep.data.composedStyle:{}"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="brushWidthswrapper display-ib">
-                                            <div class="brushWidthContainer display-ib" ng-repeat="(key,width) in currentStep.data.brushWidths">
-                                                <span class="brushWidth fa fa-circle {{width}}" ng-style="currentStep.data.selectedBrushWidth===width?currentStep.data.composedStyle:{}"
-                                                      ng-click="setStrokeWidth(key, currentStep.data)"></span>
-                                            </div>
-                                        </div>
-                                    </section>
-                                    <section ng-show="!currentStep.data.configureBoard" class="drawingBoard" id="drawHint">
-                                        <canvas height="225" width="450" draw-board="currentStep.data"></canvas>
-                                    </section>
-                                    <section class="configureBoard" ng-show="currentStep.data.configureBoard">
-                                        <div ng-repeat="color in currentStep.data.colorComponents" ng-class="'colorPickerWrapper '+color.colorClass">
-                                            <span class="slider" ng-click="positionNobe(color, currentStep.data)"></span>
-                                            <span class="nobe fa fa-4x fa-caret-up" ng-style="color.colorStyle"></span>
-                                        </div>
-                                    </section>
-                                    <section class="colorPalletWrapper">
-                                        <div class="configureBoardIcon">
-                                            <span class="accessory fa fa-3x fa-sliders" ng-click="toggleBoardConfig(currentStep.data)"></span>
-                                        </div>
-                                        <div class="colorPalletContainer" ng-repeat="color in currentStep.data.colorPallet">
-                                            <span class="colorPallet" style="background-color: {{color}}" ng-click="setStrokeColor(color, currentStep.data)"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                            </div>
-                            <div class="createHintFormContainer" ng-switch-when="3"></div>
-                            <div class="createHintFormContainer" ng-switch-when="4"></div>
-                        </section>
-                    </div>
-                    <div class="iconCreatorContainer" ng-switch-when="3">
-
-                        <section class="sctionWrapper methodToCreateIcon" ng-show="!currentStep.iconCreatorTypeId">
-                            <div ng-repeat="(key, iconCreatorType) in currentStep.iconCreatorTypes" ng-click="changeIconCreatorType(currentStep, iconCreatorType)"
-                                 ng-class="iconCreatorType.id === currentStep.iconCreatorTypeId?'buttonWrapper selected':'buttonWrapper'">
-                                <span ng-class="'button fa fa-4x '+iconCreatorType.typeClass"></span>
-                            </div>
-                        </section>
-
-                        <section class="iconCreatorSection" ng-show="currentStep.iconCreatorTypeId">
-                            <div class="sctionWrapper" ng-switch="currentStep.iconCreatorTypeId">
-                                <!-- if typing is preferred-->
-                                <div class="createTextIcon" ng-switch-when="1">
-                                    <div class="headerWrapper">
-                                        <div class="iconWrapper">
-                                            <article class="icon fa">
-                                                <span class="display-ib" ng-bind="currentStep.iconText"></span>
-                                            </article>
-                                        </div>
-                                        <div class="inputBoxWrapper">
-                                            <input type="text" maxlength="2" placeholder="Icon's initials" ng-model="currentStep.iconText" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="browseImageIcon" ng-switch-when="2">
-                                    <label file-upload="currentStep" >
-                                        <span class="hvr-pulse-grow fa fa-5x fa-upload" ng-hide="currentStep.uploadedIconUrl"></span>
-                                        <span class="changeFile fa fa-2x fa-exchange" ng-show="currentStep.uploadedIconUrl"></span>
-                                    </label>
-                                    <p ng-show="currentStep.uploadedIconUrl" class="uploadedIconWrapper margin-0">
-                                        <canvas class="showUploadedIcon" extract-icon="currentStep.uploadedIcon" width="150" height="150"></canvas>
-                                    </p>
-                                </div>
-                                <div class="selectIcon iconListWrapper" ng-switch-when="3">
-                                    <div ng-repeat="value in currentStep.sampleIcons" ng-class="value === currentStep.iconClass? 'iconWrapper selected':'iconWrapper'">
-                                        <article class="hvr-bounce-in icon fa {{value}}" ng-click="currentStep.iconClass = value"></article>
-                                    </div>
-                                </div>
-                                <div class="snapImageIcon" ng-switch-when="4">
-                                    <label>
-                                        <span class="hvr-pulse-grow fa fa-5x fa-camera"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
+                    <div class="inputBoxWrapper">
+                        <input type="text" maxlength="2" placeholder="Icon's initials" ng-model="dashboard.currentStep.iconText" />
                     </div>
                 </div>
-            </section>
-            <div class="currentStepActions">
-                <div class="nextStepWrapper">
-                    <div class="customStepActions" ng-repeat="action in currentStep.customStepActions">
-                        <span ng-class="'fa fa-3x pointer '+action.actionClass" ng-click="action.performAction(currentStep)"></span>
-                    </div>
-                    <div class="homeButton pointer" ng-click="showDashboard(currentStep)">
-                        <span class="homeIcon fa fa-3x fa-home"></span>
-                    </div>
-                    <div class="nextStepButton pointer" ng-click="currentStep.onComplete(currentStep)">
-                        <span class="nextStepIcon fa fa-3x fa-chevron-circle-right"></span>
-                    </div>
+            </div>
+            <div class="browseImageIcon" ng-switch-when="2">
+                <label file-upload="dashboard.currentStep">
+                    <span class="hvr-pulse-grow fa fa-5x fa-upload" ng-hide="dashboard.currentStep.uploadedIconUrl"></span>
+                    <span class="changeFile fa fa-2x fa-exchange" ng-show="dashboard.currentStep.uploadedIconUrl"></span>
+                </label>
+                <p ng-show="dashboard.currentStep.uploadedIconUrl" class="uploadedIconWrapper margin-0">
+                    <canvas class="showUploadedIcon" extract-icon="dashboard.currentStep.uploadedIcon" width="150" height="150"></canvas>
+                </p>
+            </div>
+            <div class="selectIcon iconListWrapper" ng-switch-when="3">
+                <div ng-repeat="value in dashboard.currentStep.sampleIcons" ng-class="value === dashboard.currentStep.iconClass? 'iconWrapper selected':'iconWrapper'">
+                    <article class="hvr-bounce-in icon fa {{value}}" ng-click="dashboard.currentStep.iconClass = value"></article>
                 </div>
+            </div>
+            <div class="snapImageIcon" ng-switch-when="4">
+                <label>
+                    <span class="hvr-pulse-grow fa fa-5x fa-camera"></span>
+                </label>
             </div>
         </div>
     </section>
