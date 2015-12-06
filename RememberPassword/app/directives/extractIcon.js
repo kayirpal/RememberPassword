@@ -15,10 +15,18 @@
 
                 var canvas = element[0];
                 var context = canvas.getContext('2d');
-                scope.extractIcon.context = context;
 
+                var width = context.canvas.width,
+                    height = context.canvas.height;
 
-
+                var imageObj = new Image();
+                imageObj.height = height;
+                imageObj.width = width;
+                imageObj.src = scope.extractIcon.rawFileUrl;
+                imageObj.onload = function () {
+                    context.drawImage(imageObj, 0, 0, width, height);
+                    scope.extractIcon.uploadedIconUrl = context.canvas.toDataURL("image/png");
+                };
             }
         };
 

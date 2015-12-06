@@ -3,8 +3,8 @@
     <section class="iconsWrapper">
 
         <div class="iconWrapper" ng-repeat="icon in dashboard.icons">
-            <article class="icon fa fa-3x" ng-class="icon.iconClass" ng-click="dashboard.guessPassword(icon)" ng-style="icon.style">
-                <span ng-bind="icon.iconText"></span>
+            <article class="icon fa fa-3x" ng-class="icon.iconDetails.iconClass" ng-click="dashboard.guessPassword(icon)" ng-style="icon.iconDetails.iconStyle">
+                <span ng-bind="icon.iconDetails.iconText"></span>
             </article>
         </div>
 
@@ -18,9 +18,9 @@
 
     <section class="userActionWrapper"  ng-class="{closed : !dashboard.currentStep.id}">
 
-        <div class="containerDoor" ng-click="dashboard.hideUserActions()">
+        <header class="containerDoor" ng-click="dashboard.hideUserActions()">
             <span class="door fa fa-3x fa-angle-right"></span>
-        </div>
+        </header>
 
         <div class="passwordPanelWrapper" ng-class="dashboard.currentStep.stepClass">
 
@@ -39,11 +39,11 @@
                         <span ng-class="'fa fa-3x pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
                     </div>
                     <div class="homeButton pointer" ng-click="dashboard.showDashboard(dashboard.currentStep)">
-                        <span class="homeIcon fa fa-3x fa-home"></span>
+                        <span class="fa fa-3x fa-home"></span>
                     </div>
-                    <div class="nextStepButton pointer" ng-click="dashboard.currentStep.onComplete(dashboard.currentStep)">
+                    <!--<div class="nextStepButton pointer" ng-click="dashboard.currentStep.onComplete(dashboard.currentStep)">
                         <span class="nextStepIcon fa fa-3x fa-chevron-circle-right"></span>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>

@@ -31,14 +31,19 @@
                 reader.onload = function (ev) {
 
                     var uploadedFile = ev.currentTarget.result;
-                    
-                    if (scope.fileUpload && scope.fileUpload.onUpload && typeof (scope.fileUpload.onUpload) === "function") {
-                        scope.fileUpload.onUpload(uploadedFile);
-                        scope.$apply();
-                    }
 
+                    scope.fileUpload.rawFileUrl = uploadedFile;
+                    
+                    //if (scope.fileUpload && scope.fileUpload.onUpload && typeof (scope.fileUpload.onUpload) === "function") {
+                    //    scope.fileUpload.onUpload(uploadedFile);
+                    //}
+
+                    scope.$apply();
                 };
                 reader.readAsDataURL(file);
+
+                scope.fileUpload.rawFileUrl = undefined;
+                scope.$apply();
 
             };
 

@@ -2,7 +2,7 @@
     "use strict";
 
     // Define dashboard controller
-    var dashboardController = function (state, constants, pService) {
+    var dashboardController = function (root, state, constants, pService) {
 
         var dashboard = this;
 
@@ -12,7 +12,7 @@
 
         dashboard.testname = "Kirpal";
 
-        dashboard.icons = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+        dashboard.icons = [];
 
         //Common methods
 
@@ -25,15 +25,14 @@
             if (context) {
 
                 var imageObj = new Image();
-                imageObj.height = 150;
-                imageObj.width = 150;
+                imageObj.height = context.canvas.height;
+                imageObj.width = context.canvas.width;
                 imageObj.src = uploadedFile;
-                context.drawImage(imageObj, 0, 0, 150, 150);
+                context.drawImage(imageObj, 0, 0, context.canvas.width, context.canvas.height);
 
                 currentStep.uploadedIconUrl = 'url(' + context.canvas.toDataURL("image/png") + ')';
             }
         }
-
 
         // add new icon
         function createIcon(currentStep) {
@@ -42,15 +41,14 @@
 
             currentIcon = {
                 iconId: iconCount,
-                iconType: currentStep.iconCreatorTypeId,
-                iconText: currentStep.iconText,
-                iconSrc: currentStep.uploadedIconUrl,
-                iconClass: currentStep.iconClass
+                message: currentStep.message,
+                iconDetails: {
+                    iconText: "Ks"
+                }
             };
 
             // add to list
             dashboard.icons.push(currentIcon);
-
         }
 
         function proceedToNextStep() {
@@ -67,27 +65,41 @@
                     break;
 
                 case 2:
+
+                    currentIcon.hintDetails = currentStep.hintDetails;
+                    break;
+
+                case 3:
+
+                    currentIcon.iconDetails = currentStep.iconDetails;
                     break;
 
             }
 
             if (currentStep.nextStepIndex >= 0) {
 
-                dashboard.currentStep = allSteps[currentStep.nextStepIndex];
+                // new current step
+                currentStep = allSteps[currentStep.nextStepIndex];
 
                 // set on Complete action
-                dashboard.currentStep.onComplete = proceedToNextStep;
+                currentStep.onComplete = proceedToNextStep;
 
-                dashboard.currentStep.onUpload = onUploadIcon;
+                // reset step actions
+                currentStep.customStepActions = [];
 
+                currentStep.onUpload = onUploadIcon;
+
+                dashboard.currentStep = currentStep;
+                if (currentStep.state) {
+                    state.go(currentStep.state);
+                }
+            } else {
+                dashboard.hideUserActions();
             }
 
-            if (dashboard.currentStep.state) {
-                state.go(dashboard.currentStep.state);
-            }
         }
 
-        
+
         function addImageToBoard(image) {
 
             var curStepData = dashboard.currentStep.data,
@@ -112,7 +124,6 @@
 
             currentStep.data = {};
             currentStep.createHintId = 0;
-            currentStep.customStepActions = [];
             currentStep.primaryHeader = "Set hints";
             currentStep.headerClass = "fa-lightbulb-o";
 
@@ -123,7 +134,7 @@
 
             // reset current step
             dashboard.currentStep = angular.copy(allSteps[0]);
-            
+
             // set on Complete action
             dashboard.currentStep.onComplete = proceedToNextStep;
 
@@ -135,56 +146,20 @@
 
         // show home screen
         dashboard.showDashboard = function () {
-            
+
             // hide action panel
             dashboard.hideUserActions();
 
         };
 
-
         dashboard.hideUserActions = function () {
-            dashboard.currentStep = false;
+            dashboard.currentStep = undefined;
+            state.go("dashboard");
         };
-
-        // transitions
-
 
         //# region create icon 
 
         //#endregion
-
-        //Icon creator
-        dashboard.changeIconCreatorType = function (currentStep, iconCreatorType) {
-
-            // set creator type
-            currentStep.iconCreatorTypeId = iconCreatorType.id;
-
-            // set header text
-            currentStep.primaryHeader = iconCreatorType.title;
-
-            if (iconCreatorType.id === 2) {
-
-                currentStep.autoOpen = true;
-
-                currentStep.onUpload = onUploadIcon;
-                // set uploaded icon
-                currentStep.uploadedIcon = {};
-            }
-
-            currentStep.customStepActions = [{
-                actionClass: "fa-times discardChanges",
-                performAction: function () {
-                    currentStep.iconCreatorTypeId = 0;
-                    currentStep.iconText = "";
-                    currentStep.primaryHeader = "Set icon";
-                    currentStep.iconClass = "";
-                    currentStep.customStepActions = [];
-                    currentStep.uploadedIcon = undefined;
-                }
-            }];
-
-        };
-
 
         // set password
 
@@ -269,7 +244,7 @@
             currentStep.primaryHeader = createHint.header;
             currentStep.headerClass = createHint.iconClass;
         };
-        
+
         dashboard.traverseQuestion = function (curStepData, isNext) {
 
             var curQuestionIndex = curStepData.curQuestionIndex,
@@ -290,7 +265,6 @@
             }
         };
 
-
         // remove question
         dashboard.removeItem = function (index, array) {
             if (!!array[index]) {
@@ -298,117 +272,36 @@
             }
         };
 
-        dashboard.toggleBoardConfig = function (curStepData) {
-
-            curStepData.configureBoard = !curStepData.configureBoard;
-        };
 
 
-        dashboard.setStrokeWidth = function (widthIndex, curStepData) {
+        // init
+        (function () {
+            var currentState = state.current || {};
 
-            // set selected width
-            curStepData.selectedBrushWidth = curStepData.brushWidths[widthIndex];
+            if (currentState.name && currentState.name !== "dashboard") {
 
-            if (curStepData.context) {
-                curStepData.context.lineWidth = Math.floor((widthIndex + 1) * 3);
-            }
+                // reset current step
+                dashboard.currentStep = angular.copy(allSteps[0]);
 
-        };
+                // set on Complete action
+                dashboard.currentStep.onComplete = proceedToNextStep;
 
+                dashboard.currentStep.customStepActions = [];
 
-        dashboard.positionNobe = function (color, curStepData) {
-
-            var offsetX = event.offsetX,
-            colorOffset = Math.floor(offsetX / 2),
-            base = "rgb(",
-            colorString = "",
-                colorOffsetString;
-
-            colorOffsetString = 220 - colorOffset;
-            colorOffsetString = colorOffsetString.toString();
-            color.colorStyle = color.colorStyle || {};
-
-            switch (color.color) {
-                case "red":
-                    curStepData.composedColor.red = colorOffset;
-                    colorString = base.concat("255,", colorOffsetString, ",", colorOffsetString, ")");
-                    break;
-                case "green":
-                    curStepData.composedColor.green = colorOffset;
-                    colorString = base.concat(colorOffsetString, ",255,", colorOffsetString, ")");
-
-                    break;
-                case "blue":
-                    curStepData.composedColor.blue = colorOffset;
-                    colorString = base.concat(colorOffsetString, ",", colorOffsetString, ",255)");
-                    break;
-            }
-            curStepData.composedStyle = {
-                color: base.concat(curStepData.composedColor.red, ",", curStepData.composedColor.green, ",", curStepData.composedColor.blue, ")")
-            };
-            console.log(curStepData.composedColor);
-            color.colorStyle.color = colorString;
-            color.colorStyle.left = offsetX + "px";
-
-            if (curStepData.context) {
-                curStepData.context.strokeStyle = curStepData.composedStyle.color;
-            }
-        };
-
-
-        dashboard.setStrokeColor = function (color, curStepData) {
-            curStepData.composedStyle = {
-                color: color
-            };
-            if (curStepData.context) {
-                curStepData.context.strokeStyle = color;
-            }
-        };
-
-
-        dashboard.changeBrushType = function (newType, curStepData) {
-
-            curStepData.selectedBrushType = newType;
-
-            var context = curStepData.context;
-
-            if (context) {
-
-                context.globalAlpha = 1;
-                context.globalCompositeOperation = "source-over";
-                context.lineCap = "round";
-                context.mode = newType;
-
-                switch (newType) {
-                    case "fa-pencil":
-                        break;
-                    case "fa-paint-brush":
-                        context.globalAlpha = 0.1;
-                        context.lineCap = "butt";
-                        break;
-                    case "fa-eraser":
-                        context.globalCompositeOperation = "destination-out";
-                        break;
+                return;
+                if (currentState.name === "dashboard.secret") {
+                    dashboard.addNewIcon();
+                } else {
+                    state.go("dashboard");
                 }
             }
-        };
-        dashboard.saveDrawnImage = function (curStepData) {
-
-            var context = curStepData.context;
-
-            if (context) {
-
-                var image = context.toDataURL('image/png');
-
-                window.open(image, "_blank");
-            }
-        };
+        }());
     };
 
     // Define enroll module
     angular.module("dashboardModule")
 
     // Enroll controller
-    .controller("dashboardController", ["$state", "constants", "secretservice", dashboardController]);
+    .controller("dashboardController", ["$rootScope", "$state", "constants", "secretservice", dashboardController]);
 
 }());

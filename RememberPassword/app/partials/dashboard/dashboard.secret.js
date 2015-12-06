@@ -13,7 +13,7 @@
             if (secret.secretPhrase) {
 
                 // save step data
-                currentStep.data =  secretService.encryptPhrase(currentStep);
+                currentStep.message = secretService.encryptPhrase(currentStep);
 
                 // call step complete callback
                 if (currentStep.onComplete && typeof(currentStep.onComplete) === "function") {
