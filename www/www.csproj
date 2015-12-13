@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{BF63082E-87B7-483F-A4D3-9B7296C92B1A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\app.config.js" />
+    <Content Include="app\app.module.js" />
+    <Content Include="app\app.js" />
+    <Content Include="app\common\common.module.js" />
+    <Content Include="app\common\constants.js" />
+    <Content Include="app\directives\animationEnd.js" />
+    <Content Include="app\directives\drawBoard.js" />
+    <Content Include="app\directives\fileUpload.js" />
+    <Content Include="app\directives\extractIcon.js" />
+    <Content Include="app\partials\dashboard\dashboard.guess.html" />
+    <Content Include="app\partials\dashboard\dashboard.guess.js" />
+    <Content Include="app\partials\dashboard\dashboard.hint.js" />
+    <Content Include="app\partials\dashboard\dashboard.icon.js" />
+    <Content Include="app\partials\dashboard\dashboard.secret.js" />
+    <Content Include="app\partials\dashboard\dashboard.icon.html" />
+    <Content Include="app\partials\dashboard\dashboard.hint.html" />
+    <Content Include="app\partials\dashboard\dashboard.secret.html" />
+    <Content Include="app\partials\dashboard\dashboard.config.js" />
+    <Content Include="app\partials\dashboard\dashboard.module.js" />
+    <Content Include="app\partials\enroll\enroll.module.js" />
+    <Content Include="app\services\api.service.js" />
+    <Content Include="app\services\icon.service.js" />
+    <Content Include="app\services\service.module.js" />
+    <Content Include="app\services\secret.service.js" />
+    <Content Include="app\partials\dashboard\dashboard.html" />
+    <Content Include="app\partials\dashboard\dashboard.js" />
+    <Content Include="app\partials\enroll\enroll.html" />
+    <Content Include="app\partials\enroll\enroll.js" />
+    <Content Include="app\services\auth.service.js" />
+    <Content Include="app\services\storage.service.js" />
+    <Content Include="css\dashboard.css" />
+    <Content Include="css\enroll.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\index.css" />
+    <Content Include="css\reset.css" />
+    <Content Include="css\lib\animate.css" />
+    <Content Include="css\lib\bootstrap-theme.css" />
+    <Content Include="css\lib\bootstrap-theme.min.css" />
+    <Content Include="css\lib\bootstrap.css" />
+    <Content Include="css\lib\bootstrap.min.css" />
+    <Content Include="css\lib\font-awesome.css" />
+    <Content Include="css\lib\font-awesome.min.css" />
+    <Content Include="css\lib\hover.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="images\anatomy_study.jpg" />
+    <Content Include="images\brush.png" />
+    <Content Include="images\dumbbell- - Copy - Copy.png" />
+    <Content Include="images\dumbbell.png" />
+    <Content Include="images\eraser.png" />
+    <Content Include="images\facebook.png" />
+    <Content Include="images\google.png" />
+    <Content Include="images\human_male_720.png" />
+    <Content Include="images\human_male_front_360.png" />
+    <Content Include="images\human_male_front_420.png" />
+    <Content Include="images\human_male_front_480.png" />
+    <Content Include="images\human_male_front_550.png" />
+    <Content Include="images\human_male_front_660.png" />
+    <Content Include="images\human_male_front_720.png" />
+    <Content Include="images\ICON.png" />
+    <Content Include="images\ICON2.png" />
+    <Content Include="images\meditate.png" />
+    <Content Include="images\meditate_orig.png" />
+    <Content Include="images\niBrMe6iA.jpeg" />
+    <Content Include="images\pencil.png" />
+    <Content Include="images\twitter.png" />
+    <Content Include="index.html" />
+    <Content Include="scripts\angular-hammer.js" />
+    <Content Include="scripts\angular-mocks.js" />
+    <Content Include="scripts\angular.js" />
+    <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\drawingboard.js" />
+    <Content Include="scripts\hammer.js" />
+    <Content Include="scripts\hammer.min.js" />
+    <Content Include="scripts\index.js" />
+    <Content Include="app\directives\directive.module.js" />
+    <Content Include="JSLintNet.json" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="packages.config" />
+    <Content Include="scripts\ionic\fonts\ionicons.eot" />
+    <Content Include="scripts\ionic\fonts\ionicons.ttf" />
+    <Content Include="scripts\ionic\fonts\ionicons.woff" />
+    <Content Include="scripts\ionic\scss\_action-sheet.scss" />
+    <Content Include="scripts\ionic\scss\_animations.scss" />
+    <Content Include="scripts\ionic\scss\_backdrop.scss" />
+    <Content Include="scripts\ionic\scss\_badge.scss" />
+    <Content Include="scripts\ionic\scss\_bar.scss" />
+    <Content Include="scripts\ionic\scss\_button-bar.scss" />
+    <Content Include="scripts\ionic\scss\_button.scss" />
+    <Content Include="scripts\ionic\scss\_checkbox.scss" />
+    <Content Include="scripts\ionic\scss\_form.scss" />
+    <Content Include="scripts\ionic\scss\_grid.scss" />
+    <Content Include="scripts\ionic\scss\_items.scss" />
+    <Content Include="scripts\ionic\scss\_list.scss" />
+    <Content Include="scripts\ionic\scss\_loading.scss" />
+    <Content Include="scripts\ionic\scss\_menu.scss" />
+    <Content Include="scripts\ionic\scss\_mixins.scss" />
+    <Content Include="scripts\ionic\scss\_modal.scss" />
+    <Content Include="scripts\ionic\scss\_platform.scss" />
+    <Content Include="scripts\ionic\scss\_popover.scss" />
+    <Content Include="scripts\ionic\scss\_popup.scss" />
+    <Content Include="scripts\ionic\scss\_progress.scss" />
+    <Content Include="scripts\ionic\scss\_radio.scss" />
+    <Content Include="scripts\ionic\scss\_range.scss" />
+    <Content Include="scripts\ionic\scss\_refresher.scss" />
+    <Content Include="scripts\ionic\scss\_reset.scss" />
+    <Content Include="scripts\ionic\scss\_scaffolding.scss" />
+    <Content Include="scripts\ionic\scss\_select.scss" />
+    <Content Include="scripts\ionic\scss\_slide-box.scss" />
+    <Content Include="scripts\ionic\scss\_slides.scss" />
+    <Content Include="scripts\ionic\scss\_spinner.scss" />
+    <Content Include="scripts\ionic\scss\_tabs.scss" />
+    <Content Include="scripts\ionic\scss\_toggle.scss" />
+    <Content Include="scripts\ionic\scss\_transitions.scss" />
+    <Content Include="scripts\ionic\scss\_type.scss" />
+    <Content Include="scripts\ionic\scss\_util.scss" />
+    <Content Include="scripts\ionic\scss\_variables.scss" />
+    <Content Include="scripts\ionic\scss\ionic.scss" />
+    <Content Include="scripts\ionic\scss\ionicons\_ionicons-font.scss" />
+    <Content Include="scripts\ionic\scss\ionicons\_ionicons-icons.scss" />
+    <Content Include="scripts\ionic\scss\ionicons\_ionicons-variables.scss" />
+    <Content Include="scripts\ionic\scss\ionicons\ionicons.scss" />
+    <Content Include="scripts\ionic\version.json" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="scripts\ionic\css\ionic.css" />
+    <Content Include="scripts\ionic\css\ionic.min.css" />
+    <Content Include="scripts\ionic\fonts\ionicons.svg" />
+    <Content Include="scripts\ionic\js\angular-ui\angular-ui-router.js" />
+    <Content Include="scripts\ionic\js\angular-ui\angular-ui-router.min.js" />
+    <Content Include="scripts\ionic\js\angular\angular-animate.js" />
+    <Content Include="scripts\ionic\js\angular\angular-animate.min.js" />
+    <Content Include="scripts\ionic\js\angular\angular-resource.js" />
+    <Content Include="scripts\ionic\js\angular\angular-resource.min.js" />
+    <Content Include="scripts\ionic\js\angular\angular-sanitize.js" />
+    <Content Include="scripts\ionic\js\angular\angular-sanitize.min.js" />
+    <Content Include="scripts\ionic\js\angular\angular.js" />
+    <Content Include="scripts\ionic\js\angular\angular.min.js" />
+    <Content Include="scripts\ionic\js\ionic-angular.js" />
+    <Content Include="scripts\ionic\js\ionic-angular.min.js" />
+    <Content Include="scripts\ionic\js\ionic.bundle.js" />
+    <Content Include="scripts\ionic\js\ionic.bundle.min.js" />
+    <Content Include="scripts\ionic\js\ionic.js" />
+    <Content Include="scripts\ionic\js\ionic.min.js" />
+    <Content Include="scripts\jquery-1.9.1.js" />
+    <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\jquery-2.1.4.min.js" />
+    <Content Include="scripts\md5.js" />
+    <Content Include="scripts\npm.js" />
+    <Content Include="scripts\oAuth.js" />
+    <Content Include="scripts\sketch.js" />
+    <Content Include="scripts\three.js" />
+    <Content Include="scripts\three.min.js" />
+    <Content Include="scripts\trackBallControll.js" />
+    <Content Include="scripts\trackBallControll.min.js" />
+    <Content Include="scripts\updatedFile.js" />
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\lib\bootstrap-theme.css.map" />
+    <Content Include="css\lib\bootstrap.css.map" />
+    <Content Include="scripts\hammer.min.js.map" />
+    <Content Include="scripts\horse.json" />
+    <Content Include="scripts\human.json" />
+    <Content Include="scripts\jquery-1.9.1.min.map" />
+    <Content Include="scripts\three.min.js.map" />
+    <Content Include="scripts\trackBallControll.min.js.map" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>RememberPassword</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60956</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60956/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+</Project>
