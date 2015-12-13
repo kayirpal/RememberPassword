@@ -1,0 +1,13 @@
+<div class="iconCreatorContainer">
+
+    <form class="currentStepContainer createPassHint" ng-submit="guess.guessPhrase(guess.guessedPhrase, dashboard.currentStep.message)">
+        <span class="fa headerIcon fa-lightbulb-o fa-3x pointer" ng-click="guess.showHideHint(dashboard.currentStep)"></span>
+        <input type="text" class="passwordTextbox password" cols="3" autofocus placeholder="Check if you remember it" ng-keydown="guess.showHint = false"
+               ng-model="guess.guessedPhrase">
+    </form>
+    <div class="displayHintWrapper" ng-class="{ visible:guess.showHint}">
+        <article class="displayHintContainer"   ng-style="{'background-image': guess.hintDetails.background}">
+            <span class="fa guessStatus" ng-if="!guess.hintDetails.background" ng-style="{color: guess.bulbColor}"  ng-class="guess.thumbsClass"></span>
+        </article>
+    </div>
+</div>

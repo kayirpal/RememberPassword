@@ -1,0 +1,6 @@
+G:\Private\RememberPassword\RememberPassword\bin\www2.dll.config
+G:\Private\RememberPassword\RememberPassword\bin\www2.dll
+G:\Private\RememberPassword\RememberPassword\bin\www2.pdb
+G:\Private\RememberPassword\RememberPassword\obj\Debug\www2.csprojResolveAssemblyReference.cache
+G:\Private\RememberPassword\RememberPassword\obj\Debug\www2.dll
+G:\Private\RememberPassword\RememberPassword\obj\Debug\www2.pdb

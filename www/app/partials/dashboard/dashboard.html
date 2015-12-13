@@ -1,0 +1,48 @@
+<div id="dashboardWrapper" class="viewWrapper">
+
+    <section class="iconsWrapper">
+
+        <div class="iconWrapper" ng-repeat="icon in dashboard.icons">
+            <article class="icon fa fa-3x" ng-class="icon.iconDetails.iconClass" ng-click="dashboard.guessPassword(icon)" ng-style="icon.iconDetails.iconStyle">
+                <span ng-bind="icon.iconDetails.iconText"></span>
+            </article>
+        </div>
+
+        <div class="iconWrapper">
+            <article class="icon fa fa-3x" ng-click="dashboard.addNewIcon()">
+                <span>+</span>
+            </article>
+        </div>
+
+    </section>
+
+    <section class="userActionWrapper"  ng-class="{closed : !dashboard.currentStep}">
+
+        <header class="containerDoor" ng-click="dashboard.hideUserActions()">
+            <span class="door fa fa-3x fa-angle-right"></span>
+        </header>
+
+        <div class="passwordPanelWrapper" ng-class="dashboard.currentStep.stepClass">
+
+            <section class="passwordPanel middle">
+                <header class="stepDescription">
+                    <i class="headerIcon animated hvr-glow fa fa-4x" ng-class="dashboard.currentStep.headerClass"></i>
+                    <h2 class="primaryHeader display-ib" ng-bind="dashboard.currentStep.primaryHeader"></h2>
+                    <h3 class="secondaryHeader" ng-bind="dashboard.currentStep.secondaryHeader"></h3>
+                </header>
+                <div class="dashboard.currentStepWrapper" ui-view></div>
+            </section>
+
+            <div class="currentStepActions">
+                <div class="nextStepWrapper">
+                    <div class="customStepActions" ng-repeat="action in dashboard.currentStep.customStepActions">
+                        <span ng-class="'fa fa-3x pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
+                    </div>
+                    <div class="homeButton pointer" ng-click="dashboard.showDashboard(dashboard.currentStep)">
+                        <span class="fa fa-3x fa-home"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
