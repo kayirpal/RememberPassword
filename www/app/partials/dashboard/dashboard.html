@@ -2,7 +2,7 @@
 
     <section class="iconsWrapper">
 
-        <div class="iconWrapper" ng-repeat="icon in dashboard.icons">
+        <div class="iconWrapper" ng-repeat="icon in dashboard.icons track by $index">
             <article class="icon fa fa-3x" ng-class="icon.iconDetails.iconClass" ng-click="dashboard.guessPassword(icon)" ng-style="icon.iconDetails.iconStyle">
                 <span ng-bind="icon.iconDetails.iconText"></span>
             </article>
@@ -36,10 +36,10 @@
             <div class="currentStepActions">
                 <div class="nextStepWrapper">
                     <div class="customStepActions" ng-repeat="action in dashboard.currentStep.customStepActions">
-                        <span ng-class="'fa fa-3x pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
+                        <span ng-class="'fa fa-4x pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
                     </div>
                     <div class="homeButton pointer" ng-click="dashboard.showDashboard(dashboard.currentStep)">
-                        <span class="fa fa-3x fa-home"></span>
+                        <span class="fa fa-4x fa-home"></span>
                     </div>
                 </div>
             </div>

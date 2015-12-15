@@ -116,6 +116,13 @@
                     hint.selectedHintOption.selectedBrushType = "fa-pencil";
                     hint.selectedHintOption.selectedWidthIndex = 0;
                     hint.selectedHintOption.selectedColorPallet = "rgba(153, 153, 153, 0.75)";
+                    hint.selectedHintOption.backgroundImage = {
+                        onUpload: function (imageData) {
+                            if (hint.selectedHintOption.setBackground && typeof(hint.selectedHintOption.setBackground ) === "function" ) {
+                                hint.selectedHintOption.setBackground(imageData);
+                            }
+                        }
+                    };
                     break;
             }
 

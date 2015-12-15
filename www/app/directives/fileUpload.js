@@ -34,9 +34,9 @@
 
                     scope.fileUpload.rawFileUrl = uploadedFile;
                     
-                    //if (scope.fileUpload && scope.fileUpload.onUpload && typeof (scope.fileUpload.onUpload) === "function") {
-                    //    scope.fileUpload.onUpload(uploadedFile);
-                    //}
+                    if (scope.fileUpload.onUpload && typeof (scope.fileUpload.onUpload) === "function") {
+                        scope.fileUpload.onUpload(uploadedFile);
+                    }
 
                     scope.$apply();
                 };

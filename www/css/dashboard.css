@@ -368,14 +368,15 @@
         color: #032;
     }
 
-
 .drawIconWrapper {
     margin: 0 auto;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
 }
 
 .boardActions {
     height: 50px;
+    display: inline-block;
 }
 
 .drawIconWrapper .colorPicker {
@@ -565,6 +566,7 @@
     overflow: auto;
     max-height: 25em;
 }
+
 .iconSource:after, .iconSource:before {
     content: "";
     position: absolute;
@@ -685,6 +687,7 @@
 .currentStepContainer input, .createTextIcon input {
     display: block;
     font-size: 2em;
+    width: 85%;
     margin: 1em auto;
     padding: 0 0.5em;
     border: 1px solid #dadada;
@@ -809,9 +812,9 @@
 
 .createHintWrapper, .methodToCreateIcon .buttonWrapper {
     display: inline-block;
-    width: 35%;
+    width: 30%;
     margin: 2em;
-    /* padding: 1em; */
+    padding: 1em;
     text-align: center;
 }
 
@@ -820,30 +823,28 @@
     -o-transition: transform 0.25s linear;
     -webkit-transition: transform 0.25s linear;
     transition: transform 0.25s linear;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
     box-shadow: 10px 10px 10px 10px #123;
     background-color: #F52;
     cursor: pointer;
-    border-radius: 25%;
-    color: #322;
+    border-radius: 19%;
+    color: rgba(51, 34, 34, 0.85);
     width: 2em;
     line-height: 2em;
 }
 
     .createHintContainer .hintIcon:hover, .buttonWrapper .button:hover {
-        -moz-transform: scale(1.25);
-        -ms-transform: scale(1.25);
-        -o-transform: scale(1.25);
-        -webkit-transform: scale(1.25);
-        transform: scale(1.25);
+        -moz-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+        -o-transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+        transform: scale(1.15);
     }
 
-    .createHintContainer .hintIcon:active, .buttonWrapper .button:active {
-        -moz-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        -o-transform: scale(1.1);
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    }
 
 .createHintForm {
     overflow: auto;
@@ -993,10 +994,13 @@
     padding: 10px 0;
 }
 
+
 .currentStepContainer .headerIcon {
-    position: absolute;
-    right: 0.5em;
+    font-size: 3em;
+    display: inline-block;
+    vertical-align: sub;
 }
+
 
 .displayHintWrapper {
     background-color: #234;
@@ -1021,3 +1025,11 @@
 .deleteIcon {
     color: #f00;
 }
+
+.currentStepContainer {
+    text-align: center;
+}
+
+    .currentStepContainer .passwordTextbox {
+        display: inline-block;
+    }

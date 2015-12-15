@@ -38,8 +38,8 @@
     }, {
         wrapperClass: "drawPicture",
         iconClass: "fa-paint-brush",
-        brushWidths: ["font-14", "font-19", "font-24", "font-31", "font-39"],
-        selectedBrushWidth: "font-14",
+        brushWidths: ["font-19", "font-24", "font-31", "font-39"],
+        selectedBrushWidth: "font-19",
         brushTypes: [{
             modeClass: "pencilMode",
             typeClass: "fa-pencil"
@@ -88,8 +88,6 @@
         id: 4,
         typeClass: "fa-camera"
     }];
-
-    
 
     constants.passSteps = [{
         id: 1,
