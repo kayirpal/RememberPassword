@@ -560,7 +560,7 @@
 }
 
 .selectIcon {
-    width: 100%;
+    width: 95%;
     margin: auto;
     position: relative;
     overflow: auto;
@@ -574,15 +574,15 @@
     bottom: 0;
     left: 0;
     pointer-events: none;
-    background-image: linear-gradient(to bottom, rgba(119, 119, 119, 0), rgba(119, 119, 119, 1) 90%);
+    background-image: linear-gradient(to bottom, rgba(119, 119, 119, 0), rgb(24, 49, 71) 90%);
     width: 100%;
     height: 11%;
 }
 
-.iconSource:before {
+#comment, .iconSource:before {
     top: 0;
     bottom: 100%;
-    background-image: linear-gradient(to bottom, rgba(119, 119, 119, 1), rgba(119, 119, 119, 0) 90%);
+    background-image: linear-gradient(to bottom, rgb(24, 48, 71), rgba(119, 119, 119, 0) 90%);
 }
 
 .selectIcon .showPreviousWrapper,
@@ -680,8 +680,10 @@
 }
 
 .passwordPanel {
-    display: inline-block;
-    width: 80%;
+    display: block;
+    width: 100%;
+    padding: 0 1em;
+    height: 80%;
 }
 
 .currentStepContainer input, .createTextIcon input {
@@ -772,8 +774,11 @@
 
 .currentStepActions {
     position: absolute;
-    bottom: 1em;
-    right: 5%;
+    bottom: 0;
+    padding: 0 2em;
+    height: 10%;
+    text-align: right;
+    width: 100%;
 }
 
 .nextStepIcon:hover {
@@ -1033,3 +1038,13 @@
     .currentStepContainer .passwordTextbox {
         display: inline-block;
     }
+
+.stepDescription {
+    display: block;
+    height: 10%;
+    padding: 1em 3em;
+}
+
+.iconCreatorContainer {
+    text-align: center;
+}

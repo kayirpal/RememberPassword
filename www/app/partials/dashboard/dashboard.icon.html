@@ -5,7 +5,7 @@
         </div>
     </section>
     <section class="iconCreatorSection" ng-show="icon.selectedIconCreator">
-        <div class="sctionWrapper" ng-switch="icon.selectedIconCreator.id">
+        <div class="sctionWrapper" ng-switch="icon.selectedIconCreator.id" ng-class="{iconSource: icon.selectedIconCreator.id === 3}">
             <!-- if typing is preferred-->
             <div class="createTextIcon" ng-switch-when="1">
                 <div class="headerWrapper">
