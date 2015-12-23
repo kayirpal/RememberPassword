@@ -41,6 +41,12 @@
     <Content Include="app\partials\dashboard\dashboard.secret.html" />
     <Content Include="app\partials\dashboard\dashboard.config.js" />
     <Content Include="app\partials\dashboard\dashboard.module.js" />
+    <Content Include="app\partials\share\share.html" />
+    <Content Include="app\partials\share\share.js" />
+    <Content Include="app\partials\share\share.module.js" />
+    <Content Include="app\partials\settings\settings.html" />
+    <Content Include="app\partials\settings\settings.js" />
+    <Content Include="app\partials\settings\settings.module.js" />
     <Content Include="app\partials\enroll\enroll.module.js" />
     <Content Include="app\services\api.service.js" />
     <Content Include="app\services\icon.service.js" />

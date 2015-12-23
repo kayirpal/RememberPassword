@@ -1,5 +1,4 @@
 ﻿/*jshint -W001 */
-/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 (function () {
     "use strict";
 
@@ -14,13 +13,13 @@
             fileUpload: "="
         };
         
-        directive.link = function (scope, element) {
+        directive.link = function (scope, element, attr) {
 
             var uploader = document.createElement("input");
 
             uploader.type = "file";
             uploader.className = "ng-hide";
-
+            
             uploader.onchange = function (event) {
 
                 var curElement = event.currentTarget,

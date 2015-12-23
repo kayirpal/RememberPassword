@@ -11,7 +11,7 @@
                 <div class="headerWrapper">
                     <div class="iconWrapper">
                         <article class="icon fa" ng-style="icon.selectedIconCreator.iconStyle">
-                            <span class="display-ib" ng-bind="icon.selectedIconCreator.iconText"></span>
+                            <span class="display-inline-block" ng-bind="icon.selectedIconCreator.iconText"></span>
                         </article>
                     </div>
                     <div class="inputBoxWrapper">
@@ -30,7 +30,7 @@
                     <span class="changeFile fa fa-2x fa-exchange" ng-show="icon.selectedIconCreator.rawFileUrl"></span>
                 </label>
                 <p ng-if="icon.selectedIconCreator.rawFileUrl" class="uploadedIconWrapper margin-0">
-                    <canvas class="showUploadedIcon" extract-icon="icon.selectedIconCreator" width="150" height="150"></canvas>
+                    <canvas class="showUploadedIcon" extract-icon="icon.selectedIconCreator" width="150" height="150" no-changes="true"></canvas>
                 </p>
             </div>
 

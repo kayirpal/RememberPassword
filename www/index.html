@@ -22,9 +22,9 @@
                 <img ng-src="{{app.loggedInUser.avatar}}" ng-if="!!app.loggedInUser.avatar">
             </span>
             <div ng-class="app.userActionClasses">
-                <span class="fa fa-sign-out" title="Logout"></span>
-                <span class="fa fa-share-alt" title="Share"></span>
-                <span class="fa fa-cogs" title="settings"></span>
+                <span class="fa" ng-class="app.loggedInUser.isUserFound?'fa-sign-out':'fa-sign-in'" title="{{app.loggedInUser.isUserFound?'sign out':'sign in'}}" hm-tap="app.gotoPage('enroll')"></span>
+                <span class="fa fa-share-alt" title="Share" hm-tap="app.gotoPage('share')"></span>
+                <span class="fa fa-cogs" title="settings" hm-tap="app.gotoPage('settings')"></span>
             </div>
         </aside>
     </header>
@@ -79,6 +79,14 @@
     <!--Enroll module-->
     <script src="app/partials/enroll/enroll.module.js"></script>
     <script src="app/partials/enroll/enroll.js"></script>
+
+    <!--Settings module-->
+    <script src="app/partials/settings/settings.module.js"></script>
+    <script src="app/partials/settings/settings.js"></script>
+
+    <!--Share module-->
+    <script src="app/partials/share/share.module.js"></script>
+    <script src="app/partials/share/share.js"></script>
 
     <!--Root module-->
     <script src="app/app.module.js"></script>

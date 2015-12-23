@@ -13,8 +13,8 @@
                 <span class="hvr-pulse-grow fa fa-5x fa-upload" ng-hide="uploader.rawFileUrl"></span>
                 <span class="changeFile fa fa-2x fa-exchange" ng-show="uploader.rawFileUrl"></span>
             </label>
-            <p ng-if="uploader.rawFileUrl" class="uploadedIconWrapper margin-0">
-                <canvas class="showUploadedIcon" extract-icon="uploader" width="300" height="250"></canvas>
+            <p ng-if="uploader.rawFileUrl" class="uploadedIconWrapper margin-0 display-inline-block">
+                <canvas class="showUploadedIcon" extract-icon="uploader" width="400" height="300"></canvas>
             </p>
         </div>
 
@@ -43,8 +43,8 @@
                         </div>
                     </div>
 
-                    <div class="brushWidthswrapper display-ib">
-                        <div class="brushWidthContainer display-ib" ng-repeat="width in drawingBoard.brushWidths">
+                    <div class="brushWidthswrapper display-inline-block">
+                        <div class="brushWidthContainer display-inline-block" ng-repeat="width in drawingBoard.brushWidths">
                             <span class="brushWidth fa fa-circle {{width}}" ng-style="drawingBoard.selectedWidthIndex===$index?drawingBoard.composedStyle:{}"
                                   ng-click="drawingBoard.setStrokeWidth($index)"></span>
                         </div>

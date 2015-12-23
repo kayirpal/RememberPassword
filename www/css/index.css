@@ -203,6 +203,7 @@ body {
     -o-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
 }
+
 .v-middle {
     position: absolute;
     top: 50%;
@@ -224,7 +225,7 @@ body {
 }
 
 
-.display-ib {
+.display-inline-block {
     display: inline-block;
 }
 
@@ -376,14 +377,15 @@ label {
     animation-duration: 0.5s;
 }
 
-.text-right{
+.text-right {
     text-align: right;
 }
 
-.display-block{
+.display-block {
     display: block;
 }
-.float-right{
+
+.float-right {
     float: right;
 }
 
@@ -399,6 +401,7 @@ ul, ol {
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+
 .rotate-m-90 {
     -moz-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
@@ -406,6 +409,7 @@ ul, ol {
     -webkit-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
+
 .fa-counter-spin {
     -moz-animation: fa-counter-spin 2s infinite linear;
     -o-animation: fa-counter-spin 2s infinite linear;
@@ -422,6 +426,7 @@ ul, ol {
         -o-transform: rotate(0);
         transform: rotate(0);
     }
+
     0% {
         -webkit-transform: rotate(359deg);
         -moz-transform: rotate(359deg);
@@ -447,6 +452,76 @@ ul, ol {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-.visible{
+.visible {
     visibility: visible !important;
+}
+
+.viewWrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    -moz-animation-duration: 0.35s;
+    -o-animation-duration: 0.35s;
+    -webkit-animation-duration: 0.35s;
+    animation-duration: 0.35s;
+}
+
+.gotoDashboardButton {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    color: #9FF9A0;
+    cursor: pointer;
+}
+
+.shareIconWrapper {
+    display: inline-block;
+    margin: 0 -1em;
+    position: absolute;
+}
+
+.rotatingShareIcon {
+    width: 1em;
+    font-size: 11em;
+    height: 1em;
+    text-shadow: 0 0 10px #FFF;
+    text-align: center;
+    color: #ddd;
+    -moz-animation-duration: 7s;
+    -o-animation-duration: 7s;
+    -webkit-animation-duration: 7s;
+    animation-duration: 7s;
+}
+
+.shareIcon {
+    position: absolute;
+    top: 50%;
+    width: 1em;
+    display: inline-block;
+    font-size: 4em;
+    left: 50%;
+    color: rgba(243, 243, 243, 0.91);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.shareFormContainer {
+    height: 100%;
+    position: relative;
+}
+.siteSttingsFormContainer {
+    padding: 10% 0;
+    height: 100%;
+}
+
+.siteSettingsBody {
+    width: 100%;
+    padding: 0 4em;
+}
+
+.bgColorSettingsWrapper {
+    width: 100%;
 }

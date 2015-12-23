@@ -181,9 +181,6 @@
 
                     // add new icon
                     dashboard.addNewIcon();
-                } else if (currentState.name === "dashboard.guess") {
-
-                    dashboard.guessPassword();
                 } else {
 
                     state.go("dashboard");

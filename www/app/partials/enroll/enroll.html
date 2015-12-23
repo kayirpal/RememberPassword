@@ -1,4 +1,4 @@
-﻿<div id="enrollForm" class="enrollFormWrapper">
+﻿<div id="enrollForm" class="enrollFormWrapper viewWrapper slideInRight">
     <section class="formFieldWrapper v-middle">
         <form class="formFieldContainer text-center" novalidate="novalidate" ng-submit="enroll.login()">
             <div class="emailFieldWrapper form-group clearfix">
@@ -71,7 +71,6 @@
         </table>
     </section>
 
-
     <div class="popupWrapper" ng-if="enroll.showPasswordScreen">
         <article class="popupContainer passwordContainer">
             <p class="profilePhotoWrapper text-center">
@@ -83,5 +82,9 @@
                        ng-blur="enroll.checkPassword(enroll.userAuthData)" />
             </span>
         </article>
+    </div>
+
+    <div class="gotoDashboardButton" ng-click="app.gotoDashboard()">
+        <span class="fa fa-4x fa-home"></span>
     </div>
 </div>

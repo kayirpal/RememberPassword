@@ -6,7 +6,7 @@
                ng-model="guess.guessedPhrase">
         <span class="fa headerIcon fa-lightbulb-o fa-3x pointer" ng-click="guess.showHideHint(dashboard.currentStep)"></span>
     </form>
-    <div class="displayHintWrapper" ng-class="{ visible:guess.showHint}">
+    <div class="displayHintWrapper animated" ng-class="guess.showHint?'flipInX':'flipOutX'">
         <article class="displayHintContainer" ng-style="{'background-image': guess.hintDetails.background}">
             <span class="fa guessStatus" ng-if="!guess.hintDetails.background" ng-style="{color: guess.bulbColor}" ng-class="guess.thumbsClass"></span>
         </article>

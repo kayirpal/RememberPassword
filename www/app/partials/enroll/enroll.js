@@ -4,7 +4,7 @@
     "use strict";
 
     // Define enroll controller
-    var EnrollController = function ($scope, location, auth, constants) {
+    var EnrollController = function (state, $scope, location, auth, constants) {
 
         // current scope
         var enroll = this,
@@ -310,5 +310,5 @@
     angular.module("enrollModule")
 
     // Enroll controller
-    .controller("enrollController", ['$scope', '$location', 'authservice', 'constants', EnrollController]);
+    .controller("enrollController", ["$state", '$scope', '$location', 'authservice', 'constants', EnrollController]);
 }());
