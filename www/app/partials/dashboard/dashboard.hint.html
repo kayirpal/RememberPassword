@@ -1,84 +1,90 @@
 <div class="currentStepContainer" >
-    <section ng-if="!hint.selectedHintOption">
-        <article ng-repeat="hintOption in hint.createOptions" class="createHintWrapper" ng-class="hintOption.wrapperClass">
-            <div class="createHintContainer">
-                <span class="hintIcon fa fa-4x" ng-class="hintOption.iconClass" ng-click="hint.selectHintCreator(dashboard.currentStep, hintOption)"></span>
-            </div>
-        </article>
-    </section>
-    <section ng-if="hint.selectedHintOption" class="createHintForm" ng-switch on="hint.selectedHintOption.id">
-
-        <div class="browseImageIcon" ng-switch-when="1" ng-repeat="uploader in [hint.selectedHintOption]">
-            <label file-upload="uploader">
-                <span class="hvr-pulse-grow fa fa-5x fa-upload" ng-hide="uploader.rawFileUrl"></span>
-                <span class="changeFile fa fa-2x fa-exchange" ng-show="uploader.rawFileUrl"></span>
-            </label>
-            <p ng-if="uploader.rawFileUrl" class="uploadedIconWrapper margin-0 display-inline-block">
-                <canvas class="showUploadedIcon" extract-icon="uploader" width="400" height="300"></canvas>
-            </p>
+    <section class="createHintsWrapper full-width-height" ng-if="!hint.selectedHintOption"  adjustable width="400" height="350">
+        <header></header>
+        <div class="createHintscontainer center">
+            <article ng-repeat="hintOption in hint.createOptions" class="createHintWrapper" ng-class="hintOption.wrapperClass">
+                <div class="createHintContainer">
+                    <span class="hintIcon fa fa-4x" ng-class="hintOption.iconClass" ng-click="hint.selectHintCreator(dashboard.currentStep, hintOption)"></span>
+                </div>
+            </article>
         </div>
+    </section>
+    <section class="createHintFormWrapper full-width-height" ng-if="hint.selectedHintOption">
+        <header></header>
+        <div  class="createHintForm center" ng-switch on="hint.selectedHintOption.id">
 
-        <div class="createHintFormContainer" ng-switch-when="2">
-            <div class="drawIconWrapper" ng-repeat="drawingBoard in [hint.selectedHintOption]">
+            <div class="browseImageIcon" ng-switch-when="1" ng-repeat="uploader in [hint.selectedHintOption]">
+                <label file-upload="uploader">
+                    <span class="hvr-pulse-grow fa fa-5x fa-upload" ng-hide="uploader.rawFileUrl"></span>
+                    <span class="changeFile fa fa-2x fa-exchange" ng-show="uploader.rawFileUrl"></span>
+                </label>
+                <p ng-if="uploader.rawFileUrl" class="uploadedIconWrapper margin-0 display-inline-block">
+                    <canvas class="showUploadedIcon" extract-icon="uploader" width="400" height="300"></canvas>
+                </p>
+            </div>
 
-                <section class="boardActions">
+            <div class="createHintFormContainer" ng-switch-when="2" adjustable width="500" height="400">
+                <div class="drawIconWrapper" ng-repeat="drawingBoard in [hint.selectedHintOption]">
 
-                    <div class="boardAccessories">
-                        <div class="accessoryWrapper configureBoardIcon">
-                            <span class="accessory fa fa-3x fa-sliders" ng-click="hint.toggleBoardConfig(drawingBoard)"></span>
-                        </div>
-                        <div class="accessoryWrapper uploadImageIcon">
-                            <label class="accessory fa fa-3x fa-picture-o" file-upload="drawingBoard.backgroundImage"></label>
-                        </div>
-                        <!--<div class="accessoryWrapper downloadImageIcon" >
+                    <section class="boardActions">
+
+                        <div class="boardAccessories">
+                            <div class="accessoryWrapper configureBoardIcon">
+                                <span class="accessory fa fa-3x fa-sliders" ng-click="hint.toggleBoardConfig(drawingBoard)"></span>
+                            </div>
+                            <div class="accessoryWrapper uploadImageIcon">
+                                <label class="accessory fa fa-3x fa-picture-o" file-upload="drawingBoard.backgroundImage"></label>
+                            </div>
+                            <!--<div class="accessoryWrapper downloadImageIcon" >
                             <a class="accessory fa fa-3x fa-download" ng-click="drawingBoard.saveDrawnImage()"></a>
                         </div>-->
-                    </div>
-
-                    <div class="brushWrapper">
-                        <div class="actionWrapper" ng-repeat="brushType in drawingBoard.brushTypes" 
-                             ng-class="{selected: hint.selectedHintOption.selectedBrushType===brushType.typeClass}"
-                             ng-click="hint.changeBrushType(brushType, drawingBoard)">
-                            <span class="action fa fa-3x" ng-class="brushType.typeClass" ng-style="drawingBoard.selectedBrushType===brushType.typeClass?drawingBoard.composedStyle:{}"></span>
                         </div>
-                    </div>
 
-                    <div class="brushWidthswrapper display-inline-block">
-                        <div class="brushWidthContainer display-inline-block" ng-repeat="width in drawingBoard.brushWidths">
-                            <span class="brushWidth fa fa-circle {{width}}" ng-style="drawingBoard.selectedWidthIndex===$index?drawingBoard.composedStyle:{}"
-                                  ng-click="drawingBoard.setStrokeWidth($index)"></span>
+                        <div class="brushWrapper">
+                            <div class="actionWrapper" ng-repeat="brushType in drawingBoard.brushTypes"
+                                 ng-class="{selected: hint.selectedHintOption.selectedBrushType===brushType.typeClass}"
+                                 ng-click="hint.changeBrushType(brushType, drawingBoard)">
+                                <span class="action fa fa-3x" ng-class="brushType.typeClass" ng-style="drawingBoard.selectedBrushType===brushType.typeClass?drawingBoard.composedStyle:{}"></span>
+                            </div>
                         </div>
-                    </div>
-                </section>
 
-                <section ng-show="!drawingBoard.configureBoard" class="drawingBoard" id="drawHint">
-                    <canvas height="225" width="475" draw-board="drawingBoard" ng-class="drawingBoard.drawingModeClass"></canvas>
-                </section>
-                <section class="configureBoard" ng-show="drawingBoard.configureBoard">
-                    <div ng-repeat="color in drawingBoard.colorComponents" class="colorPickerWrapper" ng-class="color.colorClass">
-                        <span class="slider" ng-click="hint.positionNobe(color, drawingBoard)"></span>
-                        <span class="nobe fa fa-4x fa-caret-up" ng-style="color.colorStyle"></span>
-                    </div>
-                </section>
+                        <div class="brushWidthswrapper display-inline-block">
+                            <div class="brushWidthContainer display-inline-block" ng-repeat="width in drawingBoard.brushWidths">
+                                <span class="brushWidth fa fa-circle {{width}}" ng-style="drawingBoard.selectedWidthIndex===$index?drawingBoard.composedStyle:{}"
+                                      ng-click="drawingBoard.setStrokeWidth($index)"></span>
+                            </div>
+                        </div>
+                    </section>
 
-                <section class="colorPalletWrapper">
-                    <div class="colorPalletContainer" ng-repeat="color in drawingBoard.colorPallet" ng-class="{selected:  drawingBoard.selectedColorPallet === color}">
-                        <span class="colorPallet" ng-style="{backgroundColor: color}" ng-click="drawingBoard.setStrokeColor(color)"></span>
-                    </div>
-                </section>
+                    <section ng-show="!drawingBoard.configureBoard" class="drawingBoard" id="drawHint">
+                        <canvas height="225" width="475" draw-board="drawingBoard" ng-class="drawingBoard.drawingModeClass"></canvas>
+                    </section>
+                    <section class="configureBoard" ng-show="drawingBoard.configureBoard">
+                        <div ng-repeat="color in drawingBoard.colorComponents" class="colorPickerWrapper" ng-class="color.colorClass">
+                            <span class="slider" ng-click="hint.positionNobe(color, drawingBoard)"></span>
+                            <span class="nobe fa fa-4x fa-caret-up" ng-style="color.colorStyle"></span>
+                        </div>
+                    </section>
+
+                    <section class="colorPalletWrapper">
+                        <div class="colorPalletContainer" ng-repeat="color in drawingBoard.colorPallet" ng-class="{selected:  drawingBoard.selectedColorPallet === color}">
+                            <span class="colorPallet" ng-style="{backgroundColor: color}" ng-click="drawingBoard.setStrokeColor(color)"></span>
+                        </div>
+                    </section>
+                </div>
             </div>
-        </div>
 
-        <div class="browseImageIcon" ng-switch-when="3">
-            <label >
-                <span class="hvr-pulse-grow fa fa-5x fa-camera" ></span>
-            </label>
-        </div>
+            <div class="browseImageIcon" ng-switch-when="3">
+                <label>
+                    <span class="hvr-pulse-grow fa fa-5x fa-camera"></span>
+                </label>
+            </div>
 
-        <div class="browseImageIcon" ng-switch-when="4">
-            <label >
-                <span class="hvr-pulse-grow fa fa-5x fa-microphone" ></span>
-            </label>
+            <div class="browseImageIcon" ng-switch-when="4">
+                <label>
+                    <span class="hvr-pulse-grow fa fa-5x fa-microphone"></span>
+                </label>
+            </div>
         </div>
     </section>
 </div>

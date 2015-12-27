@@ -1,5 +1,4 @@
 ﻿(function () {
-
     "use strict";
 
     // Define enroll controller
@@ -21,8 +20,7 @@
             var iconCreator = icon.selectedIconCreator;
 
             var iconDetails = {
-                typeId: iconCreator.id,
-                iconStyle: {}
+                typeId: iconCreator.id
             };
 
             switch (iconCreator.id) {
@@ -31,7 +29,9 @@
                     iconDetails.iconText = iconCreator.iconText;
                     break;
                 case 2:
-                    iconDetails.iconStyle.background = "url(" + iconCreator.uploadedIconUrl + ") center no-repeat";
+                    iconDetails.iconStyle = {
+                        background: "url(" + iconCreator.uploadedIconUrl + ") center no-repeat"
+                    };
                     break;
                 case 3:
                     iconDetails.iconClass = iconCreator.iconClass;

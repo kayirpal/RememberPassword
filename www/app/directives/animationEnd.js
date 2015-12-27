@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
-(function () {
+﻿(function () {
     "use strict";
 
     // Define directive
@@ -43,5 +42,4 @@
 
     // Add the directive to the module
     .directive("animationEnd", animationEnd);
-
 }());

@@ -3,25 +3,20 @@
     <section class="iconsWrapper">
 
         <div class="iconWrapper" ng-repeat="icon in dashboard.icons track by $index">
-            <article class="icon fa fa-3x" ng-class="icon.iconDetails.iconClass" ng-click="dashboard.guessPassword(icon)" ng-style="icon.iconDetails.iconStyle">
+            <article class="icon fa fa-3x" ng-class="icon.iconDetails.iconClass" ng-click="dashboard.guessPassword(icon)" ng-style="icon.iconDetails.iconStyle || app.iconStyle">
                 <span ng-bind="icon.iconDetails.iconText"></span>
             </article>
         </div>
 
         <div class="iconWrapper">
-            <article class="icon fa fa-3x" ng-click="dashboard.addNewIcon()">
+            <article class="icon fa fa-3x" ng-click="dashboard.addNewIcon()" ng-style="app.iconStyle">
                 <span>+</span>
             </article>
         </div>
 
     </section>
 
-    <div class="userActionWrapper"  ng-class="{closed : !dashboard.currentStep}">
-
-        <aside class="containerDoor" ng-click="dashboard.hideUserActions()">
-            <span class="door fa fa-3x fa-angle-right"></span>
-        </aside>
-
+    <div class="userActionWrapper" ng-class="{closed : !dashboard.currentStep}">
         <section class="passwordPanelWrapper" ng-class="dashboard.currentStep.stepClass">
 
             <header class="stepDescription">
@@ -30,16 +25,16 @@
             </header>
 
             <div class="passwordPanel">
-                <div class="dashboard.currentStepWrapper middle" ui-view></div>
+                <div class="currentStepWrapper" ui-view></div>
             </div>
 
             <div class="currentStepActions">
-                <div class="nextStepWrapper">
+                <div class="nextStepWrapper center">
                     <div class="customStepActions" ng-repeat="action in dashboard.currentStep.customStepActions">
-                        <span ng-class="'fa fa-4x pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
+                        <span ng-class="'fa pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
                     </div>
                     <div class="homeButton pointer" ng-click="dashboard.showDashboard(dashboard.currentStep)">
-                        <span class="fa fa-4x fa-home"></span>
+                        <span class="fa  fa-home"></span>
                     </div>
                 </div>
             </div>

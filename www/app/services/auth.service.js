@@ -138,10 +138,4 @@
 
 // Adding the service
 .service("authservice", ["$q", "constants", authService]);
-
 }());
-
-
-
-
-

@@ -1,5 +1,4 @@
-﻿/*jshint -W001 */
-(function () {
+﻿(function () {
     "use strict";
 
     var fileUpload = function () {
@@ -63,5 +62,4 @@
 
     // Add the directive to the module
     .directive("fileUpload", fileUpload);
-
 } ());

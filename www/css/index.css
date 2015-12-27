@@ -12,13 +12,20 @@
 body {
     position: fixed;
     color: #ccc;
-    background-color: #567;
+    background-color: #234;
     top: 0;
     left: 0;
 }
 
 #appHeader {
     width: 100%;
+    position: relative;
+}
+
+.appWrapper {
+    width: 100%;
+    display: inline-block;
+    height: 100%;
     position: relative;
 }
 
@@ -178,6 +185,7 @@ body {
 .connectOption {
     position: relative;
     cursor: pointer;
+    margin: 0 -1px;
 }
 
     .connectOption span:first-child {
@@ -458,6 +466,10 @@ ul, ol {
 
 .viewWrapper {
     width: 100%;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
     height: 100%;
     position: relative;
     -moz-animation-duration: 0.35s;
@@ -465,26 +477,23 @@ ul, ol {
     -webkit-animation-duration: 0.35s;
     animation-duration: 0.35s;
 }
-
-.gotoDashboardButton {
-    position: absolute;
-    bottom: 1em;
-    right: 1em;
+.resetSettingsButton {
+    color: #E65252;
+}
+.setSettingsButton {
     color: #9FF9A0;
-    cursor: pointer;
 }
 
 .shareIconWrapper {
     display: inline-block;
-    margin: 0 -1em;
-    position: absolute;
+    margin: -10px;
 }
 
 .rotatingShareIcon {
-    width: 1em;
-    font-size: 11em;
-    height: 1em;
-    text-shadow: 0 0 10px #FFF;
+    width: 150px;
+    font-size: 150px;
+    height: 150px;
+    text-shadow: 0 0 11px #FFF;
     text-align: center;
     color: #ddd;
     -moz-animation-duration: 7s;
@@ -496,9 +505,11 @@ ul, ol {
 .shareIcon {
     position: absolute;
     top: 50%;
-    width: 1em;
+    width: 80px;
+    line-height: 80px;
+    border-radius: 40px;
     display: inline-block;
-    font-size: 4em;
+    font-size: 60px;
     left: 50%;
     color: rgba(243, 243, 243, 0.91);
     -moz-transform: translate(-50%, -50%);
@@ -508,20 +519,41 @@ ul, ol {
     transform: translate(-50%, -50%);
     text-align: center;
 }
+
 .shareFormContainer {
-    height: 100%;
-    position: relative;
+    height: 265px;
+    text-align: center;
+    width: 400px;
 }
+
 .siteSttingsFormContainer {
     padding: 10% 0;
+    width: 90%;
+    margin: 0 auto;
     height: 100%;
 }
 
 .siteSettingsBody {
-    width: 100%;
-    padding: 0 4em;
+    width: 500px;
+    padding: 0;
+    margin: 0;
+    height: 500px;
 }
 
 .bgColorSettingsWrapper {
     width: 100%;
+}
+.siteSettingsFooter {
+    position: fixed;
+    bottom: 0;
+    text-align: right;
+    padding: 0 15px;
+    width: 100%;
+    display: inline-block;
+}
+
+.siteSettingsAction {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 10px;
 }

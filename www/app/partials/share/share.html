@@ -1,16 +1,16 @@
-﻿<div id="shareForm" class="shareFormWrapper viewWrapper slideInRight" >
+﻿<div id="shareForm" class="shareFormWrapper viewWrapper" >
+    <section class="full-width-height" adjustable width="400" height="265">
+        <div class="shareFormContainer center">
+            <article class="shareIconWrapper animated" ng-repeat="shareOption in share.shareOptions" ng-class="shareOption.animateClass">
+                <span class="fa  fa-cog rotatingShareIcon" ng-style="{color: shareOption.spinnerColor}" ng-class="$index%2===0?'fa-spin':'fa-counter-spin'"></span>
+                <i class="shareIcon" ng-class="shareOption.classList" ng-style="{backgroundColor: shareOption.spinnerColor }"></i>
+            </article>
+        </div>
+    </section>
 
-    <div class="shareFormContainer">
-
-
-        <article class="shareIconWrapper" ng-repeat="shareOption in share.shareOptions" ng-style="shareOption.positionStyle">
-            <span class="fa  fa-cog rotatingShareIcon" ng-style="{color: shareOption.spinnerColor}" ng-class="$index%2===0?'fa-spin':'fa-counter-spin'"></span>
-            <i class="shareIcon" ng-class="shareOption.classList" ng-style="{backgroundColor: shareOption.spinnerColor }"></i>
-        </article>
-
-    </div>
-
-    <div class="gotoDashboardButton" ng-click="app.gotoDashboard()">
-        <span class="fa fa-4x fa-home"></span>
-    </div>
+    <section class="siteSettingsFooter">
+        <div class="gotoDashboardButton siteSettingsAction" ng-click="app.gotoDashboard()">
+            <span class="fa fa-4x fa-home"></span>
+        </div>
+    </section>
 </div>

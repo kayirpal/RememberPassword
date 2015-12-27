@@ -1,5 +1,4 @@
 ﻿(function () {
-
     "use strict";
 
     // Define enroll controller
@@ -54,5 +53,4 @@
 
     // Enroll controller
     .controller("GuessController", ["constants", "secretservice", GuessController]);
-
 }());

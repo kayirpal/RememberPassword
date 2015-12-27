@@ -1,5 +1,4 @@
 ﻿(function () {
-
     "use strict";
 
     // Define settings controller
@@ -10,45 +9,27 @@
 
         share.shareOptions = [{
             classList: "fa fa-facebook",
-            positionStyle: {
-                top: "5em",
-                left: "20em"
-            },
+            animateClass: "rotateInDownLeft",
             spinnerColor: "#3A5795"
         }, {
-            classList: "fa fa-google-plus",
-            positionStyle: {
-                top: "5em",
-                left: "10em"
-            },
-            spinnerColor: "#EA4335"
-        }, {
             classList: "fa fa-twitter",
-            positionStyle: {
-                top: "15em",
-                left: "10em"
-            },
+            animateClass: "rotateInDownRight",
             spinnerColor: "#28A9E0"
         }, {
-            classList: "fa fa-whatsapp",
-            positionStyle: {
-                top: "5em",
-                left: "30em"
-            },
-            spinnerColor: "#4AC456"
+            classList: "fa fa-google-plus",
+            animateClass: "slideInDown",
+            spinnerColor: "#EA4335"
         }, {
             classList: "fa fa-reddit-alien",
-            positionStyle: {
-                top: "15em",
-                left: "30em"
-            },
+            animateClass: "slideInUp",
             spinnerColor: "rgb(247, 97, 70)"
         }, {
+            classList: "fa fa-whatsapp",
+            animateClass: "rotateInUpRight",
+            spinnerColor: "#4AC456"
+        }, {
             classList: "fa fa-envelope",
-            positionStyle: {
-                top: "15em",
-                left: "20em"
-            },
+            animateClass: "rotateInUpLeft",
             spinnerColor: "#3A5795"
         }];
 

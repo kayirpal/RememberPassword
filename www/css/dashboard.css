@@ -173,21 +173,20 @@
     }
 
 .iconWrapper .icon {
-    width: 2em;
-    border-radius: 0.25em;
+    width: 100px;
+    border-radius: 10px;
     background-color: rgba(0,0,0,0.75);
     background-size: contain;
-    height: 2em;
-    float: left;
+    height: 100px;
     box-shadow: 1px 1px 10px 1px #000;
     text-align: center;
-    font-size: 3em;
-    line-height: 2em;
+    font-size: 50px;
+    line-height: 100px;
     cursor: pointer;
     display: inline-block;
 }
 
-.createTextIcon .iconWrapper .icon {
+.createTextIconContainer .iconWrapper .icon {
     float: none;
 }
 
@@ -220,6 +219,7 @@
     float: left;
     height: 100%;
     width: 5%;
+    display: none;
     text-align: center;
     color: #fff;
     background-color: rgba(51, 221, 85, 0.5);
@@ -265,21 +265,19 @@
     height: 58%;
 }
 
-.createTextIcon {
-    padding: 10px;
-    margin: auto;
-    max-height: 100%;
-    overflow: auto;
-}
 
 .browseImageIcon, .snapImageIcon, .displayHintWrapper {
-    min-height: 15em;
-    line-height: 12em;
-    padding: 15px 0;
-    border-radius: 2em;
+    min-height: 300px;
+    min-width: 400px;
+    /* width: 90%; */
+    display: inline-block;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 50px;
     position: relative;
     background: radial-gradient(rgba(34, 68, 102, 1),rgba(17, 34, 51, 0.86));
     text-align: center;
+    line-height: 250px;
 }
 
     .browseImageIcon label {
@@ -295,18 +293,19 @@
 
     .browseImageIcon .changeFile {
         position: absolute;
-        right: 10px;
-        top: 10px;
+        right: 35px;
+        top: 3px;
         background-color: #234;
         padding: 0.25em;
         border-radius: 1.5em;
+        box-shadow: 0 0 10px 0 #fff;
     }
 
 .sctionWrapper.iconSource {
     width: 100%;
-    height: 100%;
+    height: 90%;
     position: relative;
-    padding: 1% 0;
+    /* padding: 1% 0; */
 }
 
 .iconPreview {
@@ -373,8 +372,9 @@
 
 .drawIconWrapper {
     margin: 0 auto;
-    width: 100%;
-    max-width: 500px;
+    padding: 25px 0;
+    width: 500px;
+    height: 400px;
 }
 
 .boardActions {
@@ -433,9 +433,11 @@
 
 .colorPickerWrapper, .strokeWidthWrapper {
     position: relative;
-    height: 50px;
+    height: 70px;
+    text-align: center;
     display: inline-block;
-    margin: 11px;
+    width: 100%;
+    margin: 11px 0;
 }
 
 .brushWrapper {
@@ -494,6 +496,7 @@
 
 .iconBackgroundSetter .slider {
     background: linear-gradient(to right,#fff,yellow, red,green,blue,black);
+    margin: 0;
 }
 
 .redComponent .slider {
@@ -535,6 +538,7 @@
 .iconBackgroundSetter .nobe {
     color: rgba(0,0,0,0.75);
     left: 450px;
+    top: 15px;
 }
 
 .redComponent .nobe {
@@ -563,11 +567,12 @@
 }
 
 .selectIcon {
-    width: 95%;
+    width: 90%;
+    padding: 30px 0;
     margin: auto;
     position: relative;
     overflow: auto;
-    max-height: 25em;
+    height: 100%;
 }
 
 .iconSource:after, .iconSource:before {
@@ -577,7 +582,7 @@
     bottom: 0;
     left: 0;
     pointer-events: none;
-    background-image: linear-gradient(to bottom, rgba(119, 119, 119, 0), rgb(24, 49, 71) 90%);
+    background-image: linear-gradient(to bottom, rgba(119, 119, 119, 0), rgb(20, 41, 61) 90%);
     width: 100%;
     height: 11%;
 }
@@ -585,7 +590,7 @@
 #comment, .iconSource:before {
     top: 0;
     bottom: 100%;
-    background-image: linear-gradient(to bottom, rgb(24, 48, 71), rgba(119, 119, 119, 0) 90%);
+    background-image: linear-gradient(to bottom, rgb(20, 42, 62), rgba(119, 119, 119, 0) 90%);
 }
 
 .selectIcon .showPreviousWrapper,
@@ -673,13 +678,14 @@
 .passwordPanelWrapper, .settingsWrapper {
     display: inline-block;
     position: relative;
-    width: 95%;
+    width: 100%;
     background: linear-gradient(to bottom, rgba(17, 34, 51, 0.9), rgba(34, 68, 102, 1),rgba(17, 34, 51, 0.9) 100%);
     height: 100%;
 }
 
 .currentStepWrapper {
     position: relative;
+    height: 100%;
 }
 
 .passwordPanel {
@@ -689,21 +695,27 @@
     height: 80%;
 }
 
-.currentStepContainer input, .createTextIcon input {
-    display: block;
-    font-size: 2em;
-    width: 85%;
-    margin: 1em auto;
-    padding: 0 0.5em;
-    border: 1px solid #dadada;
-    border-radius: 5px;
+.createTextIconContainer {
+    width: 550px;
+    height: 275px;
+    padding: 25px;
 }
 
-    .currentStepContainer input:focus, .createTextIcon input:focus {
-        outline: none;
-        border-color: #17C;
-        box-shadow: 0 0 15px #17C;
+    .currentStepContainer input, .createTextIconContainer input {
+        display: block;
+        font-size: 2em;
+        width: 85%;
+        margin: 1em auto;
+        padding: 0 0.5em;
+        border: 1px solid #dadada;
+        border-radius: 5px;
     }
+
+        .currentStepContainer input:focus, .createTextIconContainer input:focus {
+            outline: none;
+            border-color: #17C;
+            box-shadow: 0 0 15px #17C;
+        }
 
 
 .v-week .password {
@@ -820,9 +832,10 @@
 
 .createHintWrapper, .methodToCreateIcon .buttonWrapper {
     display: inline-block;
-    width: 30%;
-    margin: 2em;
-    padding: 1em;
+    /* width: 200px; */
+    /* line-height: 175px; */
+    /* background-color: #333; */
+    margin: 25px;
     text-align: center;
 }
 
@@ -839,10 +852,11 @@
     box-shadow: 10px 10px 10px 10px #123;
     background-color: #F52;
     cursor: pointer;
-    border-radius: 19%;
+    border-radius: 30px;
     color: rgba(51, 34, 34, 0.85);
-    width: 2em;
-    line-height: 2em;
+    width: 125px;
+    line-height: 125px;
+    font-size: 70px;
 }
 
     .createHintContainer .hintIcon:hover, .buttonWrapper .button:hover {
@@ -924,7 +938,7 @@
 }
 
 .customStepActions {
-    margin: 0 1em;
+    margin: 0 19px;
 }
 
 .prevQuestion, .nextQuestion {
@@ -945,10 +959,12 @@
     right: 0;
 }
 
-.colorPalletWrapper {
+.siteSttingsFormContainer .colorPickerContainer,
+.siteSttingsFormContainer .colorPalletWrapper {
     display: inline-block;
     text-align: center;
-    width: 100%;
+    width: 460px;
+    line-height: 70px;
 }
 
 .colorPalletContainer {
@@ -1011,7 +1027,7 @@
 
 
 .displayHintWrapper {
-    width: 100%;
+    width: 90%;
     -moz-animation-duration: 1s;
     -o-animation-duration: 1s;
     -webkit-animation-duration: 1s;
@@ -1040,10 +1056,14 @@
 
 .currentStepContainer {
     text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 
     .currentStepContainer .passwordTextbox {
         display: inline-block;
+        /* width: 100%; */
     }
 
 .stepDescription {
@@ -1054,4 +1074,30 @@
 
 .iconCreatorContainer {
     text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.createHintscontainer, .methodToCreateIcon {
+    width: 400px;
+    height: 350px;
+    margin: 0 auto;
+}
+
+.iconCreatorSection {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+.nextStepWrapper {
+    display: inline-block;
+    font-size: 5em;
+    width: 100%;
+    padding: 0 25px;
+}
+
+.guessPhraseWrapper {
+    height: auto;
 }

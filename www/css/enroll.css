@@ -73,6 +73,17 @@
 
 .formFieldContainer {
     /* padding: 0 15px; */
+    display: inline-block;
+    width: 100%;
+    -moz-transform-origin: 100% 50%;
+    -ms-transform-origin: 100% 50%;
+    -o-transform-origin: 100% 50%;
+    -webkit-transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
+    -moz-transition: transform 0.35s ease;
+    -o-transition: transform 0.35s ease;
+    -webkit-transition: transform 0.35s ease;
+    transition: transform 0.35s ease;
 }
 
 .inputField {
@@ -96,11 +107,6 @@
 }
 
 
-.appWrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
 
 /* Splash screen*/
 
@@ -141,11 +147,12 @@
 }
 
 .emailFieldWrapper {
-    height: 30em;
+    height: 425px;
     float: right;
-    width: 48em;
-    padding: 0 15PX;
+    width: 650px;
+    /* padding: 0 15PX; */
     position: relative;
+    margin: 0;
 }
 
     .emailFieldWrapper > .fieldComponent {
@@ -228,11 +235,11 @@
     display: inline-block;
     border-radius: 1em;
     top: 14px;
-    width: 14px;
-    left: 8px;
-    line-height: 11px;
+    width: 15px;
+    left: 5px;
+    line-height: 15px;
     background-color: #36383A;
-    height: 14px;
+    height: 15px;
 }
 
 .emailSeperator {
@@ -248,7 +255,7 @@
     -ms-transform-origin: 15% 50%;
     -o-transform-origin: 15% 50%;
     -webkit-transform-origin: 15% 50%;
-    transform-origin: 15% 50%;
+    transform-origin: 5% 50%;
 }
 
 .customDomainName {
@@ -271,11 +278,11 @@
     }
 
 .emailAliasSection {
-    width: 30em;
+    width: 450px;
 }
 
 .emailField {
-    width: 90%;
+    width: 27em;
     float: left;
 }
 

@@ -194,5 +194,4 @@
 
     // Enroll controller
     .controller("dashboardController", ["$state", "constants", "secretservice", "iconservice", dashboardController]);
-
 }());

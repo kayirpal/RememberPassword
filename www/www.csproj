@@ -29,6 +29,7 @@
     <Content Include="app\common\constants.js" />
     <Content Include="app\directives\animationEnd.js" />
     <Content Include="app\directives\drawBoard.js" />
+    <Content Include="app\directives\adjustable.js" />
     <Content Include="app\directives\fileUpload.js" />
     <Content Include="app\directives\extractIcon.js" />
     <Content Include="app\partials\dashboard\dashboard.guess.html" />
@@ -62,6 +63,7 @@
     <Content Include="css\enroll.css" />
     <Content Include="css\font-awesome.css" />
     <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\common.css" />
     <Content Include="css\index.css" />
     <Content Include="css\reset.css" />
     <Content Include="css\lib\animate.css" />

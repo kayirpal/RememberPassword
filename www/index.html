@@ -10,6 +10,7 @@
     <link href="css/lib/animate.css" rel="stylesheet" />
     <link href="css/lib/hover.css" rel="stylesheet" />
     <link href="css/index.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
     <link href="css/enroll.css" rel="stylesheet" />
     <link href="css/dashboard.css" rel="stylesheet" />
     <script src="scripts/ionic/js/ionic.bundle.js"></script>
@@ -30,7 +31,7 @@
     </header>
 
     <!-- App entry point-->
-    <div class="appWrapper" ui-view></div>
+    <div class="appWrapper" ng-style="app.backgroundStyle" ui-view></div>
     
 
     <!-- Cordova reference, this is added to your app when it's built. -->
@@ -64,7 +65,7 @@
     <script src="app/directives/drawBoard.js"></script>
     <script src="app/directives/extractIcon.js"></script>
     <script src="app/directives/fileUpload.js"></script>
-
+    <script src="app/directives/adjustable.js"></script>
     <!--App Modules-->
 
     <!--Dashboard module-->

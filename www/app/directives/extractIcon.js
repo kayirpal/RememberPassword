@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
-(function () {
+﻿(function () {
     "use strict";
 
     var extractIcon = function () {
@@ -16,15 +15,31 @@
                 var canvas = element[0];
                 var context = canvas.getContext('2d');
                 // 4:3
-                var width, height;
+                var width = canvas.width,
+                    scaleRatio = 1,
+                    height = canvas.height,
+                    widthDiff = window.innerWidth- width,
+                    heightDiff = window.innerHeight - height;
 
                 if (!attr.noChanges) {
-                    canvas.width = (window.innerWidth * canvas.width) / 500;
-                    canvas.height = (window.innerHeight * canvas.height) / 500;
+
+                    if (heightDiff > widthDiff) {
+                        scaleRatio = window.innerWidth / width;
+                    } else {
+                        scaleRatio = window.innerHeight / height;
+                    }
+
+                    if (scaleRatio > 1) {
+                        scaleRatio *= 0.75;
+                    }
+
+                    width *= scaleRatio;
+                    height *= scaleRatio;
+
+                    canvas.width = width;
+                    canvas.height = height;
                 }
 
-                width = canvas.width;
-                height = canvas.height;
 
                 var imageObj = new Image();
                 imageObj.height = height;
@@ -36,9 +51,7 @@
                 };
             }
         };
-
     };
-
 
     // Define directive module
     angular.module("directives")

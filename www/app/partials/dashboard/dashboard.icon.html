@@ -1,14 +1,18 @@
 <div class="iconCreatorContainer">
-    <section class="sctionWrapper methodToCreateIcon" ng-if="!icon.selectedIconCreator">
-        <div class="buttonWrapper" ng-repeat="option in icon.createIconOptions" ng-click="icon.changeIconCreatorType(option, dashboard.currentStep)">
-            <span class="button fa fa-4x" ng-class="option.typeClass"></span>
+    <section class="full-width-height" ng-if="!icon.selectedIconCreator" adjustable width="400" height="350">
+        <header></header>
+        <div class="sctionWrapper methodToCreateIcon center">
+            <article class="buttonWrapper" ng-repeat="option in icon.createIconOptions" ng-click="icon.changeIconCreatorType(option, dashboard.currentStep)">
+                <span class="button fa fa-4x" ng-class="option.typeClass"></span>
+            </article>
         </div>
+      
     </section>
     <section class="iconCreatorSection" ng-show="icon.selectedIconCreator">
-        <div class="sctionWrapper" ng-switch="icon.selectedIconCreator.id" ng-class="{iconSource: icon.selectedIconCreator.id === 3}">
+        <div class="sctionWrapper center" ng-switch="icon.selectedIconCreator.id" ng-class="{iconSource: icon.selectedIconCreator.id === 3}">
             <!-- if typing is preferred-->
-            <div class="createTextIcon" ng-switch-when="1">
-                <div class="headerWrapper">
+            <div class="createTextIconWrapper" ng-switch-when="1" adjustable width="550" height="275">
+                <div class="createTextIconContainer headerWrapper">
                     <div class="iconWrapper">
                         <article class="icon fa" ng-style="icon.selectedIconCreator.iconStyle">
                             <span class="display-inline-block" ng-bind="icon.selectedIconCreator.iconText"></span>

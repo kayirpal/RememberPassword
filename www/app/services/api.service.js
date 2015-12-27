@@ -73,10 +73,4 @@
 
 // Adding the service
 .service("apiservice", ["$q", apiService]);
-
 }());
-
-
-
-
-

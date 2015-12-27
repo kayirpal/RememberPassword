@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
-(function () {
+﻿(function () {
     "use strict";
 
     var drawBoardDiective = function () {
@@ -213,5 +212,4 @@
 
     // Add the directive to the module
     .directive("drawBoard", drawBoardDiective);
-
 }());

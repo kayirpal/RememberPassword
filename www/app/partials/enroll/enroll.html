@@ -1,6 +1,6 @@
 ﻿<div id="enrollForm" class="enrollFormWrapper viewWrapper slideInRight">
     <section class="formFieldWrapper v-middle">
-        <form class="formFieldContainer text-center" novalidate="novalidate" ng-submit="enroll.login()">
+        <form class="formFieldContainer text-center" novalidate="novalidate" ng-submit="enroll.login()" adjustable width="650" height="425">
             <div class="emailFieldWrapper form-group clearfix">
                 <section class="circularListWrapper rotate-m-90">
                     <header class="navButtonWrapper fieldComponent rotate-90" ng-click="enroll.checkProvidedEmail(enroll.userAuthData)">
@@ -47,19 +47,19 @@
                 <tr>
                     <td>
                         <article class="connectOption  animated ">
-                            <img class="fa fa-5x fa-spin facebook-icon" src="images/facebook.png" />
+                            <img class="fa fa-5x fa-spin facebook-icon slow-animation" src="images/facebook.png" />
                             <span class="fa fa-1pt5x  fa-facebook" hm-tap="oAuthService('facebook')"></span>
                         </article>
                     </td>
                     <td>
                         <article class="connectOption centralConnectOption">
-                            <img class="fa  fa-5x  fa-counter-spin google-icon" src="images/google.png" />
+                            <img class="fa  fa-5x  fa-counter-spin google-icon slow-animation" src="images/google.png" />
                             <span class="fa fa-1pt5x fa-google-plus" hm-tap="oAuthService('google')"></span>
                         </article>
                     </td>
                     <td>
                         <article class="connectOption  animated ">
-                            <img class="fa  fa-5x  fa-spin twitter-icon " src="images/twitter.png" />
+                            <img class="fa  fa-5x  fa-spin twitter-icon slow-animation" src="images/twitter.png" />
                             <span class="fa fa-1pt5x fa-twitter" hm-tap="oAuthService('twitter')"></span>
                         </article>
                     </td>
@@ -83,8 +83,10 @@
             </span>
         </article>
     </div>
-
-    <div class="gotoDashboardButton" ng-click="app.gotoDashboard()">
-        <span class="fa fa-4x fa-home"></span>
-    </div>
+    
+    <section class="siteSettingsFooter">
+        <div class="gotoDashboardButton siteSettingsAction" ng-click="app.gotoDashboard()">
+            <span class="fa fa-4x fa-home"></span>
+        </div>
+    </section>
 </div>

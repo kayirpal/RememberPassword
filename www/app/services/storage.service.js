@@ -90,10 +90,4 @@
 
 // Adding the service
 .service("storageservice", ["$q", "constants", "secretservice", storageService]);
-
 }());
-
-
-
-
-

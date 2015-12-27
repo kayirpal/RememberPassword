@@ -47,6 +47,4 @@
 
     // Add main config
     .run(['$rootScope', '$state', '$stateParams', onStateChange]);
-
-
 }());

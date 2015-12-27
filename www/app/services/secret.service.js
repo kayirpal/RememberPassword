@@ -1,5 +1,4 @@
 (function () {
-
     "use strict";
 
     var secretService = function () {
@@ -8,7 +7,7 @@
         var service = {};
 
 
-        service.generateGUID = function() {
+        service.generateGUID = function () {
             var d = new Date().getTime();
             var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                 var r = (d + Math.random() * 16) % 16 | 0;
@@ -31,7 +30,7 @@
         service.encryptPhrase = function (phrase) {
 
             // nothing to work with
-            if(!phrase || !phrase.toString().trim()){
+            if (!phrase || !phrase.toString().trim()) {
                 return;
             }
 
@@ -55,7 +54,7 @@
                 // return encrypted part
                 return encrypt(item);
             });
-            
+
             // whole message encrypted
             encryptedMessage.encodedPhrase = encrypt(phrases.join(" "));
 
@@ -71,7 +70,5 @@
     angular.module("services")
 
 // Adding the service
-
 .service("secretservice", [secretService]);
-
 }());

@@ -1,7 +1,6 @@
-<div class="iconCreatorContainer">
+<div class="guessPhraseWrapper currentStepContainer center">
 
-    <form class="currentStepContainer createPassHint" ng-submit="guess.guessPhrase(guess.guessedPhrase, dashboard.currentStep.message)">
-
+    <form class="createPassHint" ng-submit="guess.guessPhrase(guess.guessedPhrase, dashboard.currentStep.message)">
         <input type="text" class="passwordTextbox password" cols="3" autofocus placeholder="Check if you remember it" ng-keydown="guess.showHint = false"
                ng-model="guess.guessedPhrase">
         <span class="fa headerIcon fa-lightbulb-o fa-3x pointer" ng-click="guess.showHideHint(dashboard.currentStep)"></span>
