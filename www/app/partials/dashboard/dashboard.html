@@ -4,13 +4,13 @@
 
         <div class="iconWrapper" ng-repeat="icon in dashboard.icons track by $index">
             <article class="icon fa fa-3x" ng-class="icon.iconDetails.iconClass" ng-click="dashboard.guessPassword(icon)" ng-style="icon.iconDetails.iconStyle || app.iconStyle">
-                <span ng-bind="icon.iconDetails.iconText"></span>
+                <span class="display-inline-block" ng-bind="icon.iconDetails.iconText"></span>
             </article>
         </div>
 
         <div class="iconWrapper">
             <article class="icon fa fa-3x" ng-click="dashboard.addNewIcon()" ng-style="app.iconStyle">
-                <span>+</span>
+                <span class="display-inline-block">+</span>
             </article>
         </div>
 

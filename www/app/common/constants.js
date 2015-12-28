@@ -60,6 +60,7 @@
         id: 2
     }, {
         wrapperClass: "capturePicture",
+        autoOpen: true,
         iconClass: "fa-camera",
         header: "Paparazzi mode !!!",
         id: 3
@@ -87,6 +88,7 @@
         typeClass: "fa-th-large"
     }, {
         title: "Capture it",
+        autoOpen: true,
         id: 4,
         typeClass: "fa-camera"
     }];

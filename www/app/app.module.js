@@ -1,5 +1,4 @@
 ﻿(function () {
-
     "use strict";
 
     // Define main module

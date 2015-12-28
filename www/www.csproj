@@ -30,6 +30,7 @@
     <Content Include="app\directives\animationEnd.js" />
     <Content Include="app\directives\drawBoard.js" />
     <Content Include="app\directives\adjustable.js" />
+    <Content Include="app\directives\captureImage.js" />
     <Content Include="app\directives\fileUpload.js" />
     <Content Include="app\directives\extractIcon.js" />
     <Content Include="app\partials\dashboard\dashboard.guess.html" />

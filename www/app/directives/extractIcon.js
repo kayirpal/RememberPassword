@@ -18,7 +18,7 @@
                 var width = canvas.width,
                     scaleRatio = 1,
                     height = canvas.height,
-                    widthDiff = window.innerWidth- width,
+                    widthDiff = window.innerWidth - width,
                     heightDiff = window.innerHeight - height;
 
                 if (!attr.noChanges) {
@@ -29,9 +29,7 @@
                         scaleRatio = window.innerHeight / height;
                     }
 
-                    if (scaleRatio > 1) {
-                        scaleRatio *= 0.75;
-                    }
+                    scaleRatio *= 0.75;
 
                     width *= scaleRatio;
                     height *= scaleRatio;

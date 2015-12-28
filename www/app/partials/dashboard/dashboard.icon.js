@@ -36,6 +36,11 @@
                 case 3:
                     iconDetails.iconClass = iconCreator.iconClass;
                     break;
+                case 4:
+                    iconDetails.iconStyle = {
+                        background: "url(" + iconCreator.uploadedIconUrl + ") center no-repeat"
+                    };
+                    break;
                 default:
                     iconDetails.iconText = "Ks";
                     break;

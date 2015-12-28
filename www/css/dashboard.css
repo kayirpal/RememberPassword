@@ -267,9 +267,9 @@
 
 
 .browseImageIcon, .snapImageIcon, .displayHintWrapper {
-    min-height: 300px;
-    min-width: 400px;
-    /* width: 90%; */
+    min-height: 200px;
+    min-width: 350px;
+    /* width: 100%; */
     display: inline-block;
     margin: 0 auto;
     padding: 30px;
@@ -277,7 +277,7 @@
     position: relative;
     background: radial-gradient(rgba(34, 68, 102, 1),rgba(17, 34, 51, 0.86));
     text-align: center;
-    line-height: 250px;
+    line-height: 135px;
 }
 
     .browseImageIcon label {
@@ -305,7 +305,7 @@
     width: 100%;
     height: 90%;
     position: relative;
-    /* padding: 1% 0; */
+    padding: 1% 0;
 }
 
 .iconPreview {
@@ -704,7 +704,7 @@
     .currentStepContainer input, .createTextIconContainer input {
         display: block;
         font-size: 2em;
-        width: 85%;
+        width: 100%;
         margin: 1em auto;
         padding: 0 0.5em;
         border: 1px solid #dadada;
@@ -938,7 +938,7 @@
 }
 
 .customStepActions {
-    margin: 0 19px;
+    margin: 0 5px;
 }
 
 .prevQuestion, .nextQuestion {
@@ -1093,11 +1093,15 @@
 
 .nextStepWrapper {
     display: inline-block;
-    font-size: 5em;
+    font-size: 4em;
     width: 100%;
     padding: 0 25px;
 }
 
 .guessPhraseWrapper {
     height: auto;
+}
+
+.userActionWrapper .passwordTextbox {
+    width: 85%;
 }

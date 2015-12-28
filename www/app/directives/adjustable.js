@@ -29,6 +29,8 @@
 
             if (zoomLevel > 1) {
                 zoomLevel *= 0.8;
+            } else {
+                zoomLevel *= 0.9;
             }
 
 

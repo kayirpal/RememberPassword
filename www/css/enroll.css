@@ -117,16 +117,11 @@
 }
 
 .connectOptionsWrapper .connectOptionGrid {
-    -moz-transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    -o-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    transform: scale(1.5);
     -moz-transform-origin: 50%;
     -ms-transform-origin: 50%;
     -o-transform-origin: 50%;
     -webkit-transform-origin: 50%;
-    transform-origin: 50%;
+    transform-origin: 0 50%;
     margin: auto;
 }
 
@@ -296,7 +291,7 @@
     bottom: 0;
     width: 25em;
     height: 11em;
-    left: -14em;
+    left: -10em;
 }
 
 .fieldComponent .inputField:focus, .passwordField .inputField:focus {
@@ -305,7 +300,7 @@
 }
 
 #connectOptionsWrapper.opened {
-    left: 20em;
+    left: 13em;
 }
 
     #connectOptionsWrapper.opened .connectOptionsHeader .fa-chevron-right {

@@ -6,7 +6,7 @@
                 <span class="button fa fa-4x" ng-class="option.typeClass"></span>
             </article>
         </div>
-      
+
     </section>
     <section class="iconCreatorSection" ng-show="icon.selectedIconCreator">
         <div class="sctionWrapper center" ng-switch="icon.selectedIconCreator.id" ng-class="{iconSource: icon.selectedIconCreator.id === 3}">
@@ -22,8 +22,8 @@
                         <input type="text" maxlength="2" autofocus placeholder="Icon's initials" ng-model="icon.selectedIconCreator.iconText" />
                     </div>
                     <div class="iconBackgroundSetter colorPickerWrapper">
-                            <span class="slider" ng-click="icon.setIconBackgroundColor(icon.selectedIconCreator)"></span>
-                            <span class="nobe fa fa-4x fa-caret-up" ng-style="icon.selectedIconCreator.nobeStyle"></span>
+                        <span class="slider" ng-click="icon.setIconBackgroundColor(icon.selectedIconCreator)"></span>
+                        <span class="nobe fa fa-4x fa-caret-up" ng-style="icon.selectedIconCreator.nobeStyle"></span>
                     </div>
                 </div>
             </div>
@@ -39,15 +39,20 @@
             </div>
 
             <div class="selectIcon iconListWrapper" ng-switch-when="3">
-                <div class="iconWrapper" ng-repeat="faIcon in icon.selectedIconCreator.faIconList" 
+                <div class="iconWrapper" ng-repeat="faIcon in icon.selectedIconCreator.faIconList"
                      ng-class="{selected: faIcon === icon.selectedIconCreator.iconClass}">
                     <article class="hvr-bounce-in icon fa" ng-class="faIcon" ng-click="icon.selectedIconCreator.iconClass = faIcon"></article>
                 </div>
             </div>
-            <div class="snapImageIcon" ng-switch-when="4">
-                <label>
-                    <span class="hvr-pulse-grow fa fa-5x fa-camera"></span>
+
+            <div class="snapImageIcon browseImageIcon" ng-switch-when="4" ng-repeat="camera in [icon.selectedIconCreator]">
+                <label capture-image="camera" ng-click="camera.capture()">
+                    <span class="hvr-pulse-grow fa fa-5x fa-camera" ng-hide="camera.rawFileUrl"></span>
+                    <span class="changeFile fa fa-2x fa-camera" ng-show="camera.rawFileUrl"></span>
                 </label>
+                <p ng-if="camera.rawFileUrl" class="uploadedIconWrapper margin-0 display-inline-block">
+                    <canvas class="showUploadedIcon" extract-icon="camera" width="400" height="300"></canvas>
+                </p>
             </div>
         </div>
     </section>

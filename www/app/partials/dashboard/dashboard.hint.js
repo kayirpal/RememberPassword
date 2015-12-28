@@ -31,6 +31,10 @@
                 case 2:
                     hintDetails.hintImageData = hintOption.getSnapshot();
                     break;
+                case 3:
+                    hintDetails.hintImageData = hintOption.uploadedIconUrl || hintOption.rawFileUrl;
+                    break;
+
                     //TODO: get camera and mic recordings
             }
 

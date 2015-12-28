@@ -45,3 +45,7 @@
 .margin-b-15{
     margin-bottom: 15px;
 }
+.enterSecretWrapper{
+    width: 100%;
+    max-width: 500px;
+}
