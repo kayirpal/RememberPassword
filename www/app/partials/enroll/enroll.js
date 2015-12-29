@@ -2,17 +2,10 @@
     "use strict";
 
     // Define enroll controller
-    var EnrollController = function (state, $scope, location, auth, constants) {
+    var EnrollController = function (state, $scope, location, auth, constants, storageService) {
 
         // current scope
-        var enroll = this,
-
-        // parent scope
-        parent = $scope.$parent;
-
-        //#region  Email Address part of the form
-        //#endregion 
-
+        var enroll = this;
 
         // Form classes
         enroll.formClasses = constants.enrollFormClasses;
@@ -74,12 +67,14 @@
         enroll.rotateWheelValue = {
             transform: "rotate(0deg)"
         };
+
         // User
         enroll.userAuthData = {};
         enroll.currentThemeColor = "rgba(234, 67, 53, 0.7)";
 
         var prevRotateIndex = 4,
             prevRotateDeg = 0;
+
         // rotate wheel
         enroll.rotateWheel = function (sectionIndex, theme) {
 
@@ -110,7 +105,7 @@
             prevRotateIndex = sectionIndex;
 
             enroll.rotateWheelValue = {
-                transform:  "rotate("+prevRotateDeg+ "deg)"
+                transform: "rotate(" + prevRotateDeg + "deg)"
             };
 
             enroll.currentThemeColor = "";
@@ -123,10 +118,7 @@
         enroll.oAuthClasses = constants.oAuthClasses;
 
         enroll.gotoHome = function () {
-            if (!!constants.isUserFound) {
-                //  location.path("/Home");
-                $scope.$apply();
-            }
+            return;
         };
 
         //Check email
@@ -146,7 +138,7 @@
 
                     // set valid flag on
                     userAuthData.invalidEmail = false;
-                    
+
                     // assume  present for now
                     enroll.showPasswordScreen = true;
 
@@ -154,29 +146,49 @@
             }
         };
 
-        enroll.checkPressedKey = function (userAuthData, event, isPassword) {
+        enroll.checkPressedKey = function (app, event, isPassword) {
 
             if (event.which === 13) {
 
+                var userAuthData = enroll.userAuthData;
+
                 if (isPassword) {
-                    enroll.checkPassword(userAuthData);
+                    enroll.checkPassword(app);
 
                 } else {
                     enroll.checkProvidedEmail(userAuthData);
                 }
             }
-
         };
 
-        enroll.checkPassword = function () {
+        enroll.checkPassword = function (app) {
 
             enroll.showPasswordScreen = false;
 
-            location.path("/dashboard");
+            enroll.login(app);
         };
 
+        function saveCurrentUser(userDetails) {
+            var key = constants.authKey;
+
+            // save new settings
+            storageService.set(userDetails, key);
+
+        }
+
+        function gotoDashboard() {
+            //// Update classes for the form elements
+            //enroll.formClasses.pop();
+            //enroll.oAuthClasses.pop();
+            //enroll.formClasses.push("fadeOutDown");
+            //enroll.oAuthClasses.push("zoomOutDown");
+
+            // goto dashboard
+            state.go("dashboard");
+        }
+
         // Enroll user
-        enroll.login = function () {
+        enroll.login = function (app) {
 
             var validForm = true;
 
@@ -212,31 +224,36 @@
             if (validForm) {
 
                 // Call login
-                auth.login(enroll.userAuthData);
+                var user = auth.login(enroll.userAuthData);
 
-                // enroll 
-                enroll.enroll();
+                if (user) {
+
+                    // Set user avatar
+                    app.loggedInUser = user;
+                    
+                    // save 
+                    saveCurrentUser(user);
+
+                    // goto dashboard
+                    gotoDashboard();
+                }
             }
         };
 
-        enroll.enroll = function () {
-            // Update classes for the form elements
-            enroll.formClasses.pop();
-            enroll.oAuthClasses.pop();
-            enroll.formClasses.push("fadeOutDown");
-            enroll.oAuthClasses.push("zoomOutDown");
-        };
-
-        enroll.oAuthService = function (serviceProvider) {
+        enroll.oAuthService = function (serviceProvider, app) {
 
             auth.oAuth(serviceProvider).then(
-                function (response) {
-                    if (response) {
+                function (user) {
+                    if (user) {
 
                         // Set user avatar
-                        parent.loggedInUser = constants.user;
+                        app.loggedInUser = user;
 
-                        enroll.enroll();
+                        // save 
+                        saveCurrentUser(user);
+
+                        // goto dashboard
+                        gotoDashboard();
                     }
                 },
                 function (error) {
@@ -246,61 +263,6 @@
                 });
         };
 
-        // Add @ sign 
-        enroll.appendEmailSign = function () {
-
-            var email = enroll.userAuthData.uName;
-
-            if (!!email && email.indexOf("@") === -1) {
-                enroll.userAuthData.uName = email.concat("@");
-            }
-        };
-
-        enroll.resetPasswordClasses = function () {
-
-            enroll.passwordGroup.pop();
-
-            // Add valid class
-            enroll.passwordGroup.push("emptyPassword");
-        };
-
-        // validate email
-        enroll.validateEmail = function () {
-
-            // Set validate class
-            enroll.emailGroup.pop();
-
-            // Set invalidate class
-            enroll.userAuthData.invalidEmail = true;
-
-            // email entered
-            var email = enroll.userAuthData.uName;
-
-            // If its not empty
-            if (!!email) {
-
-                // Validate email
-                if (constants.validEmail.test(email)) {
-
-                    // Add valid class
-                    enroll.emailGroup.push("validEmail");
-
-                    // Reset invalidate flag
-                    enroll.userAuthData.invalidEmail = false;
-                } else {
-
-                    // Add invalid class
-                    enroll.emailGroup.push("inValidEmail");
-                }
-
-            } else {
-
-                // Add empty class
-                enroll.emailGroup.push("emptyEmail");
-            }
-
-        };
-
         return enroll;
     };
 
@@ -308,5 +270,5 @@
     angular.module("enrollModule")
 
     // Enroll controller
-    .controller("enrollController", ["$state", '$scope', '$location', 'authservice', 'constants', EnrollController]);
+    .controller("enrollController", ["$state", '$scope', '$location', 'authservice', 'constants', 'storageservice', EnrollController]);
 }());

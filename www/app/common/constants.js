@@ -9,15 +9,7 @@
 
     // site settings
     constants.siteSettings = {};
-
-    // Is user found
-    constants.isUserFound = true;
-
-    constants.user = {
-        name: "Kirpal Singh",
-        gender: "male"
-    };
-    
+        
     // Enroll module constants
     constants.enrollFormClasses = ["form-group", "animated", "fadeInDown"];
 
@@ -132,6 +124,8 @@
     constants.iconStorageKey = "KS_SECRET_STORAGE_KEY";
 
     constants.siteSettingsKey = "KS_SITE_SETTINGS_KEY";
+
+    constants.authKey = "KS_AUTH_KEY";
 
     // Create directive module under app 
     angular.module('common')

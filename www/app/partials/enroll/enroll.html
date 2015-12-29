@@ -1,6 +1,6 @@
 ﻿<div id="enrollForm" class="enrollFormWrapper viewWrapper slideInRight">
     <section class="formFieldWrapper v-middle">
-        <form class="formFieldContainer text-center" novalidate="novalidate" ng-submit="enroll.login()" adjustable width="650" height="425">
+        <form class="formFieldContainer text-center" novalidate="novalidate" ng-submit="enroll.login(app)" adjustable width="650" height="425">
             <div class="emailFieldWrapper form-group clearfix">
                 <section class="circularListWrapper rotate-m-90">
                     <header class="navButtonWrapper fieldComponent rotate-90" ng-click="enroll.checkProvidedEmail(enroll.userAuthData)">
@@ -46,21 +46,21 @@
             <tbody>
                 <tr>
                     <td>
-                        <article class="connectOption  animated ">
+                        <article class="connectOption  animated "  hm-tap="enroll.oAuthService('facebook', app)">
                             <img class="fa fa-5x fa-spin facebook-icon slow-animation" src="images/facebook.png" />
-                            <span class="fa fa-1pt5x  fa-facebook" hm-tap="oAuthService('facebook')"></span>
+                            <span class="fa fa-1pt5x  fa-facebook"></span>
                         </article>
                     </td>
                     <td>
-                        <article class="connectOption centralConnectOption">
+                        <article class="connectOption centralConnectOption" hm-tap="enroll.oAuthService('google', app)">
                             <img class="fa  fa-5x  fa-counter-spin google-icon slow-animation" src="images/google.png" />
-                            <span class="fa fa-1pt5x fa-google-plus" hm-tap="oAuthService('google')"></span>
+                            <span class="fa fa-1pt5x fa-google-plus" ></span>
                         </article>
                     </td>
                     <td>
-                        <article class="connectOption  animated ">
+                        <article class="connectOption  animated "  hm-tap="enroll.oAuthService('twitter', app)">
                             <img class="fa  fa-5x  fa-spin twitter-icon slow-animation" src="images/twitter.png" />
-                            <span class="fa fa-1pt5x fa-twitter" hm-tap="oAuthService('twitter')"></span>
+                            <span class="fa fa-1pt5x fa-twitter"></span>
                         </article>
                     </td>
                     <td class="connectOptionsHeader" ng-click="enroll.showOtherOptions = !enroll.showOtherOptions">
@@ -78,8 +78,8 @@
             </p>
             <span class="passwordField">
                 <input type="password" class="inputField" placeholder="******" ng-model="enroll.userAuthData.uPassword" autofocus
-                       ng-keypress="enroll.checkPressedKey(enroll.userAuthData, $event, true)"
-                       ng-blur="enroll.checkPassword(enroll.userAuthData)" />
+                       ng-keypress="enroll.checkPressedKey(app, $event, true)"
+                       ng-blur="enroll.checkPassword(app)" />
             </span>
         </article>
     </div>

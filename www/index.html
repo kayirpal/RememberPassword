@@ -18,13 +18,13 @@
 <body ng-app="MyApp" ng-controller="mainEngine as app">
 
     <header id="appHeader" class="">
-        <aside class="userInfoWrapper">
+        <aside class="userInfoWrapper ng-hide" ng-show="true">
             <span class="userNameDisplay fa fa-user" hm-tap="app.showHideUserActions()">
-                <img ng-src="{{app.loggedInUser.avatar}}" ng-if="!!app.loggedInUser.avatar">
+                <img ng-if="app.loggedInUser && app.loggedInUser.avatar " ng-src="{{app.loggedInUser.avatar}}">
             </span>
             <div ng-class="app.userActionClasses">
-                <span class="fa" ng-class="app.loggedInUser.isUserFound?'fa-sign-out':'fa-sign-in'" title="{{app.loggedInUser.isUserFound?'sign out':'sign in'}}" hm-tap="app.gotoPage('enroll')"></span>
-                <span class="fa fa-share-alt" title="Share" hm-tap="app.gotoPage('share')"></span>
+                <span class="fa" ng-class="app.loggedInUser?'fa-sign-out':'fa-sign-in'" title="{{app.loggedInUser?'sign out':'sign in'}}" hm-tap="app.loginOrOut('enroll')"></span>
+                <span class="fa fa-share-alt" title="Share" hm-tap="app.shareIt('share')"></span>
                 <span class="fa fa-cogs" title="settings" hm-tap="app.gotoPage('settings')"></span>
             </div>
         </aside>

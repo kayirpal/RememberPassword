@@ -8,21 +8,7 @@
 
         // Navigation 
         app.subSites = constants.subSites;
-
-        app.loggedInUser = {
-            isUserFound: false
-        };
-
-        // Can redirect
-        app.canRedirect = function (reDirectTo) {
-
-            if ((reDirectTo.isAuthRequired && constants.isUserFound) || (!reDirectTo.isAuthRequired && !constants.isUserFound)) {
-                return true;
-            } else {
-                return false;
-            }
-        };
-
+        
         // right side navigation 
         app.userActionClasses = constants.userActionClasses;
 
@@ -39,6 +25,38 @@
         app.gotoPage = function (viewHandle) {
             if (viewHandle) {
                 state.go(viewHandle);
+            }
+        };
+
+        app.loginOrOut = function (viewHandle) {
+
+            if (app.loggedInUser) {
+
+                var key = constants.authKey;
+            
+                // save new settings
+                storageService.set({}, key);
+
+                app.showHideUserActions();
+
+                app.loggedInUser = undefined;
+
+            } else {
+                app.gotoPage(viewHandle);
+            }
+
+        };
+
+        app.shareIt = function (viewHandle) {
+            if (window.socialmessage) {
+                var message = {
+                    text: "Best way to keep a secret, keep it to yourself. Tell no one. But what if you forgot, what was it? ",
+                    subject: "Do You Remember That!",
+                    url: "http://www.laprik.com/12345"
+                };
+                window.socialmessage.send(message);
+            } else {
+                app.gotoPage(viewHandle);
             }
         };
 
@@ -67,7 +85,7 @@
             app.gotoDashboard();
         };
 
-        // 
+        // save site settings
         app.setSiteSettings = function (settings) {
 
             var settingsToSave = {},
@@ -99,6 +117,8 @@
 
         // init
         (function () {
+
+            // apply site settings
             var key = constants.siteSettingsKey,
                 settingsToApply;
 
@@ -116,6 +136,19 @@
             }
 
             constants.settingsToApply = settingsToApply;
+
+            // is user session available
+            var authKey = constants.authKey,
+                sessionDetails;
+
+            sessionDetails = storageService.get(authKey);
+
+            if (sessionDetails && sessionDetails.isLoggedIn) {
+
+                app.loggedInUser = sessionDetails;
+
+                app.gotoDashboard();                
+            }
 
         }());
     };

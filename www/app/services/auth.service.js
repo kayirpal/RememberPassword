@@ -6,7 +6,7 @@
       1. location object {$location} to provide redirections
       2. defer object {$q} for returning promises for api calls 
      */
-    var authService = function ( $q, constants) {
+    var authService = function ($q, constants) {
 
         // Get service pointer
         var service = this;
@@ -36,23 +36,12 @@
 
                 localStorage.setItem(userAuthData.uName, userAuthData.uPassword);
 
-
-                // Add dummy user data
-                constants.user = {
-                    name: "",
-                    avatar: "",
-                    gender: "male",
+                return {
+                    name: userAuthData.uName,
+                    isLoggedIn: true,
                     isOAuth: false,
-                    age: 22,
-                    height: 5.5,
-                    email: userAuthData.uName,
-                    weight: 68
+                    email: userAuthData.uName
                 };
-
-                //  user found
-                constants.isUserFound = true;
-
-                return true;
             }
 
             return false;
@@ -73,7 +62,6 @@
             // Deferred response object
             var oAuthResponse = $q.defer();
 
-
             // Initialize the oAuth connection
             OAuth.initialize(oAuthToken);
 
@@ -87,28 +75,14 @@
 
                     if (!!response.id) {
 
-                        //  user found
-                        constants.isUserFound = true;
-
                         // Add dummy user data
-                        constants.user = {
-                            name: response.name,
-                            isUserFound: true,
-                            isOAuth: true,
-                            avatar: response.avatar,
-                            gender: !!response.raw ? response.raw.gender : "male",
-                            age: 22,
-                            height: 5.5,
-                            email: "",
-                            weight: 68
-                        };
+                        response.isOAuth = true;
+                        response.isLoggedIn = true;
 
-                        oAuthResponse.resolve(true);
+                        oAuthResponse.resolve(response);
                     } else {
                         oAuthResponse.reject(response);
                     }
-
-
                 }).fail(function (error) {
                     // Error at the oAuth api level
                     oAuthResponse.reject(error);
