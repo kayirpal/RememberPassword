@@ -1037,13 +1037,13 @@
 }
 
 .displayHintContainer {
-    width: 90%;
+    /* width: 90%; */
     height: 100%;
     background-repeat: no-repeat;
     margin: 0 auto;
     background-position: center;
     border-radius: 1em;
-    background-size: 100% 100%;
+    background-size: 22em 15em;
 }
 
 .guessStatus {

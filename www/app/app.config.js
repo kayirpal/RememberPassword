@@ -29,7 +29,7 @@
         });
     };
 
-    var onStateChange = function (rootScope, state, stateParams) {
+    var onStateChange = function (rootScope) {
 
         rootScope.$on('$stateChangeStart', function (event, toState, fromState, extra) {
 
@@ -37,6 +37,14 @@
         });
 
         rootScope.$on("$stateChangeError", console.log.bind(console));
+
+
+        rootScope.$on('$stateChangeSuccess', function (event, toState, fromState, extra) {
+
+            if (toState.name === "dashboard") {
+
+            }
+        });
     };
 
     // main module

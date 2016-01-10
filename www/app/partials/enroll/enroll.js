@@ -16,7 +16,7 @@
 
         enroll.emailProviders = [{
             style: {
-                'background-color': "rgb(168, 165, 80)",
+                'background-color': "rgb(45, 130, 80)",
                 transform: 'rotate(-90deg) skew(50deg)'
             },
             title: "linkedin.com"
@@ -34,31 +34,31 @@
             title: "icloud.com"
         }, {
             style: {
-                'background-color': 'rgba(217, 220, 38, 0.42)',
+                'background-color': 'rgb(116, 117, 47)',
                 transform: 'rotate(30deg) skew(50deg)'
             },
             title: "hotmail.com"
         }, {
             style: {
-                'background-color': 'rgba(234, 67, 53, 0.7)',
+                'background-color': 'rgb(174, 62, 57)',
                 transform: 'rotate(70deg) skew(50deg)'
             },
             title: "gmail.com"
         }, {
             style: {
-                'background-color': 'rgba(0, 114, 198, 0.45)',
+                'background-color': 'rgb(13, 119, 197)',
                 transform: 'rotate(110deg) skew(50deg)'
             },
             title: "outlook.com"
         }, {
             style: {
-                'background-color': 'rgba(49, 143, 52, 0.48)',
+                'background-color': 'rgb(50, 135, 50)',
                 transform: 'rotate(150deg) skew(50deg)'
             },
             title: "mail.com"
         }, {
             style: {
-                'background-color': 'rgb(162, 130, 168)',
+                'background-color': 'rgb(125, 65, 140)',
                 transform: 'rotate(190deg) skew(50deg)'
             },
             title: "rediffmail.com"
@@ -70,13 +70,14 @@
 
         // User
         enroll.userAuthData = {};
-        enroll.currentThemeColor = "rgba(234, 67, 53, 0.7)";
+        enroll.currentThemeColor = "rgb(174, 62, 57)";
+        enroll.currentEmailProvider = "gmail.com";
 
         var prevRotateIndex = 4,
             prevRotateDeg = 0;
 
         // rotate wheel
-        enroll.rotateWheel = function (sectionIndex, theme) {
+        enroll.rotateWheel = function (sectionIndex, emailProvider) {
 
             // deg
             var deg = 0,
@@ -109,8 +110,12 @@
             };
 
             enroll.currentThemeColor = "";
-            if (theme) {
-                enroll.currentThemeColor = theme['background-color'];
+            enroll.currentEmailProvider = "";
+            if (emailProvider) {
+                enroll.currentThemeColor = emailProvider.style['background-color'];
+                enroll.currentEmailProvider = emailProvider.title;
+            } else {
+                enroll.currentEmailProvider = enroll.userAuthData.domainName;
             }
         };
 
@@ -119,6 +124,10 @@
 
         enroll.gotoHome = function () {
             return;
+        };
+
+        enroll.setProfilePicture = function (userAuthData) {
+
         };
 
         //Check email
@@ -136,12 +145,18 @@
 
                 if (validEmailAlias) {
 
-                    // set valid flag on
-                    userAuthData.invalidEmail = false;
+                    // check domain
+                    if (enroll.currentEmailProvider) {
+                        userAuthData.email = userAuthData.uName.concat("@", enroll.currentEmailProvider);
 
-                    // assume  present for now
-                    enroll.showPasswordScreen = true;
+                        // check email validation
 
+                        // set valid flag on
+                        userAuthData.invalidEmail = false;
+
+                        // assume  present for now
+                        enroll.showPasswordScreen = true;
+                    }
                 }
             }
         };
@@ -200,15 +215,13 @@
                 enroll.emailGroup.push("inValidEmail");
 
                 validForm = false;
-
             }
 
             enroll.passwordGroup.pop();
 
             // Check for valid password 
             if (!enroll.userAuthData.uPassword) {
-
-
+                
                 // Add invalid class
                 enroll.passwordGroup.push("inValidPassword");
 
@@ -216,6 +229,8 @@
 
 
             } else {
+
+                enroll.showPasswordScreen = false;
 
                 // Add invalid class
                 enroll.passwordGroup.push("emptyPassword");
@@ -230,6 +245,9 @@
 
                     // Set user avatar
                     app.loggedInUser = user;
+
+                    // hide action buttons
+                    app.showHideUserActions();
                     
                     // save 
                     saveCurrentUser(user);
@@ -248,6 +266,9 @@
 
                         // Set user avatar
                         app.loggedInUser = user;
+
+                        // hide action buttons
+                        app.showHideUserActions();
 
                         // save 
                         saveCurrentUser(user);

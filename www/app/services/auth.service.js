@@ -38,9 +38,10 @@
 
                 return {
                     name: userAuthData.uName,
+                    avatar: userAuthData.uploadedIconUrl || userAuthData.rawFileUrl,
                     isLoggedIn: true,
                     isOAuth: false,
-                    email: userAuthData.uName
+                    email: userAuthData.email
                 };
             }
 

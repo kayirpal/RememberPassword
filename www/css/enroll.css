@@ -102,7 +102,6 @@
 
 .emailFieldIndicator, .passwordFieldIndicator {
     color: #36383A;
-    line-height: -22px;
     font-size: 3em;
 }
 
@@ -210,6 +209,7 @@
     bottom: 0;
     right: 4em;
     color: #fff;
+    cursor: pointer;
     width: 6em;
     -moz-transform: skew(-50deg) rotate(-70deg);
     -ms-transform: skew(-50deg) rotate(-70deg);
@@ -219,18 +219,32 @@
     height: 7em;
 }
 
+    .domainNameContainer:hover, .domainNameContainer:active, .domainNameContainer:after {
+        color: #fff;
+    }
+
 .domainName {
     margin-top: 3em;
-    font-size: 1.5em;
+    /* font-size: 1em; */
     display: inline-block;
+    -moz-transform-origin: 35% 100%;
+    -ms-transform-origin: 35% 100%;
+    -o-transform-origin: 35% 100%;
+    -webkit-transform-origin: 35% 100%;
+    transform-origin: 35% 100%;
+    -moz-transform: rotate(90deg) scale(1.25);
+    -ms-transform: rotate(90deg) scale(1.25);
+    -o-transform: rotate(90deg) scale(1.25);
+    -webkit-transform: rotate(90deg) scale(1.25);
+    transform: rotate(90deg) scale(1.25);
 }
 
 .atSign {
     position: absolute;
     display: inline-block;
-    border-radius: 1em;
-    top: 14px;
-    width: 15px;
+    /* border-radius: 1em; */
+    top: 15px;
+    width: 17px;
     left: 5px;
     line-height: 15px;
     background-color: #36383A;
@@ -264,12 +278,17 @@
 
     .customDomainName .domainName {
         font-size: 1em;
-        margin-top: 5.5em;
+        margin-top: 3em;
         color: #123;
-        margin-left: -1.5em;
+        margin-left: -1em;
         padding-left: 10px;
         border: 0;
         width: 10em;
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
     }
 
 .emailAliasSection {
@@ -349,4 +368,14 @@
     z-index: 1;
     line-height: 1.25em;
     border-radius: 1em;
+}
+.displayEmailDetails{
+    display: inline-block;
+    height: 2em;
+    width: 100%;
+    color: #fff;
+    font-size: 1.25em;
+}
+.profilePhotoWrapper .showUploadedIcon {
+    border-radius: 35px;
 }
