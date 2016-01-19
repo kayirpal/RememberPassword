@@ -2,7 +2,7 @@
     "use strict";
 
     // Define dashboard controller
-    var dashboardController = function (state, constants, pService, iconService) {
+    var dashboardController = function (rootScope, state, constants, pService, iconService) {
 
         var dashboard = this;
 
@@ -187,11 +187,18 @@
                 }
             }
         }());
+
+        rootScope.$on('$stateChangeSuccess', function (event, toState, fromState, extra) {
+
+            if (toState.name === "dashboard") {
+                dashboard.currentStep = undefined;
+            }
+        });
     };
 
     // Define enroll module
     angular.module("dashboardModule")
 
     // Enroll controller
-    .controller("dashboardController", ["$state", "constants", "secretservice", "iconservice", dashboardController]);
+    .controller("dashboardController", ["$rootScope", "$state", "constants", "secretservice", "iconservice", dashboardController]);
 }());

@@ -795,6 +795,7 @@
     height: 10%;
     text-align: right;
     width: 100%;
+    min-height: 4em;
 }
 
 .nextStepIcon:hover {
@@ -877,6 +878,11 @@
 .createHintFormContainer {
     width: 100%;
     display: table;
+    -moz-transform-origin: 10% 50%;
+    -ms-transform-origin: 10% 50%;
+    -o-transform-origin: 10% 50%;
+    -webkit-transform-origin: 10% 50%;
+    transform-origin: 10% 50%;
     /* max-height: 22em; */
     table-layout: fixed;
 }
@@ -1052,7 +1058,7 @@
 }
 
 .deleteIcon {
-    color: #f00;
+    color: rgb(42, 119, 187);
 }
 
 .currentStepContainer {
@@ -1070,6 +1076,7 @@
 .stepDescription {
     display: block;
     height: 10%;
+    min-height: 5em;
     padding: 1em 3em;
 }
 
