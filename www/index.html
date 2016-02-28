@@ -19,9 +19,10 @@
 
     <header id="appHeader" class="">
         <aside class="userInfoWrapper ng-hide" ng-show="true">
-            <span class="userNameDisplay fa fa-user" hm-tap="app.showHideUserActions()">
-                <img ng-if="app.loggedInUser && app.loggedInUser.avatar " ng-src="{{app.loggedInUser.avatar}}">
-            </span>
+            <div class="userNameDisplay" hm-tap="app.showHideUserActions()">
+                <span class="fa fa-user" ng-if="!app.loggedInUser.avatar"></span>
+                <span class="userAvatar" ng-if="app.loggedInUser.avatar" style="background-image : url('{{app.loggedInUser.avatar}}')"></span>
+            </div>
             <div ng-class="app.userActionClasses">
                 <span class="fa" ng-class="app.loggedInUser?'fa-sign-out':'fa-sign-in'" title="{{app.loggedInUser?'sign out':'sign in'}}" hm-tap="app.loginOrOut('enroll')"></span>
                 <span class="fa fa-share-alt" title="Share" hm-tap="app.shareIt('share')"></span>
@@ -32,7 +33,7 @@
 
     <!-- App entry point-->
     <div class="appWrapper" ng-style="app.backgroundStyle" ui-view></div>
-    
+
     <!-- Cordova reference, this is added to your app when it's built. -->
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>

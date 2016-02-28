@@ -878,11 +878,11 @@
 .createHintFormContainer {
     width: 100%;
     display: table;
-    -moz-transform-origin: 10% 50%;
-    -ms-transform-origin: 10% 50%;
-    -o-transform-origin: 10% 50%;
-    -webkit-transform-origin: 10% 50%;
-    transform-origin: 10% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
     /* max-height: 22em; */
     table-layout: fixed;
 }

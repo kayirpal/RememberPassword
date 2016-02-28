@@ -39,10 +39,28 @@
 
             // drawing logic
 
+            function getCanvasOffsets(canvas) {
+
+                var _x = canvas.offsetLeft;
+                var _y = canvas.offsetTop;
+
+                var offsetWidth = canvas.width;
+                var offsetHeight = canvas.height;
+
+                while (canvas = canvas.offsetParent) {
+                    _x += canvas.offsetLeft - canvas.scrollLeft;
+                    _y += canvas.offsetTop - canvas.scrollTop;
+                }
+
+                return {
+                    left: _x - offsetWidth,
+                    top: _y - offsetHeight
+                };
+            }
+
+            var offsets = getCanvasOffsets(canvasElement);
             var isActive = false,
             prevCords;
-
-
 
             function startDraw(event) {
 
@@ -52,20 +70,11 @@
 
                 if (event.type === 'touchstart') {
                     var touch = event.changedTouches[0];
-
-                    if (touch.clientX && touch.clientY) {
-
-                        coordinate.x = touch.clientX;
-                        coordinate.y = touch.clientY;
-                    } else {
-                        return;
-                    }
-
+                    coordinate.x = touch.pageX - offsets.left;
+                    coordinate.y = touch.pageY - offsets.top-30;
                 } else {
-
                     coordinate.x = event.offsetX || event.layerX - canvasElement.offsetLeft;
                     coordinate.y = event.offsetY || event.layerY - canvasElement.offsetTop;
-
                 }
                 prevCords = coordinate;
                 context.moveTo(prevCords.x, prevCords.y);
@@ -80,29 +89,17 @@
 
                     if (event.type === 'touchmove') {
                         var touch = event.changedTouches[0];
-
-                        if (touch.clientX && touch.clientY) {
-
-                            coordinate.x = touch.clientX;
-                            coordinate.y = touch.clientY;
-                        } else {
-                            return;
-                        }
+                        coordinate.x = touch.pageX - offsets.left;
+                        coordinate.y = touch.pageY - offsets.top-30;
 
                     } else {
-
                         coordinate.x = event.offsetX || event.layerX - canvasElement.offsetLeft;
                         coordinate.y = event.offsetY || event.layerY - canvasElement.offsetTop;
-
                     }
-                    coordinate.x = event.offsetX || event.layerX - canvasElement.offsetLeft;
-                    coordinate.y = event.offsetY || event.layerY - canvasElement.offsetTop;
 
                     context.lineTo(coordinate.x, coordinate.y);
                     context.stroke();
                     context.moveTo(prevCords.x, prevCords.y);
-
-
 
                     context.closePath();
                     prevCords = coordinate;
@@ -112,6 +109,23 @@
             function endDraw() {
                 isActive = false;
                 context.closePath();
+            }
+
+            function createPoint(e) {
+                var coordinate = {};
+
+                if (event.type === 'touchstart') {
+                    var touch = event.changedTouches[0];
+                    coordinate.x = touch.pageX - offsets.left;
+                    coordinate.y = touch.pageY - offsets.top;
+                } else {
+                    coordinate.x = event.offsetX || event.layerX - canvasElement.offsetLeft;
+                    coordinate.y = event.offsetY || event.layerY - canvasElement.offsetTop;
+                }
+                context.beginPath();
+                context.moveTo(coordinate.x, coordinate.y);
+                context.arc(coordinate.x, coordinate.y, 5, 0, 2 * Math.PI);
+                context.stroke();
             }
 
             // canvas.addEventListener("click",createRegion,false);
